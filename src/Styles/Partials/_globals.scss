@@ -1,0 +1,82 @@
+@use "./variables" as *;
+@use "./fonts";
+@use "./mixins" as *;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  color: $off-white;
+  height: 100%;
+}
+
+html {
+  height: 100vh;
+  width: 100vw;
+}
+
+#root {
+  height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+h1 {
+  font-weight: 300;
+}
+
+li {
+  list-style: none;
+}
+
+ul {
+  padding: 0;
+}
+
+.logo {
+  width: 50px;
+}
+
+.italic {
+  font-style: italic;
+}
+
+button,
+label {
+  font-family: inherit;
+  font-size: 1em;
+}
+
+button {
+  padding: 0.5rem;
+  border: 1px solid $soft-green;
+  border-radius: 5px;
+  background-color: $soft-cream;
+  cursor: pointer;
+}
+
+input,
+select {
+  border: 1px solid $soft-green;
+  height: 3rem;
+  width: 100%;
+  border-radius: 5px;
+  padding: 0.625rem;
+  font-size: 0.875rem;
+  font-family: "Poppins", sans-serif;
+}
+
+input:focus,
+select:focus {
+  border-color: $muted-sage;
+  outline: none;
+  color: black;
+  box-shadow: 0 0 1px rgba($muted-charcoal, 0.5);
+}

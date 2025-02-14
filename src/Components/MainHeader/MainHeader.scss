@@ -1,0 +1,139 @@
+@use "../../Styles/Partials/variables" as *;
+@use "../../Styles/Partials/mixins" as *;
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  position: absolute;
+  width: 100vw;
+  padding: 1rem;
+  color: $off-white;
+  background-color: transparent;
+
+  &__logo {
+    color: black;
+    font-size: 3rem;
+    color: $off-white;
+    align-self: flex-start;
+    z-index: 111111;
+    display: flex;
+  }
+
+  &__left {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  @include tablet {
+    padding: 1.5rem;
+  }
+
+  @include desktop {
+    max-width: 1240px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+  }
+
+  &__toggle {
+    z-index: 11111;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include tablet {
+      display: none;
+    }
+  }
+}
+
+.user-action {
+  display: flex;
+  &__btn {
+    width: 100px;
+  }
+}
+
+.nav-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.mobile-menu {
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  right: 0;
+  transform: translateY(-100%);
+  padding: 5rem 0rem;
+  visibility: hidden;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &--active {
+    background: linear-gradient(to top right, $dark-olive, rgb(71, 71, 71));
+    height: 100vh;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  @include tablet {
+    display: none;
+  }
+}
+
+.mobile-links {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  color: $off-white;
+  &__item {
+    padding: 0.5rem 0;
+  }
+}
+
+.mobile-action {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  &__btn {
+    width: 50%;
+    margin: 0 auto;
+    color: $muted-charcoal;
+  }
+}
+
+.desktop-only {
+  display: none;
+  @include tablet {
+    display: flex;
+  }
+}
+
+.login {
+  color: $muted-charcoal;
+  background: none;
+  border: none;
+  color: $off-white;
+  @include tablet {
+    color: $off-white;
+  }
+}
+
+.signup {
+  transition: all 0.2s ease;
+  &:hover {
+    background-color: $muted-charcoal;
+    color: $soft-green;
+  }
+  &:active {
+    transform: translate(1%, 1%);
+  }
+}

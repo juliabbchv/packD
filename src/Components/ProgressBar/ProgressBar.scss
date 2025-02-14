@@ -1,0 +1,23 @@
+@use "../../Styles/Partials/variables" as *;
+@use "../../Styles/Partials/mixins" as *;
+
+.progress-bar {
+  height: 10px;
+  border-radius: 50px;
+  width: 100%;
+  margin: 0 auto;
+  background-color: $muted-charcoal;
+  @include tablet {
+    width: 100%;
+  }
+
+  @include desktop {
+    width: 100%;
+  }
+  &__filler {
+    height: 100%;
+    background-color: $soft-green;
+    border-radius: inherit;
+    transition: width 1s ease-in-out;
+  }
+}

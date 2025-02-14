@@ -1,0 +1,8 @@
+@use "../../Styles/Partials/variables" as *;
+@use "../../Styles/Partials/mixins" as *;
+
+.dashboard-wrap,
+.dashboard-main,
+main {
+  height: 100%;
+}

@@ -1,0 +1,100 @@
+@use "../../Styles/Partials/mixins" as *;
+@use "../../Styles/Partials/variables" as *;
+@use "sass:color";
+
+.form-wrapper {
+  margin: 0 auto;
+  padding: 1rem;
+  color: $dark-olive;
+  max-width: 80%;
+  border-radius: $card-radius;
+
+  @include tablet {
+    margin-left: 14rem;
+  }
+
+  @include desktop {
+    max-width: 1000px;
+    padding-top: 4rem;
+  }
+}
+
+.form-steps {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2rem;
+  text-align: center;
+
+  @include desktop {
+    padding: 0;
+    margin: 2rem 0;
+  }
+}
+
+.form-step {
+  background: linear-gradient(to top right, $dark-olive, rgb(71, 71, 71));
+  color: $off-white;
+  font-weight: 500;
+  border-radius: $card-radius;
+  height: 120px;
+  @include flex(row, center, center);
+  min-width: 100px;
+  flex-basis: 300px;
+  padding: 1rem;
+  font-size: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.hidden {
+  display: none;
+  @include desktop {
+    display: flex;
+  }
+}
+
+.visible {
+  display: none;
+  @include tablet {
+    display: flex;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 1.5rem auto;
+
+  @include desktop {
+    margin-top: 0;
+  }
+
+  &__btn {
+    background-color: $muted-charcoal;
+    color: $soft-green;
+    @include tablet {
+      width: 150px;
+      margin: 0 auto;
+    }
+  }
+}
+
+.react-datepicker__input-container {
+  display: flex;
+}
+
+.react-datepicker__header {
+  background-color: $off-white !important;
+}
+
+.react-datepicker__day--selected,
+.react-datepicker__day--in-range,
+.react-datepicker__day--in-selecting-range,
+.react-datepicker__day--keyboard-selected {
+  background-color: $muted-sage !important;
+}
+
+.react-datepicker__close-icon {
+  display: none !important;
+}

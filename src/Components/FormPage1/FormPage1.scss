@@ -1,0 +1,53 @@
+@use "../../Styles/Partials/variables" as *;
+@use "../../Styles/Partials/mixins" as *;
+
+.form__btn--next1 {
+  width: 100%;
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.form-select {
+  &__control {
+    height: 3rem !important;
+    display: flex;
+    align-items: center;
+    font-size: 0.875rem;
+    border-color: $soft-green !important;
+    &--is-focused {
+      border: none !important;
+      outline: none !important;
+    }
+  }
+
+  &__value-container {
+    top: -6px;
+  }
+
+  &__indicator-separator {
+    display: none;
+  }
+  &__dropdown-indicator svg {
+    display: none;
+  }
+
+  &__option {
+    &:hover {
+      background-color: $muted-sage; // Change background color on hover
+      cursor: pointer;
+    }
+  }
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  @include desktop {
+    flex-direction: row;
+
+    & > * {
+      flex: 1 0 150px;
+    }
+  }
+}

@@ -1,0 +1,80 @@
+@use "../../Styles/Partials/mixins" as *;
+@use "../../Styles/Partials/variables" as *;
+
+.inputs-container {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+}
+
+.checkbox-wrapper {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  position: relative;
+}
+
+.checkbox-wrapper input[type="checkbox"] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  margin-right: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.checkbox-wrapper input[type="checkbox"]:checked {
+  background-color: $soft-green;
+  border-color: $muted-charcoal;
+}
+
+.checkbox-wrapper input[type="checkbox"]:checked::after {
+  content: "✔";
+  font-size: 14px;
+  color: $muted-charcoal;
+  position: absolute;
+  top: 2px;
+  left: 5px;
+}
+
+.input-title {
+  font-weight: bold;
+}
+
+.form {
+  &__btnwrap {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+
+    @include tablet {
+    }
+  }
+
+  &__btn {
+    width: 100%;
+
+    @include tablet {
+      width: 150px;
+      margin: 0 0 0 auto;
+    }
+
+    &--next:hover {
+      background-color: $soft-green;
+      color: $muted-charcoal;
+      border-color: $muted-charcoal;
+    }
+
+    &--back {
+      background-color: $off-white;
+      color: $muted-charcoal;
+      border-color: $muted-charcoal;
+      margin-left: 0;
+
+      &:hover {
+        border-color: $muted-sage;
+      }
+    }
+  }
+}

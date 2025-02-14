@@ -1,0 +1,110 @@
+@use "../../Styles/Partials/mixins" as *;
+@use "../../Styles/Partials/variables" as *;
+
+.sidebar {
+  background: linear-gradient(to top right, $dark-olive, rgb(71, 71, 71));
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  padding: 1.25rem;
+  @include flex(column, space-between, center);
+  text-align: center;
+  gap: 20px;
+  height: 100%;
+  position: fixed;
+  z-index: 1000;
+  width: 100vw;
+
+  @include tablet {
+    width: 220px;
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  &__top {
+    margin-top: 3rem;
+  }
+
+  &--active {
+    display: none;
+    @include tablet {
+      display: block;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  &__top > * {
+    margin-bottom: 1rem;
+  }
+
+  &__title {
+    font-size: 1.5rem;
+  }
+
+  &__add-list-btn {
+    background-color: $soft-cream;
+    transition: all 0.2s ease;
+    padding: 0.5rem;
+    width: 100%;
+    cursor: pointer;
+    transition: 0.3s;
+    float: left;
+    margin-bottom: 1rem;
+
+    &:hover {
+      background-color: $muted-charcoal;
+      color: $soft-green;
+    }
+    &:active {
+      transform: translate(1%, 1%);
+    }
+  }
+}
+
+.sidebar-list {
+  &__item {
+    margin: 4rem 0;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &--selected {
+      background-color: $soft-green;
+      color: $dark-olive;
+    }
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.sidebar li {
+  margin: 1rem 0;
+}
+
+.sidebar a {
+  padding: 0.5rem;
+  border-radius: $btn-radius;
+}
+
+.sidebar-actions {
+  position: absolute;
+  z-index: 100000000;
+  top: 1rem;
+  left: 1rem;
+  gap: 6rem;
+  @include flex(row, space-between, center);
+
+  &__toggle {
+    position: fixed;
+    right: 1rem;
+    top: 1rem;
+  }
+
+  &__logo {
+    @include tablet {
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+    }
+  }
+}

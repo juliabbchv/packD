@@ -1,0 +1,134 @@
+@use "../../Styles/Partials/variables" as *;
+@use "../../Styles/Partials/mixins" as *;
+@use "sass:color";
+
+.user-lists {
+  display: flex;
+  flex-direction: column;
+  &__title {
+    color: $dark-olive;
+    margin-bottom: 1rem;
+    margin-left: 1.875rem;
+  }
+
+  &__main-content {
+    flex: 1;
+    padding: 1.875rem;
+    color: $dark-olive;
+  }
+}
+
+.user-list-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.trip-card {
+  background: linear-gradient(to top right, $dark-olive, rgb(71, 71, 71));
+  padding: 1.25rem;
+  color: $off-white;
+  border-radius: $card-radius;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  flex: 0 0 30%;
+  min-height: 300px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  @include flex(column, space-between, flex-start);
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  &__tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  &__tag-list-item {
+    border-radius: $card-radius;
+    font-size: 0.8rem;
+    background: $soft-cream;
+    padding: 0.5rem;
+    color: $muted-charcoal;
+    font-weight: 500;
+  }
+
+  &__title {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: $off-white;
+  }
+
+  &__destination {
+    font-size: 0.9rem;
+    color: $muted-charcoal;
+    margin-bottom: 8px;
+  }
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $muted-sage;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: $off-white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: $dark-olive;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px $dark-olive;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.switchwrap {
+  @include flex(row, flex-start, center);
+  gap: 1rem;
+}
