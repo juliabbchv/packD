@@ -6,7 +6,7 @@
   display: flex;
   flex-direction: column;
   &__title {
-    color: $dark-olive;
+    color: $brown;
     margin-bottom: 1rem;
     margin-left: 1.875rem;
   }
@@ -14,7 +14,7 @@
   &__main-content {
     flex: 1;
     padding: 1.875rem;
-    color: $dark-olive;
+    color: $brown;
   }
 }
 
@@ -25,9 +25,9 @@
 }
 
 .trip-card {
-  background: linear-gradient(to top right, $dark-olive, rgb(71, 71, 71));
+  background: $soft-cream;
   padding: 1.25rem;
-  color: $off-white;
+  color: $brown;
   border-radius: $card-radius;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
   flex: 0 0 30%;
@@ -48,18 +48,17 @@
   }
 
   &__tag-list-item {
-    border-radius: $card-radius;
     font-size: 0.8rem;
-    background: $soft-cream;
+    background: $brown;
     padding: 0.5rem;
-    color: $muted-charcoal;
+    color: $soft-cream;
     font-weight: 500;
   }
 
   &__title {
     font-weight: bold;
-    margin-bottom: 0.5rem;
-    color: $off-white;
+    height: 50px;
+    color: $brown;
   }
 
   &__destination {
@@ -89,7 +88,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: $muted-sage;
+  background-color: $muted-green;
   -webkit-transition: 0.4s;
   transition: 0.4s;
 }
@@ -101,17 +100,17 @@
   width: 26px;
   left: 4px;
   bottom: 4px;
-  background-color: $off-white;
+  background-color: $soft-cream;
   -webkit-transition: 0.4s;
   transition: 0.4s;
 }
 
 input:checked + .slider {
-  background-color: $dark-olive;
+  background-color: $brown;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px $dark-olive;
+  box-shadow: 0 0 1px $brown;
 }
 
 input:checked + .slider:before {

@@ -2,11 +2,12 @@
 @use "../../Styles/Partials/mixins" as *;
 
 .progress-bar {
-  height: 10px;
-  border-radius: 50px;
+  height: 5px;
+  border-radius: 2px;
+  position: relative;
   width: 100%;
   margin: 0 auto;
-  background-color: $muted-charcoal;
+  background-color: $soft-cream;
   @include tablet {
     width: 100%;
   }
@@ -15,9 +16,11 @@
     width: 100%;
   }
   &__filler {
-    height: 100%;
-    background-color: $soft-green;
+    height: 3px;
+    background-color: $soft-cream;
     border-radius: inherit;
     transition: width 1s ease-in-out;
+    position: absolute;
+    bottom: 4px;
   }
 }

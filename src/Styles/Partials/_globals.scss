@@ -8,7 +8,7 @@
 }
 
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: "futura-pt", sans-serif;
   font-weight: 400;
   color: $off-white;
   height: 100%;
@@ -36,6 +36,13 @@ li {
   list-style: none;
 }
 
+p {
+  font-size: 1rem;
+  @include tablet {
+    font-size: 1.3rem;
+  }
+}
+
 ul {
   padding: 0;
 }
@@ -51,32 +58,43 @@ ul {
 button,
 label {
   font-family: inherit;
-  font-size: 1em;
+  font-weight: 500;
+  font-size: 1rem;
+  @include tablet {
+    font-size: 1.3rem;
+  }
 }
 
 button {
   padding: 0.5rem;
-  border: 1px solid $soft-green;
-  border-radius: 5px;
-  background-color: $soft-cream;
+  border: 1px solid $soft-cream;
+  background-color: none;
   cursor: pointer;
 }
 
 input,
 select {
-  border: 1px solid $soft-green;
+  border: 1px solid $soft-cream;
+  background-color: transparent;
+  color: $soft-cream;
   height: 3rem;
   width: 100%;
-  border-radius: 5px;
   padding: 0.625rem;
-  font-size: 0.875rem;
-  font-family: "Poppins", sans-serif;
+  font-family: "futura-pt", sans-serif;
+  border-radius: $btn-radius;
+  font-size: 1rem;
+  @include tablet {
+    font-size: 1.3rem;
+  }
+
+  &::placeholder {
+    color: $soft-cream !important;
+  }
 }
 
 input:focus,
 select:focus {
-  border-color: $muted-sage;
+  border-color: $brown;
   outline: none;
-  color: black;
-  box-shadow: 0 0 1px rgba($muted-charcoal, 0.5);
+  color: $brown;
 }

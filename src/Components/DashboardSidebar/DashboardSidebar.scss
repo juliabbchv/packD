@@ -2,7 +2,7 @@
 @use "../../Styles/Partials/variables" as *;
 
 .sidebar {
-  background: linear-gradient(to top right, $dark-olive, rgb(71, 71, 71));
+  background: $brown;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   padding: 1.25rem;
   @include flex(column, space-between, center);
@@ -17,6 +17,7 @@
     width: 220px;
     text-align: left;
     align-items: flex-start;
+    font-size: 1.3rem;
   }
 
   &__top {
@@ -41,19 +42,17 @@
   }
 
   &__add-list-btn {
-    background-color: $soft-cream;
+    background-color: transparent;
+    color: $soft-cream;
     transition: all 0.2s ease;
     padding: 0.5rem;
     width: 100%;
+    height: 50px;
     cursor: pointer;
     transition: 0.3s;
     float: left;
     margin-bottom: 1rem;
 
-    &:hover {
-      background-color: $muted-charcoal;
-      color: $soft-green;
-    }
     &:active {
       transform: translate(1%, 1%);
     }
@@ -67,8 +66,8 @@
     transition: 0.3s;
 
     &--selected {
-      background-color: $soft-green;
-      color: $dark-olive;
+      background-color: $soft-cream;
+      color: $brown;
     }
 
     &:hover {

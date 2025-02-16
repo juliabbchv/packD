@@ -1,0 +1,9 @@
+@use "../../Styles/Partials/mixins" as *;
+@use "../../Styles/Partials/variables" as *;
+
+.item-list {
+  &__group {
+    display: flex;
+    gap: 1rem;
+  }
+}
