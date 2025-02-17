@@ -42,7 +42,10 @@
 
 .form-step {
   color: $off-white;
-  font-weight: 500;
+
+  @include desktop {
+    width: 20%;
+  }
 }
 
 .hidden {

@@ -24,8 +24,7 @@ export default function Header() {
           <div className="navbar__links desktop-only">
             <ul className="nav-links">
               <li className="nav-links__item">About</li>
-              <li className="nav-links__item">Public Lists</li>
-              <li className="nav-links__item"></li>
+              <li className="nav-links__item">Destination Insights</li>
             </ul>
           </div>
         </div>
@@ -40,7 +39,6 @@ export default function Header() {
       <div className={`mobile-menu ${toggleNav ? "mobile-menu--active" : ""}`}>
         <ul className="mobile-links">
           <li className="mobile-links__item">About</li>
-          <li className="mobile-links__item">Public Lists</li>
           <li className="mobile-links__item">Destination Insights</li>
           <li className="mobile-links__item">Tips From Locals</li>
         </ul>

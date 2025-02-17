@@ -6,9 +6,10 @@
   display: flex;
   flex-direction: column;
   &__title {
-    color: $brown;
     margin-bottom: 1rem;
     margin-left: 1.875rem;
+    font-weight: 400;
+    font-size: 1.5rem;
   }
 
   &__main-content {
@@ -48,7 +49,6 @@
   }
 
   &__tag-list-item {
-    font-size: 0.8rem;
     background: $brown;
     padding: 0.5rem;
     color: $soft-cream;
@@ -56,14 +56,13 @@
   }
 
   &__title {
-    font-weight: bold;
     height: 50px;
     color: $brown;
   }
 
   &__destination {
     font-size: 0.9rem;
-    color: $muted-charcoal;
+    color: $brown;
     margin-bottom: 8px;
   }
 }

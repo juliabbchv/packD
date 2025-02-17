@@ -1,23 +1,30 @@
 @use "../../Styles/Partials/mixins" as *;
 
 .hero {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)),
     url("../../Assets/Images/hero.jpg");
   background-size: cover;
   background-position: center;
   height: 500px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+  @include flex(column, center, flex-start);
+  padding: 1rem;
 
   @include tablet {
     height: 600px;
     padding: 1.5rem;
+    padding-left: 2rem;
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    width: 1280px;
+    margin: 0 auto;
   }
 
   &__secondary {
     max-width: 20rem;
+    font-size: 1.2rem;
     @include tablet {
       font-size: 1.5rem;
       max-width: 40rem;
@@ -25,16 +32,18 @@
   }
 
   &__title {
-    margin: 8rem auto;
     font-size: 2rem;
     height: 1rem;
     margin-bottom: 4rem;
-    max-width: 20rem;
+    width: 100%;
+
     @include tablet {
       font-size: 3rem;
-      max-width: 40rem;
-      margin-bottom: 5rem;
       height: auto;
     }
   }
+}
+
+.underline {
+  text-decoration: underline;
 }

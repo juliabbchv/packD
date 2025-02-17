@@ -3,18 +3,11 @@
 
 .progress-bar {
   height: 5px;
-  border-radius: 2px;
   position: relative;
   width: 100%;
   margin: 0 auto;
   background-color: $soft-cream;
-  @include tablet {
-    width: 100%;
-  }
 
-  @include desktop {
-    width: 100%;
-  }
   &__filler {
     height: 3px;
     background-color: $soft-cream;

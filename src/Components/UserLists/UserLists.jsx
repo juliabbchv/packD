@@ -1,65 +1,58 @@
 import axios from "axios";
 import "./UserLists.scss";
 import { useEffect, useState } from "react";
+import { use } from "react";
 
 export default function UserLists() {
-  const userLists = [
-    {
-      id: 1,
-      title: "Adventure in Japan",
-      destination: "Tokyo, Japan",
-      activities: ["Sightseeing", "Camping", "Winter sports"],
-      items: 15,
-    },
-    {
-      id: 2,
-      title: "Camping trip to Yosemite ",
-      destination: "Yosemite, USA",
-      items: 10,
-    },
-    {
-      id: 3,
-      title: "Adventure in Japan",
-      destination: "Tokyo, Japan",
-      activities: ["Sightseeing", "Camping", "Winter sports"],
-      items: 15,
-    },
-    {
-      id: 4,
-      title: "Camping trip to Yosemite ",
-      destination: "Yosemite, USA",
-      items: 10,
-    },
-  ];
+  const [userLists, setUserLists] = useState("");
+
+  useEffect(() => {
+    async function generateUserLists() {
+      try {
+        const response = await axios.get("http://localhost:8080/trips");
+        setUserLists(response.data);
+      } catch (err) {
+        console.log("Error fetching trips", err);
+      }
+    }
+
+    generateUserLists();
+  }, []);
+
+  console.log(userLists);
 
   return (
     <section className="user-lists">
-      <h2 className=" user-lists__title">Your Lists</h2>
+      <h2 className=" user-lists__title">Your Recent Trips</h2>
       <article className="user-lists__main-content">
         <div className="user-list-cards ">
-          {userLists.map((list) => (
-            <div key={list.id} className="trip-card">
-              <div>
-                <h3 className="trip-card__title">{list.title}</h3>
-                <div className="switchwrap">
-                  <label className="switch">
-                    <input type="checkbox" />
-                    <span className="slider round"></span>
-                  </label>
-                  <span>Private</span>
-                </div>
-              </div>
-              <ul className="trip-card__tag-list">
-                <li className="trip-card__tag-list-item">{list.destination}</li>
-                {list.activities &&
-                  list.activities.map((activity, index) => (
-                    <li key={index} className="trip-card__tag-list-item">
-                      {activity}
+          {userLists &&
+            userLists
+              .filter((list) => list.user_id === 1)
+              .map((list) => (
+                <div key={list.id} className="trip-card">
+                  <div>
+                    <h3 className="trip-card__title">{list.trip_name}</h3>
+                    <div className="switchwrap">
+                      <label className="switch">
+                        <input type="checkbox" />
+                        <span className="slider round"></span>
+                      </label>
+                      <span>Private</span>
+                    </div>
+                  </div>
+                  <ul className="trip-card__tag-list">
+                    <li className="trip-card__tag-list-item">
+                      {list.destination}
                     </li>
-                  ))}
-              </ul>
-            </div>
-          ))}
+                    {list.activities.split(",").map((activity, index) => (
+                      <li className="trip-card__tag-list-item" key={index}>
+                        {activity}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
         </div>
       </article>
     </section>

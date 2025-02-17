@@ -3,32 +3,18 @@
 @use "sass:color";
 
 .dashboard {
-  color: $soft-cream;
+  background-color: $muted-green;
   @include tablet {
-    margin-left: 14rem;
+    margin-left: 13rem;
   }
 
   &__greeting {
     padding: 5rem 2rem 2rem 2rem;
     font-size: 1.5rem;
-    font-weight: 100;
   }
+}
 
-  &__logout-btn {
-    color: $muted-charcoal;
-    background: none;
-    border: none;
-  }
-
-  &__content {
-    display: flex;
-    flex: 1;
-  }
-
-  &__main-content {
-    flex: 1;
-    padding: 1.875rem;
-    color: $brown;
-    background-color: $off-white;
-  }
+.divider-line {
+  border: 1px solid $soft-cream;
+  margin: 0 1rem 1.5rem 2rem;
 }

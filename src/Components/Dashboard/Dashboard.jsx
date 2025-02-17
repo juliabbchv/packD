@@ -54,6 +54,7 @@ const Dashboard = () => {
             Ready for your next trip, Julia? <br /> Let's pack your bags!
           </h1>
         </div>
+        <div className="divider-line"></div>
         <UserLists />
       </section>
     </>

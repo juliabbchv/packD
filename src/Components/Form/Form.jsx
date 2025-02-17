@@ -87,13 +87,13 @@ export default function Form() {
               <p className="form-step__item">Trip Details</p>
             </div>
             <div className={`form-step ${currentPage === 2 ? "" : "hidden"}`}>
-              <p className="form-step__item">Accommodation & transport</p>
+              <p className="form-step__item">Stay & Transport</p>
             </div>
             <div className={`form-step ${currentPage === 3 ? "" : "hidden"}`}>
               <p className="form-step__item">Activities</p>
             </div>
             <div className={`form-step ${currentPage === 4 ? "" : "hidden"}`}>
-              <p className="form-step__item">Your packing list</p>
+              <p className="form-step__item">Your Packing List</p>
             </div>
           </div>
           <div>

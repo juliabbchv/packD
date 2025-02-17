@@ -61,6 +61,15 @@
 .nav-links {
   display: flex;
   gap: 1rem;
+
+  &__item {
+    font-size: 1.3rem;
+
+    &:hover {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
 }
 
 .mobile-menu {
@@ -77,7 +86,7 @@
   justify-content: space-between;
 
   &--active {
-    background: linear-gradient(to top right, $brown, rgb(71, 71, 71));
+    background: $brown;
     height: 100vh;
     visibility: visible;
     transform: translateY(0);
@@ -92,7 +101,7 @@
   display: flex;
   flex-direction: column;
   text-align: center;
-  color: $off-white;
+  color: $soft-cream;
   &__item {
     padding: 0.5rem 0;
   }
@@ -106,7 +115,7 @@
   &__btn {
     width: 50%;
     margin: 0 auto;
-    color: $muted-charcoal;
+    color: $brown;
   }
 }
 
@@ -118,20 +127,24 @@
 }
 
 .login {
-  color: $muted-charcoal;
+  color: $brown;
   background: none;
   border: none;
   color: $off-white;
   @include tablet {
     color: $off-white;
   }
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 .signup {
   transition: all 0.2s ease;
+  background-color: transparent;
+  color: $soft-cream;
   &:hover {
-    background-color: $muted-charcoal;
-    color: $soft-green;
+    text-decoration: underline;
   }
   &:active {
     transform: translate(1%, 1%);
