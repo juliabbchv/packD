@@ -29,3 +29,8 @@
 .form-select--disabled {
   color: gray;
 }
+
+.invalid {
+  outline: none;
+  border-color: rgb(221, 93, 47);
+}

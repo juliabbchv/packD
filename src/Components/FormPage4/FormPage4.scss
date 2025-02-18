@@ -3,13 +3,22 @@
 
 .packing-list {
   &__title {
-    font-size: 1.5rem;
     margin: 1rem 0;
+    font-size: 1.2rem;
+    @include tablet {
+      font-size: 1.3rem;
+    }
   }
 }
 
-.list__details__subheader {
-  font-size: 1.3rem;
+.list-details {
+  margin-bottom: 1.2rem;
+  &__subheader {
+    font-size: 1rem;
+    @include tablet {
+      font-size: 1.2rem;
+    }
+  }
 }
 
 .item-list {
@@ -20,9 +29,8 @@
   &__group {
     display: flex;
     align-items: center;
-
     gap: 1rem;
-    padding: 5px 0;
+    padding: 0.3rem 0;
   }
 
   &__label {
@@ -38,7 +46,10 @@
   }
 
   &__name {
-    font-size: 1.3rem;
+    font-size: 1rem;
+    @include tablet {
+      font-size: 1.2rem;
+    }
   }
 
   &__link {
@@ -52,8 +63,18 @@
 .item-list__link,
 .item-list__qty {
   background-color: $soft-cream;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   opacity: 80%;
   padding: 0.2rem;
   border-radius: $btn-radius;
+  @include tablet {
+    font-size: 0.8rem;
+  }
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }

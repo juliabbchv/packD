@@ -11,8 +11,9 @@ export default function Form() {
   const [currentPage, setCurrentPage] = useState(1);
   const [packingList, setPackingList] = useState("");
   const [loading, setLoading] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [formData, setFormData] = useState({
-    destination: null,
+    destination: "",
     dates: [],
     travelPurpose: null,
     travellers: null,
@@ -37,7 +38,10 @@ export default function Form() {
   console.log(formData);
 
   const isFormValid = () => {
-    return formData.destination && formData.destination.trim() !== "";
+    if (!formData.destination.trim()) {
+      return false;
+    }
+    return true;
   };
 
   useEffect(() => {
@@ -69,8 +73,14 @@ export default function Form() {
 
   const handleFormSubmit = (e, direction) => {
     e.preventDefault();
+    setIsSubmitted(true);
+
+    if (direction === "next" && !isFormValid()) {
+      return;
+    }
     if (direction === "next") {
       setCurrentPage((prev) => prev + 1);
+      setIsSubmitted(false);
     } else if (direction === "back") {
       setCurrentPage((prev) => Math.max(prev - 1, 1));
     }
@@ -105,9 +115,7 @@ export default function Form() {
               <FormPage1
                 handleFormSubmit={handleFormSubmit}
                 setFormData={setFormData}
-                isFormValid={() => {
-                  isFormValid();
-                }}
+                isSubmitted={isSubmitted}
               />
             )}
             {/* Step 2 */}
@@ -131,6 +139,7 @@ export default function Form() {
                 listDetails={packingList}
                 setFormData={setFormData}
                 formData={formData}
+                loading={loading}
               />
             )}
           </form>

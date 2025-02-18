@@ -98,9 +98,21 @@
   @include flex(row, space-between, center);
 
   &__toggle {
-    position: fixed;
-    right: 1rem;
-    top: 1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    @include flex(column, center, center);
+    position: absolute;
+    right: 10px;
+    top: 20px;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    z-index: 10000000;
+
+    @include tablet {
+      display: none;
+    }
   }
 
   &__logo {
@@ -110,4 +122,24 @@
       left: 1rem;
     }
   }
+}
+
+.bar {
+  display: block;
+  width: 30px;
+  height: 3px;
+  background-color: $soft-cream;
+  transition: all 0.3s ease-in-out;
+}
+
+.navbar__toggle.open .bar:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.navbar__toggle.open .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.navbar__toggle.open .bar:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
 }

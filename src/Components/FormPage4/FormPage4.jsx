@@ -1,8 +1,7 @@
 import axios from "axios";
 import "./FormPage4.scss";
 
-export default function FormPage4({ listDetails }) {
-  console.log(listDetails);
+export default function FormPage4({ listDetails, loading }) {
   const handleSave = async () => {
     try {
       const sentObject = {
@@ -16,8 +15,6 @@ export default function FormPage4({ listDetails }) {
         isSaved: 0,
       };
 
-      console.log("Object", sentObject);
-
       const addTripDetails = await axios.post(
         "http://localhost:8080/trips",
         sentObject
@@ -29,7 +26,11 @@ export default function FormPage4({ listDetails }) {
     }
   };
 
-  return (
+  return loading ? (
+    <div className="loading-container">
+      <p>Loading...</p>
+    </div>
+  ) : (
     <section className="packing-list">
       {listDetails && (
         <>
@@ -38,9 +39,9 @@ export default function FormPage4({ listDetails }) {
             ready!
           </h3>
 
-          <div className="list__details">
+          <div className="list-details">
             {/* Before You Go */}
-            <h4 className="list__details__subheader">Before you go:</h4>
+            <h4 className="list-details__subheader">Before you go:</h4>
             <div className="list-details__items">
               <ul className="item-list">
                 {listDetails.packingList.list.map((item) =>
@@ -99,7 +100,9 @@ export default function FormPage4({ listDetails }) {
                         />
                         <span className="item-list__name">{item.item}</span>
                       </div>
-                      <p className="item-list__qty"> QTY:{item.quantity}</p>
+                      {item.quantity && (
+                        <p className="item-list__qty"> QTY:{item.quantity}</p>
+                      )}
                     </li>
                   ) : null
                 )}
@@ -128,7 +131,12 @@ export default function FormPage4({ listDetails }) {
                             />
                             <span className="item-list__name">{item.item}</span>
                           </div>
-                          <p className="item-list__qty">QTY: {item.quantity}</p>
+                          {item.quantity && (
+                            <p className="item-list__qty">
+                              {" "}
+                              QTY:{item.quantity}
+                            </p>
+                          )}
                         </li>
                       ) : null
                     )}
@@ -151,9 +159,11 @@ export default function FormPage4({ listDetails }) {
                         />
                         <span className="item-list__name">{item.item}</span>
                       </div>
-                      <p className="item-list__link">
-                        <a href={item.link}>more info</a>
-                      </p>
+                      {item.link && (
+                        <p className="item-list__link">
+                          <a href={item.link}>more info</a>
+                        </p>
+                      )}
                     </li>
                   ) : null
                 )}

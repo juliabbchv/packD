@@ -10,13 +10,15 @@ import {
 
 const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
 
-export default function FormPage1({ handleFormSubmit, setFormData }) {
+export default function FormPage1({
+  handleFormSubmit,
+  setFormData,
+  isSubmitted,
+}) {
   const [dateRange, setDateRange] = useState([null, null]);
   const [startDate, endDate] = dateRange;
-
   const [address, setAddress] = useState("");
   const inputRef = useRef(null);
-
   const [selectedTripOption, setSelectedTripOption] = useState("");
   const [selectedIdentityOption, setSelectedIdentityOption] = useState("");
 
@@ -29,13 +31,13 @@ export default function FormPage1({ handleFormSubmit, setFormData }) {
   return (
     <>
       <div className="input-wrapper">
-        <label htmlFor="destination">Tell us where you're going</label>
+        <label htmlFor="destination">Tell us where you're going*</label>
         <input
           id="destination"
-          className="form__input"
+          className={`form__input ${isSubmitted ? "invalid" : ""}`}
           ref={inputRef}
           type="text"
-          placeholder="Enter your destination *"
+          placeholder="Enter your destination "
           value={address}
           onChange={(e) => {
             setAddress(e.target.value);

@@ -10,7 +10,6 @@
   margin: 0 auto;
   padding: 1rem;
   color: $brown;
-  max-width: 95%;
   border-radius: $card-radius;
 
   @include tablet {
@@ -28,7 +27,11 @@
   text-align: center;
   gap: 1rem;
   padding: 2rem 0;
-  margin-top: 1.5rem;
+  margin-top: 2rem;
+
+  @include tablet {
+    margin-top: 0;
+  }
 
   @include desktop {
     padding-bottom: 1rem;

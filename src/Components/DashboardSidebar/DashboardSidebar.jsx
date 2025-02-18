@@ -10,30 +10,32 @@ export default function DashboardSidebar() {
   const [toggleNav, setToggleNav] = useState(false);
 
   const handleToggle = () => setToggleNav(!toggleNav);
+  const closeMenu = () => setToggleNav(false);
 
   return (
     <>
       <div className="sidebar-actions">
-        <img
-          className=" logo sidebar-actions__logo"
-          src={`${!toggleNav ? Logo : LogoDark}`}
-          alt="logo"
-        />
+        <img className=" logo sidebar-actions__logo" src={Logo} alt="logo" />
       </div>
       <button
-        className="navbar__toggle sidebar-actions__toggle"
+        className={`navbar__toggle sidebar-actions__toggle ${
+          toggleNav ? "open" : ""
+        }`}
         onClick={handleToggle}
       >
-        {toggleNav ? "X" : "☰"}
+        <span className="bar"></span>
+        <span className="bar"></span>
+        <span className="bar"></span>
       </button>
       <aside className={`sidebar ${!toggleNav ? "sidebar--active" : ""}`}>
         <div className="sidebar__top">
-          <NavLink to="/dashboard/create-list">
+          <NavLink to="/dashboard/create-list" onClick={closeMenu}>
             <button className="sidebar__add-list-btn">+ Create New List</button>
           </NavLink>
           <ul className="sidebar-list">
             <li>
               <NavLink
+                onClick={closeMenu}
                 to="/dashboard"
                 end
                 className={({ isActive }) =>
@@ -47,6 +49,7 @@ export default function DashboardSidebar() {
             </li>
             <li>
               <NavLink
+                onClick={closeMenu}
                 to="/dashboard/trips"
                 className={({ isActive }) =>
                   `sidebar-list__item ${
@@ -59,6 +62,7 @@ export default function DashboardSidebar() {
             </li>
             <li>
               <NavLink
+                onClick={closeMenu}
                 to="/dashboard/explore-public-lists"
                 className={({ isActive }) =>
                   `sidebar-list__item ${
@@ -71,6 +75,7 @@ export default function DashboardSidebar() {
             </li>
             <li>
               <NavLink
+                onClick={closeMenu}
                 to="/dashboard/destination-insights"
                 className={({ isActive }) =>
                   `sidebar-list__item ${
