@@ -47,7 +47,7 @@ export default function DashboardSidebar() {
             </li>
             <li>
               <NavLink
-                to="/dashboard/my-trips"
+                to="/dashboard/trips"
                 className={({ isActive }) =>
                   `sidebar-list__item ${
                     isActive ? "sidebar-list__item--selected" : ""

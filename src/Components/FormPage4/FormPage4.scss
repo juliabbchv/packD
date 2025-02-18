@@ -1,9 +1,59 @@
 @use "../../Styles/Partials/mixins" as *;
 @use "../../Styles/Partials/variables" as *;
 
+.packing-list {
+  &__title {
+    font-size: 1.5rem;
+    margin: 1rem 0;
+  }
+}
+
+.list__details__subheader {
+  font-size: 1.3rem;
+}
+
 .item-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
   &__group {
     display: flex;
+    align-items: center;
+
     gap: 1rem;
+    padding: 5px 0;
   }
+
+  &__label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  &__checkbox {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+  }
+
+  &__name {
+    font-size: 1.3rem;
+  }
+
+  &__link {
+    text-decoration: underline;
+  }
+
+  &__qty {
+  }
+}
+
+.item-list__link,
+.item-list__qty {
+  background-color: $soft-cream;
+  font-size: 0.8rem;
+  opacity: 80%;
+  padding: 0.2rem;
+  border-radius: $btn-radius;
 }

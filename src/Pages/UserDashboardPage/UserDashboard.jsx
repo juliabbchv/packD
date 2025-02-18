@@ -13,9 +13,11 @@ export default function UserDashboard() {
         return <Dashboard />;
       case "/dashboard/create-list":
         return <Form />;
-      case "/dashboard/saved-lists":
-        return <SavedLists />;
-      case "/dashboard/explore-public-lists":
+      case "/dashboard/trips/:id":
+        return <TripPage />;
+      case "/dashboard/trips":
+        return <AllTrips />;
+      case "/dashboard/trips/public":
         return <ExplorePublicLists />;
       case "/dashboard/destination-insights":
         return <DestinationInsights />;

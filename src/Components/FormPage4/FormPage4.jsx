@@ -47,22 +47,24 @@ export default function FormPage4({ listDetails }) {
                   item.category === "before you go" ||
                   item.category === "before-you-go" ? (
                     <li className="item-list__group" key={item.item}>
-                      <p className="item-list__name">{item.item}</p>
+                      <div className="item-list__label checkbox-wrapper">
+                        <input
+                          type="checkbox"
+                          className="item-list__checkbox"
+                        />
+                        <span className="item-list__name">{item.item}</span>
+                      </div>
                       {item.link && (
-                        <a
-                          className="item-list__link"
-                          href={item.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          🔗
-                        </a>
+                        <p className="item-list__link">
+                          <a href={item.link}>more info</a>
+                        </p>
                       )}
                     </li>
                   ) : null
                 )}
               </ul>
             </div>
+
             {/* Documents */}
             <h4 className="list__details__subheader">Documents:</h4>
             <div className="list-details__items">
@@ -70,7 +72,13 @@ export default function FormPage4({ listDetails }) {
                 {listDetails.packingList.list.map((item) =>
                   item.category === "documents" ? (
                     <li className="item-list__group" key={item.item}>
-                      <p className="item-list__name">{item.item}</p>
+                      <div className="item-list__label checkbox-wrapper">
+                        <input
+                          type="checkbox"
+                          className="item-list__checkbox"
+                        />
+                        <span className="item-list__name">{item.item}</span>
+                      </div>
                     </li>
                   ) : null
                 )}
@@ -84,29 +92,51 @@ export default function FormPage4({ listDetails }) {
                 {listDetails.packingList.list.map((item) =>
                   item.category?.toLowerCase() === "clothes" ? (
                     <li className="item-list__group" key={item.item}>
-                      <p className="item-list__name">{item.item}</p>
-                      <p className="item-list__name">{item.quantity}</p>
+                      <div className="item-list__label checkbox-wrapper">
+                        <input
+                          type="checkbox"
+                          className="item-list__checkbox"
+                        />
+                        <span className="item-list__name">{item.item}</span>
+                      </div>
+                      <p className="item-list__qty"> QTY:{item.quantity}</p>
                     </li>
                   ) : null
                 )}
               </ul>
             </div>
-            {/* Activity-related items */}
-            <h4 className="list__details__subheader">
-              Activity-related items:
-            </h4>
-            <div className="list-details__items">
-              <ul className="item-list">
-                {listDetails.packingList.list.map((item) =>
-                  item.category?.toLowerCase() === "activity-related items" ? (
-                    <li className="item-list__group" key={item.item}>
-                      <p className="item-list__name">{item.item}</p>
-                      <p className="item-list__name">{item.quantity}</p>
-                    </li>
-                  ) : null
-                )}
-              </ul>
-            </div>
+
+            {listDetails.packingList.list.some(
+              (item) =>
+                item.category?.toLowerCase() === "activity-related items" ||
+                item.category?.toLowerCase() === "activity-items"
+            ) && (
+              <>
+                <h4 className="list__details__subheader">
+                  Activity-related items:
+                </h4>
+                <div className="list-details__items">
+                  <ul className="item-list">
+                    {listDetails.packingList.list.map((item) =>
+                      item.category?.toLowerCase() ===
+                      "activity-related items" ? (
+                        <li className="item-list__group" key={item.item}>
+                          <div className="item-list__label checkbox-wrapper">
+                            <input
+                              type="checkbox"
+                              className="item-list__checkbox"
+                            />
+                            <span className="item-list__name">{item.item}</span>
+                          </div>
+                          <p className="item-list__qty">QTY: {item.quantity}</p>
+                        </li>
+                      ) : null
+                    )}
+                  </ul>
+                </div>
+              </>
+            )}
+
             {/* Tech */}
             <h4 className="list__details__subheader">Tech:</h4>
             <div className="list-details__items">
@@ -114,16 +144,23 @@ export default function FormPage4({ listDetails }) {
                 {listDetails.packingList.list.map((item) =>
                   item.category?.toLowerCase() === "tech" ? (
                     <li className="item-list__group" key={item.item}>
-                      <p className="item-list__name">{item.item}</p>
-                      <p className="">
-                        <a href={item.link}>🔗 </a>
+                      <div className="item-list__label checkbox-wrapper">
+                        <input
+                          type="checkbox"
+                          className="item-list__checkbox"
+                        />
+                        <span className="item-list__name">{item.item}</span>
+                      </div>
+                      <p className="item-list__link">
+                        <a href={item.link}>more info</a>
                       </p>
                     </li>
                   ) : null
                 )}
               </ul>
             </div>
-            {/* Toiletries & health: */}
+
+            {/* Toiletries & Health */}
             <h4 className="list__details__subheader">Toiletries & health:</h4>
             <div className="list-details__items">
               <ul className="item-list">
@@ -131,32 +168,78 @@ export default function FormPage4({ listDetails }) {
                   item.category?.toLowerCase() === "toiletries" ||
                   item.category?.toLowerCase() === "health" ? (
                     <li className="item-list__group" key={item.item}>
-                      <p className="item-list__name">{item.item}</p>
+                      <div className="item-list__label checkbox-wrapper">
+                        <input
+                          type="checkbox"
+                          className="item-list__checkbox"
+                        />
+                        <span className="item-list__name">{item.item}</span>
+                      </div>
                     </li>
                   ) : null
                 )}
               </ul>
             </div>
-            {/* Misc: */}
-            <h4 className="list__details__subheader">Misc:</h4>
-            <div className="list-details__items">
-              <ul className="item-list">
-                {listDetails.packingList.list.map((item) =>
-                  item.category?.toLowerCase() === "misc" ? (
-                    <li className="item-list__group" key={item.item}>
-                      <p className="item-list__name">{item.item}</p>
-                    </li>
-                  ) : null
-                )}
-              </ul>
-            </div>
+
+            {/* Misc */}
+            {listDetails.packingList.list.some(
+              (item) => item.category?.toLowerCase() === "misc"
+            ) && (
+              <>
+                <h4 className="list__details__subheader">Misc:</h4>
+                <div className="list-details__items">
+                  <ul className="item-list">
+                    {listDetails.packingList.list.map((item) =>
+                      item.category?.toLowerCase() === "misc" ||
+                      item.category?.toLowerCase() === "food" ? (
+                        <li className="item-list__group" key={item.item}>
+                          <div className="item-list__label checkbox-wrapper">
+                            <input
+                              type="checkbox"
+                              className="item-list__checkbox"
+                            />
+                            <span className="item-list__name">{item.item}</span>
+                          </div>
+                        </li>
+                      ) : null
+                    )}
+                  </ul>
+                </div>
+              </>
+            )}
+
+            {/* Food & snacks */}
+            {listDetails.packingList.list.some(
+              (item) => item.category?.toLowerCase() === "food"
+            ) && (
+              <>
+                <h4 className="list__details__subheader">Food & snacks:</h4>
+                <div className="list-details__items">
+                  <ul className="item-list">
+                    {listDetails.packingList.list.map((item) =>
+                      item.category?.toLowerCase() === "food" ? (
+                        <li className="item-list__group" key={item.item}>
+                          <div className="item-list__label checkbox-wrapper">
+                            <input
+                              type="checkbox"
+                              className="item-list__checkbox"
+                            />
+                            <span className="item-list__name">{item.item}</span>
+                          </div>
+                        </li>
+                      ) : null
+                    )}
+                  </ul>
+                </div>
+              </>
+            )}
           </div>
 
-          <button onClick={handleSave}>Save list</button>
+          <button className="form__btn form__btn--next" onClick={handleSave}>
+            Save List
+          </button>
         </>
       )}
-
-      <pre>{JSON.stringify(listDetails, null, 2)}</pre>
     </section>
   );
 }
