@@ -14,6 +14,10 @@ function App() {
             path="/dashboard/create-list"
             element={<UserDashboard />}
           ></Route>
+          <Route
+            path="/dashboard/trips/:id"
+            element={<UserDashboard />}
+          ></Route>
         </Routes>
       </BrowserRouter>
     </>

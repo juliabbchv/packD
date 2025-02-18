@@ -50,7 +50,8 @@ export default function DashboardSidebar() {
             <li>
               <NavLink
                 onClick={closeMenu}
-                to="/dashboard/trips"
+                to="/dashboard/trips/"
+                end
                 className={({ isActive }) =>
                   `sidebar-list__item ${
                     isActive ? "sidebar-list__item--selected" : ""

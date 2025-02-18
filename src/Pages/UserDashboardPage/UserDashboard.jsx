@@ -1,28 +1,23 @@
 import DashboardSidebar from "../../Components/DashboardSidebar/DashboardSidebar";
 import Dashboard from "../../Components/Dashboard/Dashboard";
 import Form from "../../Components/Form/Form";
+import TripDetails from "../../Components/TripDetails/TripDetails";
 import "./UserDashboardPage.scss";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 
 export default function UserDashboard() {
   const location = useLocation();
+  const { id } = useParams();
 
   const renderContent = () => {
-    switch (location.pathname) {
-      case "/dashboard":
-        return <Dashboard />;
-      case "/dashboard/create-list":
-        return <Form />;
-      case "/dashboard/trips/:id":
-        return <TripPage />;
-      case "/dashboard/trips":
-        return <AllTrips />;
-      case "/dashboard/trips/public":
-        return <ExplorePublicLists />;
-      case "/dashboard/destination-insights":
-        return <DestinationInsights />;
-      default:
-        return <Dashboard />;
+    if (location.pathname === "/dashboard") {
+      return <Dashboard />;
+    } else if (location.pathname === "/dashboard/create-list") {
+      return <Form />;
+    } else if (id && location.pathname === `/dashboard/trips/${id}`) {
+      return <TripDetails tripId={id} />;
+    } else {
+      return <Dashboard />;
     }
   };
 

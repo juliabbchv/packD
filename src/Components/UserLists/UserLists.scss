@@ -6,16 +6,23 @@
   display: flex;
   flex-direction: column;
   &__title {
-    margin-bottom: 1rem;
-    margin-left: 1.875rem;
+    margin-top: 2rem;
+    margin-left: 1rem;
     font-weight: 400;
     font-size: 1.5rem;
+
+    @include tablet {
+      margin-left: 2rem;
+    }
   }
 
   &__main-content {
     flex: 1;
-    padding: 1.875rem;
+    padding: 1rem;
     color: $brown;
+    @include tablet {
+      padding: 2rem;
+    }
   }
 }
 
@@ -23,19 +30,25 @@
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+  max-width: 1280px;
 }
 
 .trip-card {
   background: $soft-cream;
   padding: 1.25rem;
   color: $brown;
-  border-radius: $card-radius;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-  flex: 0 0 30%;
+  flex: 0 0 100%;
   min-height: 300px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
   @include flex(column, space-between, flex-start);
+
+  @include tablet {
+    flex: 0 0 40%;
+  }
+  @include tablet {
+    flex: 0 0 30%;
+  }
 
   &:hover {
     transform: translateY(-5px);
@@ -56,8 +69,16 @@
   }
 
   &__title {
-    height: 50px;
     color: $brown;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__title-wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
   }
 
   &__destination {
@@ -129,4 +150,8 @@ input:checked + .slider:before {
 .switchwrap {
   @include flex(row, flex-start, center);
   gap: 1rem;
+}
+
+.action-icon {
+  width: 25px;
 }

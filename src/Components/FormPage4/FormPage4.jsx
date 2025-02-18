@@ -10,7 +10,7 @@ export default function FormPage4({ listDetails, loading }) {
         destination: listDetails.packingList.trip.destination,
         trip_purpose: listDetails.packingList.trip.trip_purpose,
         activities: listDetails.packingList.trip.activities,
-        trip_name: "New Name",
+        trip_name: `Trip to ${listDetails.packingList.trip.destination}`,
         isPublic: 0,
         isSaved: 0,
       };

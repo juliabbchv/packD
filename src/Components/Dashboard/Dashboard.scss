@@ -9,8 +9,11 @@
   }
 
   &__greeting {
-    padding: 5rem 2rem 2rem 2rem;
+    padding: 5rem 1rem 1rem 1rem;
     font-size: 1.5rem;
+    @include tablet {
+      padding-left: 2rem;
+    }
   }
 }
 

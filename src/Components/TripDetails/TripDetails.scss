@@ -1,0 +1,21 @@
+@use "../../Styles/Partials/variables" as *;
+@use "../../Styles/Partials/mixins" as *;
+
+.trip-list {
+  padding-top: 6rem;
+  padding-left: 1rem;
+  @include tablet {
+    padding-left: 15rem;
+  }
+
+  &__title {
+    font-weight: 300;
+    font-size: 2rem;
+  }
+}
+
+.divider-line--trip {
+  border: 1px solid $soft-cream;
+
+  margin-right: 1rem;
+}

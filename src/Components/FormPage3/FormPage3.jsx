@@ -106,6 +106,14 @@ export default function FormPage3({ handleFormSubmit, setFormData }) {
             />
             <label htmlFor="cruiseship">Cruiseship</label>
           </div>
+          <div className="checkbox-wrapper">
+            <input
+              type="checkbox"
+              value="sightseeing"
+              onChange={handleCheckboxChange}
+            />
+            <label htmlFor="cruiseship">Sightseeing</label>
+          </div>
         </div>
       </section>
       <div className="form__btnwrap">

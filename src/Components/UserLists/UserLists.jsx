@@ -1,7 +1,8 @@
 import axios from "axios";
 import "./UserLists.scss";
 import { useEffect, useState } from "react";
-import { use } from "react";
+import { Link } from "react-router-dom";
+import rightArrow from "../../Assets/Images/right-arrow.svg";
 
 export default function UserLists() {
   const [userLists, setUserLists] = useState("");
@@ -23,7 +24,7 @@ export default function UserLists() {
 
   return (
     <section className="user-lists">
-      <h2 className=" user-lists__title">Your Recent Trips</h2>
+      <h2 className="user-lists__title">Your Recent Trips</h2>
       <article className="user-lists__main-content">
         <div className="user-list-cards ">
           {userLists &&
@@ -32,7 +33,13 @@ export default function UserLists() {
               .map((list) => (
                 <div key={list.id} className="trip-card">
                   <div>
-                    <h3 className="trip-card__title">{list.trip_name}</h3>
+                    <Link to={`/dashboard/trips/${list.id}`}>
+                      <div className="trip-card__title-wrapper">
+                        <h3 className="trip-card__title">{list.trip_name}</h3>
+                        <img className="action-icon" src={rightArrow} alt="" />
+                      </div>
+                    </Link>
+
                     <div className="switchwrap">
                       <label className="switch">
                         <input type="checkbox" />
