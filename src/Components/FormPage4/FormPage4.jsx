@@ -57,7 +57,13 @@ export default function FormPage4({ listDetails, loading }) {
                       </div>
                       {item.link && (
                         <p className="item-list__link">
-                          <a href={item.link}>more info</a>
+                          <a
+                            href={item.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            more info
+                          </a>
                         </p>
                       )}
                     </li>

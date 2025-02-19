@@ -44,6 +44,38 @@ export default function TripDetails() {
     }
   };
 
+  const handleItemChange = (itemId, newName) => {
+    const updatedItems = itemDetails.map((item) =>
+      item.id === itemId ? { ...item, item: newName } : item
+    );
+    setItemDetails(updatedItems);
+  };
+
+  const updateItem = async (tripId, itemId, updatedItemData) => {
+    try {
+      const response = await axios.patch(
+        `http://localhost:8080/trips/${tripId}/items`, // Backend endpoint
+        {
+          id: itemId, // Send the item ID
+          ...updatedItemData, // Send the updated data
+        }
+      );
+      console.log("Item updated:", response.data);
+    } catch (err) {
+      console.error("Error updating item:", err);
+    }
+  };
+
+  const handleSaveChanges = (item) => {
+    const updatedItemData = {
+      item: item.item,
+      link: item.link,
+      quantity: item.quantity,
+    };
+
+    updateItem(item.trip_id, item.id, updatedItemData);
+  };
+
   useEffect(() => {
     fetchTripDetails();
     fetchItems();
@@ -70,8 +102,8 @@ export default function TripDetails() {
             </li>
           ))}
       </ul>
+      <h2>Your Packing List:</h2>
       <div className="list-details">
-        {/* Before you go */}
         <h4 className="list-details__subheader">Before you go:</h4>
         <div className="list-details__items">
           <ul className="item-list">
@@ -85,15 +117,27 @@ export default function TripDetails() {
                         checked={checkedItems[item.id] || false}
                         type="checkbox"
                         onChange={() => handleCheckboxChange(item.id)}
-                        className="item-list__checkbox"
+                        className="item-list__checkbox "
                       />
-                      <span htmlFor={item.item} className="item-list__name">
-                        {item.item}
-                      </span>
+                      <input
+                        type="text"
+                        value={item.item}
+                        onChange={(e) =>
+                          handleItemChange(item.id, e.target.value)
+                        }
+                        className="item-list__name"
+                      />
                     </div>
                     {item.link && (
-                      <p className="item-list__link">
-                        <a href={item.link}>more info</a>
+                      <p className="item-list__link item-list__link--transparent">
+                        <input
+                          type="text"
+                          value={item.link}
+                          onChange={(e) =>
+                            handleLinkChange(item.id, e.target.value)
+                          }
+                          className="item-list__link-input"
+                        />
                       </p>
                     )}
                   </li>

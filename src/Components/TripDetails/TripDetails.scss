@@ -2,6 +2,7 @@
 @use "../../Styles/Partials/mixins" as *;
 
 .trip-list {
+  background-color: $muted-green;
   padding-top: 6rem;
   padding-left: 1rem;
   @include tablet {
@@ -11,6 +12,10 @@
   &__title {
     font-weight: 300;
     font-size: 2rem;
+  }
+
+  & > * {
+    margin-bottom: 1.2rem;
   }
 }
 
@@ -31,4 +36,12 @@
     color: $soft-cream;
     font-weight: 500;
   }
+}
+
+.item-list__link--transparent {
+  background-color: transparent;
+}
+
+.item-list__qty--trip {
+  width: 3rem;
 }
