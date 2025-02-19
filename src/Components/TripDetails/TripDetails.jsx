@@ -8,6 +8,7 @@ export default function TripDetails() {
   const [itemDetails, setItemDetails] = useState("");
   const [checkedItems, setCheckedItems] = useState({});
   const { id } = useParams();
+  console.log(itemDetails);
 
   const handleCheckboxChange = (itemId) => {
     const newCheckedItems = {
@@ -44,20 +45,22 @@ export default function TripDetails() {
     }
   };
 
-  const handleItemChange = (itemId, newName) => {
-    const updatedItems = itemDetails.map((item) =>
-      item.id === itemId ? { ...item, item: newName } : item
+  const handleItemChange = (itemId, newValue) => {
+    // Update item name in the state
+    setItemDetails((prevItems) =>
+      prevItems.map((item) =>
+        item.id === itemId ? { ...item, item: newValue } : item
+      )
     );
-    setItemDetails(updatedItems);
   };
 
   const updateItem = async (tripId, itemId, updatedItemData) => {
     try {
       const response = await axios.patch(
-        `http://localhost:8080/trips/${tripId}/items`, // Backend endpoint
+        `http://localhost:8080/trips/${tripId}/items`, // The correct backend endpoint
         {
           id: itemId, // Send the item ID
-          ...updatedItemData, // Send the updated data
+          ...updatedItemData, // Send the updated item data
         }
       );
       console.log("Item updated:", response.data);
@@ -125,6 +128,7 @@ export default function TripDetails() {
                         onChange={(e) =>
                           handleItemChange(item.id, e.target.value)
                         }
+                        onBlur={() => handleSaveChanges(item)}
                         className="item-list__name"
                       />
                     </div>
