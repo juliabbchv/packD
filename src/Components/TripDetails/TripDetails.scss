@@ -38,10 +38,16 @@
   }
 }
 
-.item-list__qty--trip {
-  width: 3rem;
-}
-
 .switch .slider {
   background-color: gray;
+}
+
+.editable-input {
+  width: 3rem;
+  height: 1rem;
+  color: $brown;
+}
+
+.item-list__qty--editable input {
+  font-size: inherit;
 }

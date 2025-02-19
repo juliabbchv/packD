@@ -105,7 +105,7 @@ export default function TripDetails() {
         {tripDetails.activities &&
           tripDetails.activities.split(",").map((tag, index) => (
             <li className="trip-tags__item " key={index}>
-              {tag}
+              {tag.toLowerCase()}
             </li>
           ))}
       </ul>
@@ -147,7 +147,11 @@ export default function TripDetails() {
                           <span className="item-list__name">{item.item}</span>
                         </div>
                         {item.link && (
-                          <a href={item.link}>
+                          <a
+                            href={item.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
                             <p className="item-list__link">more info</p>
                           </a>
                         )}
@@ -214,7 +218,7 @@ export default function TripDetails() {
                         </div>
                         {item.quantity && (
                           <p
-                            className="item-list__qty"
+                            className="item-list__qty item-list__qty--editable"
                             onClick={() => setEditingQtyId(item.id)}
                           >
                             {" "}
@@ -224,16 +228,14 @@ export default function TripDetails() {
                                 type="number"
                                 value={editedQty[item.id] || item.quantity}
                                 onChange={(e) => {
-                                  // Update the local state to reflect changes in the input field immediately
                                   setEditedQty((prev) => ({
                                     ...prev,
                                     [item.id]: e.target.value,
                                   }));
-                                  // Optionally, update the itemDetails state as well if needed
-                                  handleItemChange(item.id, e.target.value); // Update item quantity immediately
+                                  handleItemChange(item.id, e.target.value);
                                 }}
                                 onBlur={() => handleSaveQuantity(item)}
-                                className="item-list__input"
+                                className="editable-input"
                               />
                             ) : (
                               item.quantity
@@ -279,7 +281,30 @@ export default function TripDetails() {
                           <span className="item-list__name">{item.item}</span>
                         </div>
                         {item.quantity && (
-                          <p className="item-list__qty"> QTY:{item.quantity}</p>
+                          <p
+                            className="item-list__qty item-list__qty--editable"
+                            onClick={() => setEditingQtyId(item.id)}
+                          >
+                            {" "}
+                            QTY:
+                            {editingQtyId === item.id ? (
+                              <input
+                                type="number"
+                                value={editedQty[item.id] || item.quantity}
+                                onChange={(e) => {
+                                  setEditedQty((prev) => ({
+                                    ...prev,
+                                    [item.id]: e.target.value,
+                                  }));
+                                  handleItemChange(item.id, e.target.value);
+                                }}
+                                onBlur={() => handleSaveQuantity(item)}
+                                className="editable-input"
+                              />
+                            ) : (
+                              item.quantity
+                            )}
+                          </p>
                         )}
                       </li>
                     ))}
@@ -344,7 +369,30 @@ export default function TripDetails() {
                           <span className="item-list__name">{item.item}</span>
                         </div>
                         {item.quantity && (
-                          <p className="item-list__qty"> QTY:{item.quantity}</p>
+                          <p
+                            className="item-list__qty item-list__qty--editable"
+                            onClick={() => setEditingQtyId(item.id)}
+                          >
+                            {" "}
+                            QTY:
+                            {editingQtyId === item.id ? (
+                              <input
+                                type="number"
+                                value={editedQty[item.id] || item.quantity}
+                                onChange={(e) => {
+                                  setEditedQty((prev) => ({
+                                    ...prev,
+                                    [item.id]: e.target.value,
+                                  }));
+                                  handleItemChange(item.id, e.target.value);
+                                }}
+                                onBlur={() => handleSaveQuantity(item)}
+                                className="editable-input"
+                              />
+                            ) : (
+                              item.quantity
+                            )}
+                          </p>
                         )}
                       </li>
                     ))}
@@ -375,7 +423,30 @@ export default function TripDetails() {
                           <span className="item-list__name">{item.item}</span>
                         </div>
                         {item.quantity && (
-                          <p className="item-list__qty"> QTY:{item.quantity}</p>
+                          <p
+                            className="item-list__qty item-list__qty--editable"
+                            onClick={() => setEditingQtyId(item.id)}
+                          >
+                            {" "}
+                            QTY:
+                            {editingQtyId === item.id ? (
+                              <input
+                                type="number"
+                                value={editedQty[item.id] || item.quantity}
+                                onChange={(e) => {
+                                  setEditedQty((prev) => ({
+                                    ...prev,
+                                    [item.id]: e.target.value,
+                                  }));
+                                  handleItemChange(item.id, e.target.value);
+                                }}
+                                onBlur={() => handleSaveQuantity(item)}
+                                className="editable-input"
+                              />
+                            ) : (
+                              item.quantity
+                            )}
+                          </p>
                         )}
                       </li>
                     ))}

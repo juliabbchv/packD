@@ -2,6 +2,42 @@
 @use "../../Styles/Partials/mixins" as *;
 @use "sass:color";
 
+.swiper-button-next,
+.swiper-button-prev {
+  color: $brown !important;
+}
+
+.swiper-pagination-bullet {
+  background-color: grey !important;
+  opacity: 1 !important;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: $brown !important;
+}
+
+.swiper {
+  max-width: 1200px !important;
+  padding: 0 10px;
+  margin-left: 0;
+}
+
+.swiper-scrollbar {
+  height: 2px !important;
+}
+
+.swiper-pagination-bullet {
+  border-radius: 0 !important;
+}
+
+.swiper-button-prev::after {
+  margin-right: 25px !important;
+}
+
+.swiper-button-next::after {
+  margin-right: -25px !important;
+}
+
 .user-lists {
   display: flex;
   flex-direction: column;
@@ -29,8 +65,6 @@
 .user-list-cards {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
-  max-width: 1280px;
 }
 
 .trip-card {
@@ -38,17 +72,12 @@
   padding: 1.25rem;
   color: $brown;
   flex: 0 0 100%;
-  min-height: 300px;
+  height: 400px;
+  margin: 1.1rem;
+  margin-bottom: 2.5rem;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
   @include flex(column, space-between, flex-start);
-
-  @include tablet {
-    flex: 0 0 40%;
-  }
-  @include tablet {
-    flex: 0 0 30%;
-  }
 
   &:hover {
     transform: translateY(-5px);

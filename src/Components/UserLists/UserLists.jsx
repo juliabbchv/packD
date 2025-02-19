@@ -1,3 +1,10 @@
+import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/scss";
+import "swiper/scss/navigation";
+import "swiper/scss/pagination";
+import "swiper/scss/scrollbar";
+
 import axios from "axios";
 import "./UserLists.scss";
 import { useEffect, useState } from "react";
@@ -20,47 +27,69 @@ export default function UserLists() {
     generateUserLists();
   }, []);
 
-  console.log(userLists);
-
   return (
     <section className="user-lists">
       <h2 className="user-lists__title">Your Recent Trips</h2>
       <article className="user-lists__main-content">
-        <div className="user-list-cards ">
-          {userLists &&
-            userLists
-              .filter((list) => list.user_id === 1)
-              .map((list) => (
-                <div key={list.id} className="trip-card">
-                  <div>
-                    <Link to={`/dashboard/trips/${list.id}`}>
-                      <div className="trip-card__title-wrapper">
-                        <h3 className="trip-card__title">{list.trip_name}</h3>
-                        <img className="action-icon" src={rightArrow} alt="" />
-                      </div>
-                    </Link>
+        <Swiper
+          modules={[Navigation, Pagination, Scrollbar]}
+          navigation
+          pagination={{ clickable: true }}
+          scrollbar={{ draggable: true }}
+          breakpoints={{
+            640: {
+              slidesPerView: 1,
+              spaceBetween: 10,
+            },
+            1024: {
+              slidesPerView: 3,
+            },
+          }}
+        >
+          <ul className="user-list-cards ">
+            {userLists &&
+              userLists
+                .filter((list) => list.user_id === 1)
+                .map((list) => (
+                  <SwiperSlide key={list.id}>
+                    <li className="trip-card">
+                      <div>
+                        <Link to={`/dashboard/trips/${list.id}`}>
+                          <div className="trip-card__title-wrapper">
+                            <h3 className="trip-card__title">
+                              {list.trip_name}
+                            </h3>
+                            <img
+                              className="action-icon"
+                              src={rightArrow}
+                              alt=""
+                            />
+                          </div>
+                        </Link>
 
-                    <div className="switchwrap">
-                      <label className="switch">
-                        <input type="checkbox" />
-                        <span className="slider round"></span>
-                      </label>
-                      <span>Private</span>
-                    </div>
-                  </div>
-                  <ul className="trip-card__tag-list">
-                    <li className="trip-card__tag-list-item">
-                      {list.destination}
+                        <div className="switchwrap">
+                          <label className="switch">
+                            <input type="checkbox" />
+                            <span className="slider round"></span>
+                          </label>
+                          <span>Private</span>
+                        </div>
+                      </div>
+                      <ul className="trip-card__tag-list">
+                        <li className="trip-card__tag-list-item">
+                          {list.destination}
+                        </li>
+                        {list.activities.split(",").map((activity, index) => (
+                          <li className="trip-card__tag-list-item" key={index}>
+                            {activity.toLowerCase()}
+                          </li>
+                        ))}
+                      </ul>
                     </li>
-                    {list.activities.split(",").map((activity, index) => (
-                      <li className="trip-card__tag-list-item" key={index}>
-                        {activity}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-        </div>
+                  </SwiperSlide>
+                ))}
+          </ul>
+        </Swiper>
       </article>
     </section>
   );
