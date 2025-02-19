@@ -46,7 +46,6 @@ export default function TripDetails() {
   };
 
   const handleItemChange = (itemId, newValue) => {
-    // Update item name in the state
     setItemDetails((prevItems) =>
       prevItems.map((item) =>
         item.id === itemId ? { ...item, item: newValue } : item
@@ -57,10 +56,10 @@ export default function TripDetails() {
   const updateItem = async (tripId, itemId, updatedItemData) => {
     try {
       const response = await axios.patch(
-        `http://localhost:8080/trips/${tripId}/items`, // The correct backend endpoint
+        `http://localhost:8080/trips/${tripId}/items`,
         {
-          id: itemId, // Send the item ID
-          ...updatedItemData, // Send the updated item data
+          id: itemId,
+          ...updatedItemData,
         }
       );
       console.log("Item updated:", response.data);
@@ -91,6 +90,18 @@ export default function TripDetails() {
     }
   }, []);
 
+  const [editingItemId, setEditingItemId] = useState(null);
+  const [editedText, setEditedText] = useState({});
+
+  const handleEditClick = (id, text) => {
+    setEditingItemId(id);
+    setEditedText((prev) => ({ ...prev, [id]: text }));
+  };
+
+  const handleBlur = () => {
+    setEditingItemId(null);
+  };
+
   return (
     <section className="trip-list">
       <div>
@@ -105,68 +116,139 @@ export default function TripDetails() {
             </li>
           ))}
       </ul>
+      <div className="switchwrap">
+        <label className="switch">
+          <input type="checkbox" />
+          <span className="slider round "></span>
+        </label>
+        <span>Private</span>
+      </div>
       <h2>Your Packing List:</h2>
       <div className="list-details">
-        <h4 className="list-details__subheader">Before you go:</h4>
-        <div className="list-details__items">
-          <ul className="item-list">
-            {itemDetails &&
-              itemDetails.map((item) =>
-                item.category.toLowerCase() === "before you go" ||
-                item.category.toLowerCase() === "before-you-go" ? (
-                  <li className="item-list__group" key={item.id}>
-                    <div className="item-list__label checkbox-wrapper">
-                      <input
-                        checked={checkedItems[item.id] || false}
-                        type="checkbox"
-                        onChange={() => handleCheckboxChange(item.id)}
-                        className="item-list__checkbox "
-                      />
-                      <input
-                        type="text"
-                        value={item.item}
-                        onChange={(e) =>
-                          handleItemChange(item.id, e.target.value)
-                        }
-                        onBlur={() => handleSaveChanges(item)}
-                        className="item-list__name"
-                      />
-                    </div>
-                    {item.link && (
-                      <p className="item-list__link item-list__link--transparent">
-                        <input
-                          type="text"
-                          value={item.link}
-                          onChange={(e) =>
-                            handleLinkChange(item.id, e.target.value)
-                          }
-                          className="item-list__link-input"
-                        />
-                      </p>
-                    )}
-                  </li>
-                ) : null
-              )}
-          </ul>
-        </div>
-        {/* Documents */}
-        <h4 className="list-details__subheader">Documents:</h4>
-        <div className="list-details__items">
-          <ul className="item-list">
-            {itemDetails &&
-              itemDetails.map((item) =>
-                item.category?.toLowerCase() === "documents" ? (
-                  <li className="item-list__group" key={item.id}>
-                    <div className="item-list__label checkbox-wrapper">
-                      <input type="checkbox" className="item-list__checkbox" />
-                      <span className="item-list__name">{item.item}</span>
-                    </div>
-                  </li>
-                ) : null
-              )}
-          </ul>
-        </div>
+        {/* Before you go */}
+        {itemDetails &&
+          itemDetails.some(
+            (item) =>
+              item.category.toLowerCase() === "before you go" ||
+              item.category.toLowerCase() === "before-you-go"
+          ) && (
+            <>
+              <h4 className="list-details__subheader">Before you go::</h4>
+              <div className="list-details__items">
+                <ul className="item-list">
+                  {itemDetails
+                    .filter(
+                      (item) =>
+                        item.category?.toLowerCase() === "before-you-go" ||
+                        item.category.toLowerCase() === "before you go"
+                    )
+                    .map((item) => (
+                      <li className="item-list__group" key={item.id}>
+                        <div className="item-list__label checkbox-wrapper">
+                          <input
+                            checked={checkedItems[item.id] || false}
+                            onChange={() => handleCheckboxChange(item.id)}
+                            type="checkbox"
+                            className="item-list__checkbox"
+                          />
+                          {editingItemId === item.id ? (
+                            <input
+                              type="text"
+                              value={editedText[item.id] || item.item}
+                              onChange={(e) => {
+                                setEditedText((prev) => ({
+                                  ...prev,
+                                  [item.id]: e.target.value,
+                                }));
+                                handleItemChange(item.id, e.target.value);
+                              }}
+                              onBlur={() => {
+                                handleSaveChanges(item);
+                                handleBlur();
+                              }}
+                              autoFocus
+                              className="editable-input"
+                            />
+                          ) : (
+                            <span
+                              className="item-list__name"
+                              onClick={() =>
+                                handleEditClick(item.id, item.item)
+                              }
+                            >
+                              {item.item}
+                            </span>
+                          )}
+                        </div>
+                        {item.link && (
+                          <a className="item-list__link" href={item.link}>
+                            more info
+                          </a>
+                        )}
+                      </li>
+                    ))}
+                </ul>
+              </div>
+            </>
+          )}
 
+        {/* Documents */}
+        {itemDetails &&
+          itemDetails.some(
+            (item) => item.category?.toLowerCase() === "documents"
+          ) && (
+            <>
+              <h4 className="list-details__subheader">Documents:</h4>
+              <div className="list-details__items">
+                <ul className="item-list">
+                  {itemDetails
+                    .filter(
+                      (item) => item.category?.toLowerCase() === "documents"
+                    )
+                    .map((item) => (
+                      <li className="item-list__group" key={item.id}>
+                        <div className="item-list__label checkbox-wrapper">
+                          <input
+                            checked={checkedItems[item.id] || false}
+                            onChange={() => handleCheckboxChange(item.id)}
+                            type="checkbox"
+                            className="item-list__checkbox"
+                          />
+                          {editingItemId === item.id ? (
+                            <input
+                              type="text"
+                              value={editedText[item.id] || item.item}
+                              onChange={(e) => {
+                                setEditedText((prev) => ({
+                                  ...prev,
+                                  [item.id]: e.target.value,
+                                }));
+                                handleItemChange(item.id, e.target.value);
+                              }}
+                              onBlur={() => {
+                                handleSaveChanges(item);
+                                handleBlur();
+                              }}
+                              autoFocus
+                              className="editable-input"
+                            />
+                          ) : (
+                            <span
+                              className="item-list__name"
+                              onClick={() =>
+                                handleEditClick(item.id, item.item)
+                              }
+                            >
+                              {item.item}
+                            </span>
+                          )}
+                        </div>
+                      </li>
+                    ))}
+                </ul>
+              </div>
+            </>
+          )}
         {/* Clothes */}
         {itemDetails &&
           itemDetails.some(
@@ -184,6 +266,8 @@ export default function TripDetails() {
                       <li className="item-list__group" key={item.id}>
                         <div className="item-list__label checkbox-wrapper">
                           <input
+                            checked={checkedItems[item.id] || false}
+                            onChange={() => handleCheckboxChange(item.id)}
                             type="checkbox"
                             className="item-list__checkbox"
                           />
@@ -198,7 +282,6 @@ export default function TripDetails() {
               </div>
             </>
           )}
-
         {/* Activity-related items */}
         {itemDetails &&
           itemDetails.some(
@@ -224,6 +307,8 @@ export default function TripDetails() {
                       <li className="item-list__group" key={item.id}>
                         <div className="item-list__label checkbox-wrapper">
                           <input
+                            checked={checkedItems[item.id] || false}
+                            onChange={() => handleCheckboxChange(item.id)}
                             type="checkbox"
                             className="item-list__checkbox"
                           />
@@ -238,7 +323,6 @@ export default function TripDetails() {
               </div>
             </>
           )}
-
         {/* Tech */}
         {itemDetails &&
           itemDetails.some(
@@ -254,6 +338,8 @@ export default function TripDetails() {
                       <li className="item-list__group" key={item.id}>
                         <div className="item-list__label checkbox-wrapper">
                           <input
+                            checked={checkedItems[item.id] || false}
+                            onChange={() => handleCheckboxChange(item.id)}
                             type="checkbox"
                             className="item-list__checkbox"
                           />
@@ -265,7 +351,6 @@ export default function TripDetails() {
               </div>
             </>
           )}
-
         {/* Toiletries & Health */}
         {itemDetails &&
           itemDetails.some(
@@ -287,6 +372,8 @@ export default function TripDetails() {
                       <li className="item-list__group" key={item.id}>
                         <div className="item-list__label checkbox-wrapper">
                           <input
+                            checked={checkedItems[item.id] || false}
+                            onChange={() => handleCheckboxChange(item.id)}
                             type="checkbox"
                             className="item-list__checkbox"
                           />
@@ -301,7 +388,6 @@ export default function TripDetails() {
               </div>
             </>
           )}
-
         {/* Misc */}
         {itemDetails &&
           itemDetails.some(
@@ -317,6 +403,8 @@ export default function TripDetails() {
                       <li className="item-list__group" key={item.id}>
                         <div className="item-list__label checkbox-wrapper">
                           <input
+                            checked={checkedItems[item.id] || false}
+                            onChange={() => handleCheckboxChange(item.id)}
                             type="checkbox"
                             className="item-list__checkbox"
                           />
@@ -331,7 +419,6 @@ export default function TripDetails() {
               </div>
             </>
           )}
-
         {/* Food & snacks */}
         {itemDetails &&
           itemDetails.some(
@@ -346,6 +433,8 @@ export default function TripDetails() {
                       <li className="item-list__group" key={item.item}>
                         <div className="item-list__label checkbox-wrapper">
                           <input
+                            checked={checkedItems[item.id] || false}
+                            onChange={() => handleCheckboxChange(item.id)}
                             type="checkbox"
                             className="item-list__checkbox"
                           />
