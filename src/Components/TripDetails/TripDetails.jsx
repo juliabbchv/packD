@@ -6,10 +6,17 @@ import "./TripDetails.scss";
 export default function TripDetails() {
   const [tripDetails, setTripDetails] = useState("");
   const [itemDetails, setItemDetails] = useState("");
-
-  console.log(itemDetails);
-
+  const [checkedItems, setCheckedItems] = useState({});
   const { id } = useParams();
+
+  const handleCheckboxChange = (itemId) => {
+    const newCheckedItems = {
+      ...checkedItems,
+      [itemId]: !checkedItems[itemId],
+    };
+    setCheckedItems(newCheckedItems);
+    localStorage.setItem("checkedItems", JSON.stringify(newCheckedItems));
+  };
 
   const fetchTripDetails = async () => {
     try {
@@ -41,6 +48,14 @@ export default function TripDetails() {
     fetchTripDetails();
     fetchItems();
   }, []);
+
+  useEffect(() => {
+    const savedCheckedItems = localStorage.getItem("checkedItems");
+    if (savedCheckedItems) {
+      setCheckedItems(JSON.parse(savedCheckedItems));
+    }
+  }, []);
+
   return (
     <section className="trip-list">
       <div>
@@ -66,8 +81,15 @@ export default function TripDetails() {
                 item.category.toLowerCase() === "before-you-go" ? (
                   <li className="item-list__group" key={item.id}>
                     <div className="item-list__label checkbox-wrapper">
-                      <input type="checkbox" className="item-list__checkbox" />
-                      <span className="item-list__name">{item.item}</span>
+                      <input
+                        checked={checkedItems[item.id] || false}
+                        type="checkbox"
+                        onChange={() => handleCheckboxChange(item.id)}
+                        className="item-list__checkbox"
+                      />
+                      <span htmlFor={item.item} className="item-list__name">
+                        {item.item}
+                      </span>
                     </div>
                     {item.link && (
                       <p className="item-list__link">
