@@ -15,6 +15,7 @@
   margin-bottom: 1.2rem;
   &__subheader {
     font-size: 1rem;
+    font-weight: 600;
     @include tablet {
       font-size: 1.2rem;
     }
@@ -55,14 +56,12 @@
   &__link {
     text-decoration: underline;
   }
-
-  &__qty {
-  }
 }
 
 .item-list__link,
 .item-list__qty {
   background-color: $soft-cream;
+  color: $brown;
   font-size: 0.7rem;
   opacity: 80%;
   padding: 0.2rem;

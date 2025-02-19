@@ -19,3 +19,16 @@
 
   margin-right: 1rem;
 }
+
+.trip-tags {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+  gap: 1rem;
+  &__item {
+    background: $brown;
+    padding: 0.5rem;
+    color: $soft-cream;
+    font-weight: 500;
+  }
+}

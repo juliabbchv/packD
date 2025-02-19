@@ -47,7 +47,7 @@ export default function FormPage4({ listDetails, loading }) {
                 {listDetails.packingList.list.map((item) =>
                   item.category === "before you go" ||
                   item.category === "before-you-go" ? (
-                    <li className="item-list__group" key={item.item}>
+                    <li className="item-list__group" key={item.id}>
                       <div className="item-list__label checkbox-wrapper">
                         <input
                           type="checkbox"
@@ -67,12 +67,12 @@ export default function FormPage4({ listDetails, loading }) {
             </div>
 
             {/* Documents */}
-            <h4 className="list__details__subheader">Documents:</h4>
+            <h4 className="list-details__subheader">Documents:</h4>
             <div className="list-details__items">
               <ul className="item-list">
                 {listDetails.packingList.list.map((item) =>
                   item.category === "documents" ? (
-                    <li className="item-list__group" key={item.item}>
+                    <li className="item-list__group" key={item.id}>
                       <div className="item-list__label checkbox-wrapper">
                         <input
                           type="checkbox"
@@ -87,12 +87,12 @@ export default function FormPage4({ listDetails, loading }) {
             </div>
 
             {/* Clothes */}
-            <h4 className="list__details__subheader">Clothes:</h4>
+            <h4 className="list-details__subheader">Clothes:</h4>
             <div className="list-details__items">
               <ul className="item-list">
                 {listDetails.packingList.list.map((item) =>
-                  item.category?.toLowerCase() === "clothes" ? (
-                    <li className="item-list__group" key={item.item}>
+                  item.category.toLowerCase() === "clothes" ? (
+                    <li className="item-list__group" key={item.id}>
                       <div className="item-list__label checkbox-wrapper">
                         <input
                           type="checkbox"
@@ -108,22 +108,22 @@ export default function FormPage4({ listDetails, loading }) {
                 )}
               </ul>
             </div>
-
+            {/* Activity items*/}
             {listDetails.packingList.list.some(
               (item) =>
-                item.category?.toLowerCase() === "activity-related items" ||
-                item.category?.toLowerCase() === "activity-items"
+                item.category.toLowerCase() === "activity-related items" ||
+                item.category.toLowerCase() === "activity-items"
             ) && (
               <>
-                <h4 className="list__details__subheader">
+                <h4 className="list-details__subheader">
                   Activity-related items:
                 </h4>
                 <div className="list-details__items">
                   <ul className="item-list">
                     {listDetails.packingList.list.map((item) =>
-                      item.category?.toLowerCase() ===
+                      item.category.toLowerCase() ===
                       "activity-related items" ? (
-                        <li className="item-list__group" key={item.item}>
+                        <li className="item-list__group" key={item.id}>
                           <div className="item-list__label checkbox-wrapper">
                             <input
                               type="checkbox"
@@ -146,12 +146,12 @@ export default function FormPage4({ listDetails, loading }) {
             )}
 
             {/* Tech */}
-            <h4 className="list__details__subheader">Tech:</h4>
+            <h4 className="list-details__subheader">Tech:</h4>
             <div className="list-details__items">
               <ul className="item-list">
                 {listDetails.packingList.list.map((item) =>
-                  item.category?.toLowerCase() === "tech" ? (
-                    <li className="item-list__group" key={item.item}>
+                  item.category.toLowerCase() === "tech" ? (
+                    <li className="item-list__group" key={item.id}>
                       <div className="item-list__label checkbox-wrapper">
                         <input
                           type="checkbox"
@@ -171,13 +171,13 @@ export default function FormPage4({ listDetails, loading }) {
             </div>
 
             {/* Toiletries & Health */}
-            <h4 className="list__details__subheader">Toiletries & health:</h4>
+            <h4 className="list-details__subheader">Toiletries & health:</h4>
             <div className="list-details__items">
               <ul className="item-list">
                 {listDetails.packingList.list.map((item) =>
-                  item.category?.toLowerCase() === "toiletries" ||
-                  item.category?.toLowerCase() === "health" ? (
-                    <li className="item-list__group" key={item.item}>
+                  item.category.toLowerCase() === "toiletries" ||
+                  item.category.toLowerCase() === "health" ? (
+                    <li className="item-list__group" key={item.id}>
                       <div className="item-list__label checkbox-wrapper">
                         <input
                           type="checkbox"
@@ -196,13 +196,13 @@ export default function FormPage4({ listDetails, loading }) {
               (item) => item.category?.toLowerCase() === "misc"
             ) && (
               <>
-                <h4 className="list__details__subheader">Misc:</h4>
+                <h4 className="list-details__subheader">Misc:</h4>
                 <div className="list-details__items">
                   <ul className="item-list">
                     {listDetails.packingList.list.map((item) =>
-                      item.category?.toLowerCase() === "misc" ||
-                      item.category?.toLowerCase() === "food" ? (
-                        <li className="item-list__group" key={item.item}>
+                      item.category.toLowerCase() === "misc" ||
+                      item.category.toLowerCase() === "food" ? (
+                        <li className="item-list__group" key={item.id}>
                           <div className="item-list__label checkbox-wrapper">
                             <input
                               type="checkbox"
@@ -223,12 +223,12 @@ export default function FormPage4({ listDetails, loading }) {
               (item) => item.category?.toLowerCase() === "food"
             ) && (
               <>
-                <h4 className="list__details__subheader">Food & snacks:</h4>
+                <h4 className="list-details__subheader">Food & snacks:</h4>
                 <div className="list-details__items">
                   <ul className="item-list">
                     {listDetails.packingList.list.map((item) =>
-                      item.category?.toLowerCase() === "food" ? (
-                        <li className="item-list__group" key={item.item}>
+                      item.category.toLowerCase() === "food" ? (
+                        <li className="item-list__group" key={item.id}>
                           <div className="item-list__label checkbox-wrapper">
                             <input
                               type="checkbox"
