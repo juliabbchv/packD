@@ -7,6 +7,9 @@ export default function TripDetails() {
   const [tripDetails, setTripDetails] = useState("");
   const [itemDetails, setItemDetails] = useState("");
   const [checkedItems, setCheckedItems] = useState({});
+  const [editingQtyId, setEditingQtyId] = useState(null);
+  const [editedQty, setEditedQty] = useState({});
+
   const { id } = useParams();
   console.log(itemDetails);
 
@@ -48,9 +51,21 @@ export default function TripDetails() {
   const handleItemChange = (itemId, newValue) => {
     setItemDetails((prevItems) =>
       prevItems.map((item) =>
-        item.id === itemId ? { ...item, item: newValue } : item
+        item.id === itemId ? { ...item, quantity: newValue } : item
       )
     );
+  };
+
+  const handleSaveQuantity = (item) => {
+    setEditingQtyId(null);
+
+    const updatedItemData = {
+      item: item.item,
+      link: item.link,
+      quantity: editedQty[item.id] || item.quantity,
+    };
+
+    updateItem(item.trip_id, item.id, updatedItemData);
   };
 
   const updateItem = async (tripId, itemId, updatedItemData) => {
@@ -68,16 +83,6 @@ export default function TripDetails() {
     }
   };
 
-  const handleSaveChanges = (item) => {
-    const updatedItemData = {
-      item: item.item,
-      link: item.link,
-      quantity: item.quantity,
-    };
-
-    updateItem(item.trip_id, item.id, updatedItemData);
-  };
-
   useEffect(() => {
     fetchTripDetails();
     fetchItems();
@@ -89,18 +94,6 @@ export default function TripDetails() {
       setCheckedItems(JSON.parse(savedCheckedItems));
     }
   }, []);
-
-  const [editingItemId, setEditingItemId] = useState(null);
-  const [editedText, setEditedText] = useState({});
-
-  const handleEditClick = (id, text) => {
-    setEditingItemId(id);
-    setEditedText((prev) => ({ ...prev, [id]: text }));
-  };
-
-  const handleBlur = () => {
-    setEditingItemId(null);
-  };
 
   return (
     <section className="trip-list">
@@ -133,56 +126,29 @@ export default function TripDetails() {
               item.category.toLowerCase() === "before-you-go"
           ) && (
             <>
-              <h4 className="list-details__subheader">Before you go::</h4>
+              <h4 className="list-details__subheader">Before you go:</h4>
               <div className="list-details__items">
                 <ul className="item-list">
                   {itemDetails
                     .filter(
                       (item) =>
-                        item.category?.toLowerCase() === "before-you-go" ||
-                        item.category.toLowerCase() === "before you go"
+                        item.category.toLowerCase() === "before you go" ||
+                        item.category.toLowerCase() === "before-you-go"
                     )
                     .map((item) => (
                       <li className="item-list__group" key={item.id}>
                         <div className="item-list__label checkbox-wrapper">
                           <input
                             checked={checkedItems[item.id] || false}
-                            onChange={() => handleCheckboxChange(item.id)}
                             type="checkbox"
+                            onChange={() => handleCheckboxChange(item.id)}
                             className="item-list__checkbox"
                           />
-                          {editingItemId === item.id ? (
-                            <input
-                              type="text"
-                              value={editedText[item.id] || item.item}
-                              onChange={(e) => {
-                                setEditedText((prev) => ({
-                                  ...prev,
-                                  [item.id]: e.target.value,
-                                }));
-                                handleItemChange(item.id, e.target.value);
-                              }}
-                              onBlur={() => {
-                                handleSaveChanges(item);
-                                handleBlur();
-                              }}
-                              autoFocus
-                              className="editable-input"
-                            />
-                          ) : (
-                            <span
-                              className="item-list__name"
-                              onClick={() =>
-                                handleEditClick(item.id, item.item)
-                              }
-                            >
-                              {item.item}
-                            </span>
-                          )}
+                          <span className="item-list__name">{item.item}</span>
                         </div>
                         {item.link && (
-                          <a className="item-list__link" href={item.link}>
-                            more info
+                          <a href={item.link}>
+                            <p className="item-list__link">more info</p>
                           </a>
                         )}
                       </li>
@@ -191,7 +157,6 @@ export default function TripDetails() {
               </div>
             </>
           )}
-
         {/* Documents */}
         {itemDetails &&
           itemDetails.some(
@@ -214,34 +179,7 @@ export default function TripDetails() {
                             type="checkbox"
                             className="item-list__checkbox"
                           />
-                          {editingItemId === item.id ? (
-                            <input
-                              type="text"
-                              value={editedText[item.id] || item.item}
-                              onChange={(e) => {
-                                setEditedText((prev) => ({
-                                  ...prev,
-                                  [item.id]: e.target.value,
-                                }));
-                                handleItemChange(item.id, e.target.value);
-                              }}
-                              onBlur={() => {
-                                handleSaveChanges(item);
-                                handleBlur();
-                              }}
-                              autoFocus
-                              className="editable-input"
-                            />
-                          ) : (
-                            <span
-                              className="item-list__name"
-                              onClick={() =>
-                                handleEditClick(item.id, item.item)
-                              }
-                            >
-                              {item.item}
-                            </span>
-                          )}
+                          <span className="item-list__name">{item.item}</span>
                         </div>
                       </li>
                     ))}
@@ -249,6 +187,7 @@ export default function TripDetails() {
               </div>
             </>
           )}
+
         {/* Clothes */}
         {itemDetails &&
           itemDetails.some(
@@ -274,7 +213,32 @@ export default function TripDetails() {
                           <span className="item-list__name">{item.item}</span>
                         </div>
                         {item.quantity && (
-                          <p className="item-list__qty"> QTY:{item.quantity}</p>
+                          <p
+                            className="item-list__qty"
+                            onClick={() => setEditingQtyId(item.id)}
+                          >
+                            {" "}
+                            QTY:
+                            {editingQtyId === item.id ? (
+                              <input
+                                type="number"
+                                value={editedQty[item.id] || item.quantity}
+                                onChange={(e) => {
+                                  // Update the local state to reflect changes in the input field immediately
+                                  setEditedQty((prev) => ({
+                                    ...prev,
+                                    [item.id]: e.target.value,
+                                  }));
+                                  // Optionally, update the itemDetails state as well if needed
+                                  handleItemChange(item.id, e.target.value); // Update item quantity immediately
+                                }}
+                                onBlur={() => handleSaveQuantity(item)}
+                                className="item-list__input"
+                              />
+                            ) : (
+                              item.quantity
+                            )}
+                          </p>
                         )}
                       </li>
                     ))}
