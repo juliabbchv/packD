@@ -5,7 +5,6 @@ export const loadGoogleMapsAPI = (apiKey, callback) => {
     script.async = true;
     script.defer = true;
 
-    // Set a global callback function
     window.initGoogleMaps = () => {
       callback();
     };
@@ -29,10 +28,12 @@ export const initializeAutocomplete = (inputRef, setAddress, setFormData) => {
       const place = autocomplete.getPlace();
       if (place.formatted_address) {
         setAddress(place.formatted_address);
-        setFormData((prev) => ({
-          ...prev,
-          destination: place.formatted_address,
-        }));
+        if (setFormData) {
+          setFormData((prev) => ({
+            ...prev,
+            destination: place.formatted_address,
+          }));
+        }
       }
     });
   }

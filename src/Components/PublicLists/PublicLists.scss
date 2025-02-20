@@ -36,3 +36,21 @@
     margin: 1rem 2rem;
   }
 }
+
+.user-list-cards {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.trip-card {
+  flex: 1;
+}
+
+.trip-card__title-wrapper--public {
+  @include flex(column, space-between, flex-start);
+  gap: 1rem;
+}
+.trip-card__tile-group {
+  display: flex;
+  align-items: center;
+}

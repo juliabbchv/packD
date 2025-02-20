@@ -105,7 +105,7 @@ export default function FormPage1({
             }));
           }}
         >
-          <option className="form-select--disabled" disabled>
+          <option value="" disabled>
             Your gender
           </option>
           <option value="man">Man</option>
