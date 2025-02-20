@@ -11,6 +11,12 @@ export default function TripDetails() {
   const navigate = useNavigate();
   const { id } = useParams();
   const [showModal, setShowModal] = useState(false);
+  const [isPublic, setIsPublic] = useState(false);
+  console.log(isPublic);
+
+  const togglePublic = () => {
+    setIsPublic((prev) => !prev);
+  };
 
   const handleCheckboxChange = (itemId) => {
     const newCheckedItems = {
@@ -99,10 +105,10 @@ export default function TripDetails() {
       </ul>
       <div className="switchwrap">
         <label className="switch">
-          <input type="checkbox" />
-          <span className="slider round "></span>
+          <input type="checkbox" checked={isPublic} onChange={togglePublic} />
+          <span className="slider round"></span>
         </label>
-        <span>Private</span>
+        <span>{!isPublic ? "Private" : "Public"}</span>
       </div>
       <h2>Your Packing List:</h2>
       <div className="list-details">
