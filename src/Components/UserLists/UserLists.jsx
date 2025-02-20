@@ -77,7 +77,7 @@ export default function UserLists() {
                       style={{
                         backgroundImage: cityImages[list.id]
                           ? `url(${cityImages[list.id]})`
-                          : `url("../../Assets/Images/trip-background.jpg")`,
+                          : "",
                       }}
                     >
                       <div className="trip-card__top">

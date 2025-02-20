@@ -22,6 +22,10 @@ function App() {
             path="/dashboard/public-trips"
             element={<UserDashboard />}
           ></Route>
+          <Route
+            path="/dashboard/public-trips/:id"
+            element={<UserDashboard />}
+          ></Route>
         </Routes>
       </BrowserRouter>
     </>

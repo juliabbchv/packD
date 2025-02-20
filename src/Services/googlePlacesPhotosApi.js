@@ -10,6 +10,8 @@ export default async function fetchCityImage(cityName) {
         },
       }
     );
+
+    // need to request access to demo server https://cors-anywhere.herokuapp.com/corsdemo
     const data = await response.json();
 
     if (data.results && data.results.length > 0) {

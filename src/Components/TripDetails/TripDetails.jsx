@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import "./TripDetails.scss";
 import ListSection from "../ListSection/ListSection";
@@ -12,6 +12,8 @@ export default function TripDetails() {
   const { id } = useParams();
   const [showModal, setShowModal] = useState(false);
   const [isPublic, setIsPublic] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
+  const location = useLocation();
 
   const togglePublic = async () => {
     try {
@@ -95,21 +97,16 @@ export default function TripDetails() {
     }
   };
 
-  const handleTripChange = (updatedData) => {
-    setTripDetails((prevDetails) => ({
-      ...prevDetails,
-      ...updatedData,
-    }));
-  };
-
   const handleSaveTripDetails = () => {
     const updatedTripData = {
       trip_name: tripDetails.trip_name,
       isPublic: tripDetails.isPublic,
+      isSaved: 1,
       id: tripDetails.id,
     };
 
     updateTripDetails(updatedTripData);
+    navigate(`/dashboard/trips/${updatedTripData.id}`);
   };
 
   const normalizeCategory = (category) =>
@@ -141,19 +138,26 @@ export default function TripDetails() {
             </li>
           ))}
       </ul>
-      <div className="switchwrap">
-        <label className="switch">
-          <input
-            type="checkbox"
-            checked={tripDetails.isPublic === 1}
-            onChange={togglePublic}
-          />
-          <span className="slider round"></span>
-        </label>
-        <span>{tripDetails.isPublic === 1 ? "Public" : "Private"}</span>{" "}
-      </div>
-
-      <h2>Your Packing List:</h2>
+      {location.pathname.includes("/dashboard/trips") ? (
+        <div className="switchwrap">
+          <label className="switch">
+            <input
+              type="checkbox"
+              checked={tripDetails.isPublic === 1}
+              onChange={togglePublic}
+            />
+            <span className="slider round"></span>
+          </label>
+          <span>{tripDetails.isPublic === 1 ? "Public" : "Private"}</span>{" "}
+        </div>
+      ) : (
+        ""
+      )}
+      <h2>
+        {location.pathname.includes("/dashboard/trips")
+          ? "Your Packing List:"
+          : "Packing List:"}
+      </h2>
       <div className="list-details">
         {[
           "before-you-go",
@@ -185,12 +189,24 @@ export default function TripDetails() {
           />
         ))}
       </div>
-      <button
-        className="delete-btn form__btn form__btn--back"
-        onClick={() => setShowModal(true)}
-      >
-        Delete List
-      </button>
+      <div>
+        {location.pathname.includes("/dashboard/public-trips") ? (
+          <button
+            className="form__btn form__btn--next"
+            onClick={handleSaveTripDetails}
+          >
+            Save Trip
+          </button>
+        ) : (
+          <button
+            className="delete-btn form__btn form__btn--back"
+            onClick={() => setShowModal(true)}
+          >
+            Delete List
+          </button>
+        )}
+      </div>
+
       {showModal && (
         <div className="modal">
           <div className="modal__content">

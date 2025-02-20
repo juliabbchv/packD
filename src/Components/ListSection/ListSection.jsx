@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
 
 export default function ListSection({
   category,
@@ -10,6 +11,7 @@ export default function ListSection({
 }) {
   const [editingQtyId, setEditingQtyId] = useState(null);
   const [editedQty, setEditedQty] = useState({});
+  const location = useLocation();
 
   const handleItemChange = (itemId, newValue) => {
     setItemDetails((prevItems) =>
@@ -56,12 +58,15 @@ export default function ListSection({
               {items.map((item) => (
                 <li className="item-list__group" key={item.id}>
                   <div className="item-list__label checkbox-wrapper">
-                    <input
-                      checked={checkedItems[item.id] || false}
-                      onChange={() => handleCheckboxChange(item.id)}
-                      type="checkbox"
-                      className="item-list__checkbox"
-                    />
+                    {location.pathname.includes("/dashboard/trips") && (
+                      <input
+                        checked={checkedItems[item.id] || false}
+                        onChange={() => handleCheckboxChange(item.id)}
+                        type="checkbox"
+                        className="item-list__checkbox"
+                      />
+                    )}
+
                     <span className="item-list__name">{item.item}</span>
                   </div>
 
@@ -72,7 +77,8 @@ export default function ListSection({
                     >
                       {" "}
                       QTY:
-                      {editingQtyId === item.id ? (
+                      {location.pathname.includes("/dashboard/trips") &&
+                      editingQtyId === item.id ? (
                         <input
                           type="number"
                           value={editedQty[item.id] || item.quantity}

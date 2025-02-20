@@ -4,6 +4,7 @@ import "./PublicLists.scss";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import rightArrow from "../../Assets/Images/right-arrow.svg";
+import fetchCityImage from "../../Services/googlePlacesPhotosApi";
 
 import {
   loadGoogleMapsAPI,
@@ -17,6 +18,7 @@ export default function PublicLists() {
   const inputRef = useRef(null);
   const [publicLists, setPublicLists] = useState("");
   const [selectedActivity, setSelectedActivity] = useState("");
+  const [cityImages, setCityImages] = useState({});
 
   useEffect(() => {
     loadGoogleMapsAPI(apiKey, () => {
@@ -29,6 +31,15 @@ export default function PublicLists() {
       try {
         const response = await axios.get("http://localhost:8080/trips");
         setPublicLists(response.data);
+
+        const images = {};
+        for (const list of response.data) {
+          if (list.destination) {
+            const imageUrl = await fetchCityImage(list.destination);
+            images[list.id] = imageUrl;
+          }
+        }
+        setCityImages(images);
       } catch (err) {
         console.log("Error fetching trips", err);
       }
@@ -90,7 +101,15 @@ export default function PublicLists() {
               publicLists
                 .filter((list) => list.user_id !== 1 && list.isPublic === 1)
                 .map((list) => (
-                  <li className="trip-card" key={list.id}>
+                  <li
+                    className="trip-card"
+                    key={list.id}
+                    style={{
+                      backgroundImage: cityImages[list.id]
+                        ? `url(${cityImages[list.id]})`
+                        : "",
+                    }}
+                  >
                     <div className="trip-card__top">
                       <Link to={`/dashboard/public-trips/${list.id}`}>
                         <div className="trip-card__title-wrapper trip-card__title-wrapper--public">
