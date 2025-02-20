@@ -65,13 +65,19 @@
 
 .sidebar-list {
   &__item {
-    margin: 4rem 0;
     cursor: pointer;
     transition: 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
 
     &--selected {
       background-color: $soft-cream;
       color: $brown;
+
+      .dashboard-icon {
+        filter: invert(90%) sepia(100%) saturate(300%) hue-rotate(10deg);
+      }
     }
 
     &:hover {

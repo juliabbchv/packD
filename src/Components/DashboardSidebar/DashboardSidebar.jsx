@@ -3,7 +3,10 @@ import "./DashboardSidebar.scss";
 import Form from "../../Components/Form/Form.jsx";
 import { useState } from "react";
 import Logo from "../../Assets/Images/logo.png";
-import LogoDark from "../../Assets/Images/logo-dark.png";
+import dashboard from "../../Assets/Images/dashboard.svg";
+import explore from "../../Assets/Images/explore.svg";
+import luggage from "../../Assets/Images/luggage.svg";
+import pindrop from "../../Assets/Images/pindrop.svg";
 
 export default function DashboardSidebar() {
   const [showForm, setShowForm] = useState(false);
@@ -44,6 +47,12 @@ export default function DashboardSidebar() {
                   }`
                 }
               >
+                {" "}
+                <img
+                  className="dashboard-icon"
+                  src={dashboard}
+                  alt="dashboard-icon"
+                />
                 Dashboard
               </NavLink>
             </li>
@@ -58,6 +67,11 @@ export default function DashboardSidebar() {
                   }`
                 }
               >
+                <img
+                  className="dashboard-icon"
+                  src={luggage}
+                  alt="dashboard-icon"
+                />
                 My Trips
               </NavLink>
             </li>
@@ -71,7 +85,12 @@ export default function DashboardSidebar() {
                   }`
                 }
               >
-                Explore Public Lists
+                <img
+                  className="dashboard-icon"
+                  src={explore}
+                  alt="dashboard-icon"
+                />
+                Public Trips
               </NavLink>
             </li>
             <li>
@@ -84,6 +103,11 @@ export default function DashboardSidebar() {
                   }`
                 }
               >
+                <img
+                  className="dashboard-icon"
+                  src={pindrop}
+                  alt="dashboard-icon"
+                />
                 Destination Insights
               </NavLink>
             </li>

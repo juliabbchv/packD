@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./TripDetails.scss";
 import ListSection from "../ListSection/ListSection";
@@ -8,9 +8,9 @@ export default function TripDetails() {
   const [tripDetails, setTripDetails] = useState("");
   const [itemDetails, setItemDetails] = useState([]);
   const [checkedItems, setCheckedItems] = useState({});
-
+  const navigate = useNavigate();
   const { id } = useParams();
-  console.log(itemDetails);
+  const [showModal, setShowModal] = useState(false);
 
   const handleCheckboxChange = (itemId) => {
     const newCheckedItems = {
@@ -30,6 +30,17 @@ export default function TripDetails() {
       console.log("Success");
     } catch (err) {
       console.error("Error fetching trip details", err);
+    }
+  };
+
+  const deleteTripDetails = async () => {
+    try {
+      await axios.delete(`http://localhost:8080/trips/${id}`);
+      console.log("Trip deleted successfully");
+
+      navigate("/dashboard");
+    } catch (err) {
+      console.error("Error deleting trip", err);
     }
   };
 
@@ -125,7 +136,35 @@ export default function TripDetails() {
           />
         ))}
       </div>
-      <button className="form__btn form__btn--back">Delete List</button>
+      <button
+        className="delete-btn form__btn form__btn--back"
+        onClick={() => setShowModal(true)}
+      >
+        Delete List
+      </button>
+      {showModal && (
+        <div className="modal">
+          <div className="modal__content">
+            <p className="modal__title modal__title--bold">
+              Are you sure you want to delete this list?
+            </p>
+            <div className="modal__buttons">
+              <button
+                onClick={deleteTripDetails}
+                className="modal__button modal__button--confirm"
+              >
+                Yes, Delete
+              </button>
+              <button
+                onClick={() => setShowModal(false)}
+                className="modal__button modal__button--cancel"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
