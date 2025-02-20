@@ -14,6 +14,16 @@ import rightArrow from "../../Assets/Images/right-arrow.svg";
 export default function UserLists() {
   const [userLists, setUserLists] = useState("");
 
+  const togglePublic = (id) => {
+    setUserLists((prevLists) =>
+      prevLists.map((item) =>
+        item.id === id
+          ? { ...item, isPublic: item.isPublic === 1 ? 0 : 1 }
+          : item
+      )
+    );
+  };
+
   useEffect(() => {
     async function generateUserLists() {
       try {
@@ -53,7 +63,7 @@ export default function UserLists() {
                 .map((list) => (
                   <SwiperSlide key={list.id}>
                     <li className="trip-card">
-                      <div>
+                      <div className="trip-card__top">
                         <Link to={`/dashboard/trips/${list.id}`}>
                           <div className="trip-card__title-wrapper">
                             <h3 className="trip-card__title">
@@ -66,13 +76,18 @@ export default function UserLists() {
                             />
                           </div>
                         </Link>
-
                         <div className="switchwrap">
                           <label className="switch">
-                            <input type="checkbox" />
+                            <input
+                              type="checkbox"
+                              checked={list.isPublic === 1}
+                              onChange={() => togglePublic(list.id)}
+                            />
                             <span className="slider round"></span>
                           </label>
-                          <span>Private</span>
+                          <span>
+                            {list.isPublic === 1 ? "Public" : "Private"}
+                          </span>
                         </div>
                       </div>
                       <ul className="trip-card__tag-list">

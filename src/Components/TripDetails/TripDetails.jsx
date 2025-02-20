@@ -12,10 +12,17 @@ export default function TripDetails() {
   const { id } = useParams();
   const [showModal, setShowModal] = useState(false);
   const [isPublic, setIsPublic] = useState(false);
-  console.log(isPublic);
 
-  const togglePublic = () => {
-    setIsPublic((prev) => !prev);
+  const togglePublic = async () => {
+    try {
+      setIsPublic((prev) => {
+        const newValue = !prev;
+        updateTripDetails({ isPublic: newValue ? 1 : 0 });
+        return newValue;
+      });
+    } catch (err) {
+      console.error("Error toggling public status:", err);
+    }
   };
 
   const handleCheckboxChange = (itemId) => {
@@ -74,6 +81,37 @@ export default function TripDetails() {
     }
   }, []);
 
+  const updateTripDetails = async (updatedTripData) => {
+    try {
+      const response = await axios.patch(
+        `http://localhost:8080/trips/${id}/`,
+        updatedTripData
+      );
+      console.log("Trip details updated:", response.data);
+
+      setTripDetails(response.data);
+    } catch (err) {
+      console.error("Error updating trip details:", err);
+    }
+  };
+
+  const handleTripChange = (updatedData) => {
+    setTripDetails((prevDetails) => ({
+      ...prevDetails,
+      ...updatedData,
+    }));
+  };
+
+  const handleSaveTripDetails = () => {
+    const updatedTripData = {
+      trip_name: tripDetails.trip_name,
+      isPublic: tripDetails.isPublic,
+      id: tripDetails.id,
+    };
+
+    updateTripDetails(updatedTripData);
+  };
+
   const normalizeCategory = (category) =>
     category.toLowerCase().replace(/[\s-]+/g, "");
 
@@ -105,11 +143,16 @@ export default function TripDetails() {
       </ul>
       <div className="switchwrap">
         <label className="switch">
-          <input type="checkbox" checked={isPublic} onChange={togglePublic} />
+          <input
+            type="checkbox"
+            checked={tripDetails.isPublic === 1}
+            onChange={togglePublic}
+          />
           <span className="slider round"></span>
         </label>
-        <span>{!isPublic ? "Private" : "Public"}</span>
+        <span>{tripDetails.isPublic === 1 ? "Public" : "Private"}</span>{" "}
       </div>
+
       <h2>Your Packing List:</h2>
       <div className="list-details">
         {[
