@@ -21,8 +21,8 @@
   }
 
   &__label {
-    font-size: 1.2rem;
     color: $brown;
+    font-weight: 500;
   }
 
   &__input {
@@ -37,13 +37,26 @@
   }
 }
 
+.user-lists__main-content {
+  padding: 0;
+}
+
 .user-list-cards {
   display: flex;
-  flex-wrap: nowrap;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding: 0;
+  @include tablet {
+    padding: 1rem;
+    flex-direction: row;
+  }
 }
 
 .trip-card {
-  flex: 1;
+  @include tablet {
+    flex-grow: 0;
+    flex-basis: 360px;
+  }
 }
 
 .trip-card__title-wrapper--public {

@@ -9,9 +9,11 @@ import "./UserLists.scss";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import rightArrow from "../../Assets/Images/right-arrow.svg";
+import fetchCityImage from "../../Services/googlePlacesPhotosApi";
 
 export default function UserLists() {
   const [userLists, setUserLists] = useState("");
+  const [cityImages, setCityImages] = useState({});
 
   const togglePublic = (id) => {
     setUserLists((prevLists) =>
@@ -28,6 +30,15 @@ export default function UserLists() {
       try {
         const response = await axios.get("http://localhost:8080/trips");
         setUserLists(response.data);
+
+        const images = {};
+        for (const list of response.data) {
+          if (list.destination) {
+            const imageUrl = await fetchCityImage(list.destination);
+            images[list.id] = imageUrl;
+          }
+        }
+        setCityImages(images);
       } catch (err) {
         console.log("Error fetching trips", err);
       }
@@ -39,7 +50,7 @@ export default function UserLists() {
   return (
     <section className="user-lists">
       <h2 className="user-lists__title">Your Recent Trips</h2>
-      <article className="user-lists__main-content">
+      <article className="user-lists__main-content user-lists__main-content--dashboard">
         <Swiper
           modules={[Navigation, Pagination, Scrollbar]}
           navigation
@@ -61,7 +72,14 @@ export default function UserLists() {
                 .filter((list) => list.user_id === 1)
                 .map((list) => (
                   <SwiperSlide key={list.id}>
-                    <li className="trip-card">
+                    <li
+                      className="trip-card"
+                      style={{
+                        backgroundImage: cityImages[list.id]
+                          ? `url(${cityImages[list.id]})`
+                          : `url("../../Assets/Images/trip-background.jpg")`,
+                      }}
+                    >
                       <div className="trip-card__top">
                         <Link to={`/dashboard/trips/${list.id}`}>
                           <div className="trip-card__title-wrapper">
@@ -71,7 +89,7 @@ export default function UserLists() {
                             <img
                               className="action-icon"
                               src={rightArrow}
-                              alt=""
+                              alt="right arrow icon"
                             />
                           </div>
                         </Link>

@@ -56,8 +56,11 @@
     flex: 1;
     padding: 1rem;
     color: $brown;
-    @include tablet {
-      padding: 2rem;
+
+    &--dashboard {
+      @include tablet {
+        padding: 2rem !important;
+      }
     }
   }
 }
@@ -96,6 +99,8 @@
     width: 100%;
     flex-direction: column;
     padding: 1rem;
+    min-height: 130px;
+    background-color: $soft-cream;
   }
 
   &__tag-list {
@@ -105,6 +110,7 @@
     border: 1px solid $brown;
     padding: 1rem;
     width: 100%;
+    background-color: $soft-cream;
   }
 
   &__tag-list-item {
