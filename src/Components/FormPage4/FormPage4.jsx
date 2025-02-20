@@ -1,7 +1,9 @@
 import axios from "axios";
 import "./FormPage4.scss";
+import { useNavigate } from "react-router-dom";
 
 export default function FormPage4({ listDetails, loading }) {
+  const navigate = useNavigate();
   const handleSave = async () => {
     try {
       const sentObject = {
@@ -20,7 +22,11 @@ export default function FormPage4({ listDetails, loading }) {
         sentObject
       );
 
+      const tripId = addTripDetails.data.id;
+
       console.log("Trip added");
+
+      navigate(`/dashboard/trips/${tripId}`);
     } catch (err) {
       console.error("Error creating new trip", err);
     }
@@ -117,18 +123,17 @@ export default function FormPage4({ listDetails, loading }) {
             {/* Activity items*/}
             {listDetails.packingList.list.some(
               (item) =>
-                item.category.toLowerCase() === "activity-related items" ||
-                item.category.toLowerCase() === "activity-items"
+                item.category.toLowerCase() === "activity-items" ||
+                item.category.toLowerCase() === "activity-related items"
             ) && (
               <>
-                <h4 className="list-details__subheader">
-                  Activity-related items:
-                </h4>
+                <h4 className="list-details__subheader">Activity items:</h4>
                 <div className="list-details__items">
                   <ul className="item-list">
                     {listDetails.packingList.list.map((item) =>
+                      item.category.toLowerCase() === "activity-items" ||
                       item.category.toLowerCase() ===
-                      "activity-related items" ? (
+                        "activity-related items" ? (
                         <li className="item-list__group" key={item.id}>
                           <div className="item-list__label checkbox-wrapper">
                             <input
@@ -206,8 +211,7 @@ export default function FormPage4({ listDetails, loading }) {
                 <div className="list-details__items">
                   <ul className="item-list">
                     {listDetails.packingList.list.map((item) =>
-                      item.category.toLowerCase() === "misc" ||
-                      item.category.toLowerCase() === "food" ? (
+                      item.category.toLowerCase() === "misc" ? (
                         <li className="item-list__group" key={item.id}>
                           <div className="item-list__label checkbox-wrapper">
                             <input
