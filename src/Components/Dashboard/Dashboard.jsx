@@ -11,6 +11,7 @@ const Dashboard = () => {
           </h1>
         </div>
         <div className="divider-line"></div>
+
         <UserLists />
       </section>
     </>

@@ -18,6 +18,10 @@ function App() {
             path="/dashboard/trips/:id"
             element={<UserDashboard />}
           ></Route>
+          <Route
+            path="/dashboard/public-trips"
+            element={<UserDashboard />}
+          ></Route>
         </Routes>
       </BrowserRouter>
     </>

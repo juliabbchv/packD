@@ -2,6 +2,7 @@ import DashboardSidebar from "../../Components/DashboardSidebar/DashboardSidebar
 import Dashboard from "../../Components/Dashboard/Dashboard";
 import Form from "../../Components/Form/Form";
 import TripDetails from "../../Components/TripDetails/TripDetails";
+import PublicLists from "../../Components/PublicLists/PublicLists";
 import "./UserDashboardPage.scss";
 import { useLocation, useParams } from "react-router-dom";
 
@@ -16,6 +17,8 @@ export default function UserDashboard() {
       return <Form />;
     } else if (id && location.pathname === `/dashboard/trips/${id}`) {
       return <TripDetails tripId={id} />;
+    } else if (location.pathname === "/dashboard/public-trips") {
+      return <PublicLists />;
     } else {
       return <Dashboard />;
     }
