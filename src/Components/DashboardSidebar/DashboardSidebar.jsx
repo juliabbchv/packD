@@ -59,26 +59,8 @@ export default function DashboardSidebar() {
             <li>
               <NavLink
                 onClick={closeMenu}
-                to="/dashboard/trips/"
-                end
-                className={({ isActive }) =>
-                  `sidebar-list__item ${
-                    isActive ? "sidebar-list__item--selected" : ""
-                  }`
-                }
-              >
-                <img
-                  className="dashboard-icon"
-                  src={luggage}
-                  alt="dashboard-icon"
-                />
-                My Trips
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                onClick={closeMenu}
                 to="/dashboard/public-trips"
+                end
                 className={({ isActive }) =>
                   `sidebar-list__item ${
                     isActive ? "sidebar-list__item--selected" : ""

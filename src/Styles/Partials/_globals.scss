@@ -71,6 +71,10 @@ button {
   background-color: none;
   box-shadow: inset 2px 2px 4px rgb(255, 255, 255, 0.2);
   cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
   &:active {
     transform: translate(1%, 1%);
   }

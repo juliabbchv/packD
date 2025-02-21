@@ -3,9 +3,9 @@
 
 .trip-list {
   background-color: $muted-green;
+  padding: 2rem;
   padding-top: 6rem;
-  padding-left: 1rem;
-  padding-bottom: 2rem;
+
   @include tablet {
     padding-left: 15rem;
   }
@@ -13,6 +13,10 @@
   &__title {
     font-weight: 300;
     font-size: 2rem;
+  }
+
+  &__author {
+    padding: 1rem 0;
   }
 
   & > * {
@@ -169,18 +173,18 @@
   background-color: $muted-green;
   -webkit-transition: 0.4s;
   transition: 0.4s;
-}
 
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: $soft-cream;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
+  &:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: $soft-cream;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+  }
 }
 
 input:checked + .slider {
@@ -216,4 +220,13 @@ input:checked + .slider:before {
 
 .access-denied {
   margin-left: 16rem;
+}
+
+.form__btn-container {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: flex-start;
+  & > * {
+    margin: 0;
+  }
 }

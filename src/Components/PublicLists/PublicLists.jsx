@@ -5,6 +5,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import rightArrow from "../../Assets/Images/right-arrow.svg";
 import fetchCityImage from "../../Services/googlePlacesPhotosApi";
+import explore from "../../Assets/Images/explore2.svg";
 
 import {
   loadGoogleMapsAPI,
@@ -102,7 +103,10 @@ export default function PublicLists() {
         </div>
       </div>
       <section className="user-lists">
-        <h2 className="user-lists__title">Browse public lists</h2>
+        <div className="user-lists__text">
+          <img className="dashboard-icon" src={explore} alt="dashboard-icon" />
+          <h2 className="user-lists__title">Explore Public Lists</h2>
+        </div>
         <article className="user-lists__main-content">
           <ul className="user-list-cards ">
             {publicLists &&
@@ -132,7 +136,9 @@ export default function PublicLists() {
                               alt="right arrow icon"
                             />
                           </div>
-                          <p className="trip-card__title"> Created by: </p>
+                          <p className="trip-card__title">
+                            Created by: {list.user_name}
+                          </p>
                         </div>
                       </Link>
                     </div>

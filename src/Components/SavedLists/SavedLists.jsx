@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import rightArrow from "../../Assets/Images/right-arrow.svg";
 import fetchCityImage from "../../Services/googlePlacesPhotosApi";
+import bookmark from "../../Assets/Images/bookmark.svg";
 
 export default function SavedLists() {
   const [userLists, setUserLists] = useState("");
@@ -27,7 +28,6 @@ export default function SavedLists() {
               `cityImage_${list.destination}`
             );
             if (cachedImage) {
-              console.log(`Using cached image for ${list.destination}`);
               images[list.id] = cachedImage;
             } else {
               const imageUrl = await fetchCityImage(list.destination);
@@ -46,7 +46,10 @@ export default function SavedLists() {
 
   return (
     <section className="user-lists">
-      <h2 className="user-lists__title">Saved Trips</h2>
+      <div className="user-lists__text">
+        <img className="dashboard-icon" src={bookmark} alt="dashboard-icon" />
+        <h2 className="user-lists__title">Saved Trips</h2>
+      </div>
       <article className="user-lists__main-content user-lists__main-content--dashboard">
         <Swiper
           modules={[Navigation, Pagination, Scrollbar]}
@@ -59,7 +62,7 @@ export default function SavedLists() {
               spaceBetween: 10,
             },
             1024: {
-              slidesPerView: 3,
+              slidesPerView: 2,
             },
           }}
         >
@@ -91,6 +94,10 @@ export default function SavedLists() {
                                 alt="right arrow icon"
                               />
                             </div>
+                            <p className="trip-card__title">
+                              {" "}
+                              Created by: {list.user_name}
+                            </p>
                           </div>
                         </Link>
                       </div>

@@ -42,7 +42,6 @@ export default function TripDetails() {
         `http://localhost:8080/trips/${id}`
       );
       setTripDetails(getTripDetails.data[0]);
-      console.log("Success");
     } catch (err) {
       console.error("Error fetching trip details", err);
     }
@@ -51,8 +50,6 @@ export default function TripDetails() {
   const deleteTripDetails = async () => {
     try {
       await axios.delete(`http://localhost:8080/trips/${id}`);
-      console.log("Trip deleted successfully");
-
       navigate("/dashboard");
     } catch (err) {
       console.error("Error deleting trip", err);
@@ -65,7 +62,6 @@ export default function TripDetails() {
         `http://localhost:8080/trips/${id}/items`
       );
       setItemDetails(getItemsDetails.data);
-      console.log("Success");
     } catch (err) {
       console.error("Error fetching trip details", err);
     }
@@ -89,8 +85,6 @@ export default function TripDetails() {
         `http://localhost:8080/trips/${id}/`,
         updatedTripData
       );
-      console.log("Trip details updated:", response.data);
-
       setTripDetails(response.data);
     } catch (err) {
       console.error("Error updating trip details:", err);
@@ -106,7 +100,7 @@ export default function TripDetails() {
     };
 
     updateTripDetails(updatedTripData);
-    navigate(`/dashboard/public-trips/saved${id}`);
+    navigate(`/dashboard/public-trips/saved/${id}`);
   };
 
   const handleRemoveTrip = () => {
@@ -139,9 +133,6 @@ export default function TripDetails() {
         newTripData
       );
       const newTripId = response.data.id;
-
-      console.log("New trip created:", response.data);
-
       navigate(`/dashboard/trips/${newTripId}`);
     } catch (err) {
       console.error("Error creating new trip:", err);
@@ -169,6 +160,11 @@ export default function TripDetails() {
         <section className="trip-list">
           <div>
             <h1 className="trip-list__title">{tripDetails.trip_name}</h1>
+            {location.pathname.startsWith("/dashboard/public-trips") && (
+              <p className="trip-list__author">
+                Created by : {tripDetails.user_name}
+              </p>
+            )}
             <div className="divider-line--trip"></div>
           </div>
 
@@ -239,18 +235,18 @@ export default function TripDetails() {
           </div>
 
           {/* Buttons: Save Trip (public trips) / Delete List (regular trips) */}
-          <div>
+          <div className="form__btn-container">
             {location.pathname.includes("/dashboard/public-trips") ? (
               location.pathname.startsWith("/dashboard/public-trips/saved") ? (
                 <>
                   <button
-                    className="form__btn delete-btn"
+                    className="form__btn form__btn--saved delete-btn"
                     onClick={handleRemoveTrip}
                   >
                     Remove Trip
                   </button>
                   <button
-                    className="form__btn form__btn--next"
+                    className="form__btn form__btn--customize form__btn--next"
                     onClick={handleCustomizeTripDetails}
                   >
                     Customize Trip

@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useLocation, useParams } from "react-router-dom";
 import "./ListSection.scss";
+import deleteIcon from "../../Assets/Images/delete.svg";
 
 export default function ListSection({
   category,
@@ -74,6 +75,17 @@ export default function ListSection({
     }
   };
 
+  const deleteItem = async (itemId) => {
+    try {
+      await axios.delete(`http://localhost:8080/items/${itemId}`);
+      setItemDetails((prevItems) =>
+        prevItems.filter((item) => item.id !== itemId)
+      );
+    } catch (err) {
+      console.error("Error deleting item", err);
+    }
+  };
+
   return (
     <>
       {items.length > 0 && (
@@ -135,6 +147,12 @@ export default function ListSection({
                       </a>
                     </p>
                   )}
+                  <img
+                    className="delete-icon"
+                    src={deleteIcon}
+                    alt="delete icon"
+                    onClick={() => deleteItem(item.id)}
+                  />
                 </li>
               ))}
             </ul>

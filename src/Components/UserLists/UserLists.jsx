@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import rightArrow from "../../Assets/Images/right-arrow.svg";
 import fetchCityImage from "../../Services/googlePlacesPhotosApi";
+import luggage from "../../Assets/Images/luggage.svg";
 
 export default function UserLists() {
   const [userLists, setUserLists] = useState("");
@@ -46,7 +47,11 @@ export default function UserLists() {
 
   return (
     <section className="user-lists">
-      <h2 className="user-lists__title">Your Recent Trips</h2>
+      <div className="user-lists__text">
+        <img className="dashboard-icon" src={luggage} alt="dashboard-icon" />
+        <h2 className="user-lists__title">Your Recent Trips</h2>
+      </div>
+
       <article className="user-lists__main-content user-lists__main-content--dashboard">
         <Swiper
           modules={[Navigation, Pagination, Scrollbar]}
@@ -59,7 +64,7 @@ export default function UserLists() {
               spaceBetween: 10,
             },
             1024: {
-              slidesPerView: 3,
+              slidesPerView: 2,
             },
           }}
         >
@@ -67,6 +72,7 @@ export default function UserLists() {
             {userLists &&
               userLists
                 .filter((list) => list.user_id === 1)
+                .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))
                 .map((list) => (
                   <SwiperSlide key={list.id}>
                     <li
