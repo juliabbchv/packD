@@ -28,7 +28,6 @@ export default function UserLists() {
               `cityImage_${list.destination}`
             );
             if (cachedImage) {
-              console.log(`Using cached image for ${list.destination}`);
               images[list.id] = cachedImage;
             } else {
               const imageUrl = await fetchCityImage(list.destination);

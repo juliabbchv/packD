@@ -66,7 +66,7 @@ export default function SavedLists() {
           <ul className="user-list-cards ">
             {userLists &&
               userLists
-                .filter((list) => list.isSaved === 1)
+                .filter((list) => list.isSaved === 1 && list.user_id !== 1)
                 .map((list) => (
                   <SwiperSlide key={list.id}>
                     <li
@@ -78,7 +78,7 @@ export default function SavedLists() {
                       }}
                     >
                       <div className="trip-card__top">
-                        <Link to={`/dashboard/trips/${list.id}`}>
+                        <Link to={`/dashboard/public-trips/saved/${list.id}`}>
                           <div className="trip-card__title-wrapper trip-card__title-wrapper--public">
                             <div className="trip-card__tile-group">
                               <h3 className="trip-card__title">

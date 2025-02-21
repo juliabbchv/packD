@@ -5,7 +5,7 @@ import "./TripDetails.scss";
 import ListSection from "../ListSection/ListSection";
 
 export default function TripDetails() {
-  const [tripDetails, setTripDetails] = useState("");
+  const [tripDetails, setTripDetails] = useState({});
   const [itemDetails, setItemDetails] = useState([]);
   const [checkedItems, setCheckedItems] = useState({});
   const navigate = useNavigate();
@@ -97,9 +97,7 @@ export default function TripDetails() {
     }
   };
 
-  //fix logic on save - instead of changing issaved to 1 i need to create aa brand new trip witn new Id and isSaved1
-
-  const handleSaveTripDetails = () => {
+  const handleSavedTrip = () => {
     const updatedTripData = {
       trip_name: tripDetails.trip_name,
       isPublic: tripDetails.isPublic,
@@ -108,7 +106,46 @@ export default function TripDetails() {
     };
 
     updateTripDetails(updatedTripData);
-    navigate(`/dashboard/trips/${updatedTripData.id}`);
+    navigate(`/dashboard/public-trips/saved${id}`);
+  };
+
+  const handleRemoveTrip = () => {
+    const updatedTripData = {
+      trip_name: tripDetails.trip_name,
+      isPublic: tripDetails.isPublic,
+      isSaved: 0,
+      id: tripDetails.id,
+    };
+
+    updateTripDetails(updatedTripData);
+    navigate(`/dashboard/`);
+  };
+
+  const handleCustomizeTripDetails = async () => {
+    const newTripData = {
+      user_id: 1,
+      trip_name: tripDetails.trip_name,
+      isPublic: tripDetails.isPublic,
+      isSaved: 1,
+      list: [itemDetails],
+      destination: tripDetails.destination,
+      trip_purpose: tripDetails.trip_purpose,
+      activities: tripDetails.activities,
+    };
+
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/trips",
+        newTripData
+      );
+      const newTripId = response.data.id;
+
+      console.log("New trip created:", response.data);
+
+      navigate(`/dashboard/trips/${newTripId}`);
+    } catch (err) {
+      console.error("Error creating new trip:", err);
+    }
   };
 
   const normalizeCategory = (category) =>
@@ -204,12 +241,29 @@ export default function TripDetails() {
           {/* Buttons: Save Trip (public trips) / Delete List (regular trips) */}
           <div>
             {location.pathname.includes("/dashboard/public-trips") ? (
-              <button
-                className="form__btn form__btn--next"
-                onClick={handleSaveTripDetails}
-              >
-                Save Trip
-              </button>
+              location.pathname.startsWith("/dashboard/public-trips/saved") ? (
+                <>
+                  <button
+                    className="form__btn delete-btn"
+                    onClick={handleRemoveTrip}
+                  >
+                    Remove Trip
+                  </button>
+                  <button
+                    className="form__btn form__btn--next"
+                    onClick={handleCustomizeTripDetails}
+                  >
+                    Customize Trip
+                  </button>
+                </>
+              ) : (
+                <button
+                  className="form__btn form__btn--next"
+                  onClick={handleSavedTrip}
+                >
+                  Save Trip
+                </button>
+              )
             ) : (
               <button
                 className="delete-btn form__btn form__btn--back"

@@ -21,6 +21,8 @@ export default function UserDashboard() {
       return <PublicLists />;
     } else if (location.pathname === `/dashboard/public-trips/${id}`) {
       return <TripDetails />;
+    } else if (location.pathname === `/dashboard/public-trips/saved/${id}`) {
+      return <TripDetails />;
     } else {
       return <Dashboard />;
     }
