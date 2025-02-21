@@ -34,7 +34,7 @@ export default function FormPage4({ listDetails, loading }) {
 
   return loading ? (
     <div className="loading-container">
-      <p>Loading...</p>
+      <div className="spinner">Generating...</div>
     </div>
   ) : (
     <section className="packing-list">

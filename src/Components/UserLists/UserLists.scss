@@ -71,15 +71,12 @@
 }
 
 .trip-card {
-  background: url("../../Assets/Images/trip-background.jpg");
-
+  background: url("../../Assets/Images/suitcase.jpg");
   background-position: center;
   background-size: cover;
-
   padding: 1.25rem;
   color: $brown;
-  flex: 0 0 100%;
-  min-height: 500px;
+  min-height: 400px;
   margin: 1.1rem;
   margin-bottom: 2.5rem;
   transition: transform 0.3s ease, box-shadow 0.3s ease;

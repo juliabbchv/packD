@@ -94,7 +94,7 @@ export default function PublicLists() {
         </div>
       </div>
       <section className="user-lists">
-        <h2 className="user-lists__title">Your Recent Trips</h2>
+        <h2 className="user-lists__title">Browse public lists</h2>
         <article className="user-lists__main-content">
           <ul className="user-list-cards ">
             {publicLists &&
