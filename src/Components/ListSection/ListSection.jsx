@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 
 export default function ListSection({
   category,
@@ -8,10 +8,15 @@ export default function ListSection({
   checkedItems,
   handleCheckboxChange,
   setItemDetails,
+  fetchItems,
 }) {
   const [editingQtyId, setEditingQtyId] = useState(null);
   const [editedQty, setEditedQty] = useState({});
+  const [isAddingItem, setIsAddingItem] = useState(false);
+  const [newItem, setNewItem] = useState("");
+  const [newItemQty, setNewItemQty] = useState(1);
   const location = useLocation();
+  const { id } = useParams();
 
   const handleItemChange = (itemId, newValue) => {
     setItemDetails((prevItems) =>
@@ -45,6 +50,26 @@ export default function ListSection({
       console.log("Item updated:", response.data);
     } catch (err) {
       console.error("Error updating item:", err);
+    }
+  };
+
+  const handleAddItem = async () => {
+    if (!newItem.trim()) return;
+
+    const newItemData = {
+      item: newItem,
+      quantity: Number(newItemQty),
+      category: category,
+      trip_id: id,
+    };
+
+    try {
+      await axios.post(`http://localhost:8080/trips/${id}/items`, newItemData);
+      fetchItems();
+      setNewItem("");
+      setIsAddingItem(false);
+    } catch (error) {
+      console.error("Error adding item:", error);
     }
   };
 
@@ -100,6 +125,41 @@ export default function ListSection({
                 </li>
               ))}
             </ul>
+
+            {isAddingItem ? (
+              <div className="add-item">
+                <input
+                  type="text"
+                  value={newItem}
+                  onChange={(e) => setNewItem(e.target.value)}
+                  placeholder="Enter item name"
+                  className="add-item__input"
+                />
+                <input
+                  type="number"
+                  value={newItemQty}
+                  onChange={(e) => setNewItemQty(e.target.value)}
+                  placeholder="Qty"
+                  className="add-item__input"
+                />
+                <button onClick={handleAddItem} className="add-item__btn">
+                  Save
+                </button>
+                <button
+                  onClick={() => setIsAddingItem(false)}
+                  className="add-item__btn"
+                >
+                  Cancel
+                </button>
+              </div>
+            ) : (
+              <button
+                onClick={() => setIsAddingItem(true)}
+                className="add-item-btn"
+              >
+                + Add Item
+              </button>
+            )}
           </div>
         </>
       )}

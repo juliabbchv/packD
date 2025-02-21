@@ -186,6 +186,7 @@ export default function TripDetails() {
             checkedItems={checkedItems}
             handleCheckboxChange={handleCheckboxChange}
             setItemDetails={setItemDetails}
+            fetchItems={fetchItems}
           />
         ))}
       </div>
