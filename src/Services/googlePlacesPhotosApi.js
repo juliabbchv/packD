@@ -22,7 +22,7 @@ export default async function fetchCityImage(cityName) {
 
       if (photoReference) {
         const imageUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=1200&photo_reference=${photoReference}&key=${apiKey}`;
-
+        localStorage.setItem(`cityImage_${cityName}`, imageUrl);
         return imageUrl;
       } else {
         console.log("No photos available for this place.");

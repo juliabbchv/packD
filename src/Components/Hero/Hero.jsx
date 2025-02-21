@@ -9,8 +9,8 @@ export default function Hero() {
           <span className="italic underline"> perfectly packD</span>
         </h1>
         <p className="hero__secondary">
-          Smart packing lists for any adventure—curated by AI and real
-          travellers like you.
+          Smart packing lists for any adventure—curated by AI and real travelers
+          like you.
         </p>
       </div>
     </section>

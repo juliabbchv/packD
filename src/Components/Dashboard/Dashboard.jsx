@@ -1,5 +1,6 @@
 import "./Dashboard.scss";
 import UserLists from "../UserLists/UserLists";
+import SavedLists from "../SavedLists/SavedLists";
 
 const Dashboard = () => {
   return (
@@ -11,8 +12,8 @@ const Dashboard = () => {
           </h1>
         </div>
         <div className="divider-line"></div>
-
         <UserLists />
+        <SavedLists />
       </section>
     </>
   );

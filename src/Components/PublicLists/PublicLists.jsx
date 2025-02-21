@@ -35,8 +35,16 @@ export default function PublicLists() {
         const images = {};
         for (const list of response.data) {
           if (list.destination) {
-            const imageUrl = await fetchCityImage(list.destination);
-            images[list.id] = imageUrl;
+            const cachedImage = localStorage.getItem(
+              `cityImage_${list.destination}`
+            );
+            if (cachedImage) {
+              console.log(`Using cached image for ${list.destination}`);
+              images[list.id] = cachedImage;
+            } else {
+              const imageUrl = await fetchCityImage(list.destination);
+              images[list.id] = imageUrl;
+            }
           }
         }
         setCityImages(images);
@@ -121,7 +129,7 @@ export default function PublicLists() {
                             <img
                               className="action-icon"
                               src={rightArrow}
-                              alt=""
+                              alt="right arrow icon"
                             />
                           </div>
                           <p className="trip-card__title"> Created by: </p>

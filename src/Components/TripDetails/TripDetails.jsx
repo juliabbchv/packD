@@ -74,7 +74,7 @@ export default function TripDetails() {
   useEffect(() => {
     fetchTripDetails();
     fetchItems();
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     const savedCheckedItems = localStorage.getItem("checkedItems");
@@ -96,6 +96,8 @@ export default function TripDetails() {
       console.error("Error updating trip details:", err);
     }
   };
+
+  //fix logic on save - instead of changing issaved to 1 i need to create aa brand new trip witn new Id and isSaved1
 
   const handleSaveTripDetails = () => {
     const updatedTripData = {
@@ -125,112 +127,135 @@ export default function TripDetails() {
   };
 
   return (
-    <section className="trip-list">
-      <div>
-        <h1 className="trip-list__title">{tripDetails.trip_name}</h1>
-        <div className="divider-line--trip"></div>
-      </div>
-      <ul className="trip-tags">
-        {tripDetails.activities &&
-          tripDetails.activities.split(",").map((tag, index) => (
-            <li className="trip-tags__item " key={index}>
-              {tag.toLowerCase()}
-            </li>
-          ))}
-      </ul>
-      {location.pathname.includes("/dashboard/trips") ? (
-        <div className="switchwrap">
-          <label className="switch">
-            <input
-              type="checkbox"
-              checked={tripDetails.isPublic === 1}
-              onChange={togglePublic}
-            />
-            <span className="slider round"></span>
-          </label>
-          <span>{tripDetails.isPublic === 1 ? "Public" : "Private"}</span>{" "}
-        </div>
-      ) : (
-        ""
-      )}
-      <h2>
-        {location.pathname.includes("/dashboard/trips")
-          ? "Your Packing List:"
-          : "Packing List:"}
-      </h2>
-      <div className="list-details">
-        {[
-          "before-you-go",
-          "documents",
-          "clothes",
-          "activity-items",
-          "tech",
-          "toiletries & health",
-          "misc",
-          "food",
-        ].map((category) => (
-          <ListSection
-            key={category}
-            category={
-              category.charAt(0).toUpperCase() +
-              category.slice(1).replace(/-/g, " ")
-            }
-            items={
-              category === "toiletries & health"
-                ? [
-                    ...filterItemsByCategory("toiletries"),
-                    ...filterItemsByCategory("health"),
-                  ]
-                : filterItemsByCategory(category)
-            }
-            checkedItems={checkedItems}
-            handleCheckboxChange={handleCheckboxChange}
-            setItemDetails={setItemDetails}
-            fetchItems={fetchItems}
-          />
-        ))}
-      </div>
-      <div>
-        {location.pathname.includes("/dashboard/public-trips") ? (
-          <button
-            className="form__btn form__btn--next"
-            onClick={handleSaveTripDetails}
-          >
-            Save Trip
-          </button>
-        ) : (
-          <button
-            className="delete-btn form__btn form__btn--back"
-            onClick={() => setShowModal(true)}
-          >
-            Delete List
-          </button>
-        )}
-      </div>
-
-      {showModal && (
-        <div className="modal">
-          <div className="modal__content">
-            <p className="modal__title modal__title--bold">
-              Are you sure you want to delete this list?
-            </p>
-            <div className="modal__buttons">
-              <button
-                onClick={deleteTripDetails}
-                className="modal__button modal__button--confirm"
-              >
-                Yes, Delete
-              </button>
-              <button
-                onClick={() => setShowModal(false)}
-                className="modal__button modal__button--cancel"
-              >
-                Cancel
-              </button>
-            </div>
+    <>
+      {tripDetails.user_id === 1 || tripDetails.isPublic === 1 ? (
+        <section className="trip-list">
+          <div>
+            <h1 className="trip-list__title">{tripDetails.trip_name}</h1>
+            <div className="divider-line--trip"></div>
           </div>
-        </div>
+
+          {/* Trip Tags */}
+          {tripDetails.activities && (
+            <ul className="trip-tags">
+              {tripDetails.activities.split(",").map((tag, index) => (
+                <li className="trip-tags__item" key={index}>
+                  {tag.toLowerCase()}
+                </li>
+              ))}
+            </ul>
+          )}
+
+          {/* Toggle Public/Private Switch (only for dashboard trips) */}
+          {location.pathname.includes("/dashboard/trips") && (
+            <div className="switchwrap">
+              <label className="switch">
+                <input
+                  type="checkbox"
+                  checked={tripDetails.isPublic === 1}
+                  onChange={togglePublic}
+                />
+                <span className="slider round"></span>
+              </label>
+              <span>{tripDetails.isPublic === 1 ? "Public" : "Private"}</span>
+            </div>
+          )}
+
+          {/* Packing List */}
+          <h2>
+            {location.pathname.includes("/dashboard/trips")
+              ? "Your Packing List:"
+              : "Packing List:"}
+          </h2>
+
+          <div className="list-details">
+            {[
+              "before-you-go",
+              "documents",
+              "clothes",
+              "activity-items",
+              "tech",
+              "toiletries & health",
+              "misc",
+              "food",
+            ].map((category) => (
+              <ListSection
+                key={category}
+                category={
+                  category.charAt(0).toUpperCase() +
+                  category.slice(1).replace(/-/g, " ")
+                }
+                items={
+                  category === "toiletries & health"
+                    ? [
+                        ...filterItemsByCategory("toiletries"),
+                        ...filterItemsByCategory("health"),
+                      ]
+                    : filterItemsByCategory(category)
+                }
+                checkedItems={checkedItems}
+                handleCheckboxChange={handleCheckboxChange}
+                setItemDetails={setItemDetails}
+                fetchItems={fetchItems}
+              />
+            ))}
+          </div>
+
+          {/* Buttons: Save Trip (public trips) / Delete List (regular trips) */}
+          <div>
+            {location.pathname.includes("/dashboard/public-trips") ? (
+              <button
+                className="form__btn form__btn--next"
+                onClick={handleSaveTripDetails}
+              >
+                Save Trip
+              </button>
+            ) : (
+              <button
+                className="delete-btn form__btn form__btn--back"
+                onClick={() => setShowModal(true)}
+              >
+                Delete List
+              </button>
+            )}
+          </div>
+
+          {/* Delete Confirmation Modal */}
+          {showModal && (
+            <div className="modal">
+              <div className="modal__content">
+                <p className="modal__title modal__title--bold">
+                  Are you sure you want to delete this list?
+                </p>
+                <div className="modal__buttons">
+                  <button
+                    onClick={deleteTripDetails}
+                    className="modal__button modal__button--confirm"
+                  >
+                    Yes, Delete
+                  </button>
+                  <button
+                    onClick={() => setShowModal(false)}
+                    className="modal__button modal__button--cancel"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+        </section>
+      ) : (
+        <section className="dashboard">
+          <div className="dashboard__greeting">
+            <h1>
+              Access Denied <br /> Oopps... looks like you tried accessing the
+              wrong page
+            </h1>
+          </div>
+          <div className="divider-line"></div>
+        </section>
       )}
-    </section>
+    </>
   );
 }

@@ -76,7 +76,7 @@
   background-size: cover;
   padding: 1.25rem;
   color: $brown;
-  min-height: 400px;
+  min-height: 300px;
   margin: 1.1rem;
   margin-bottom: 2.5rem;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -95,7 +95,7 @@
     width: 100%;
     flex-direction: column;
     padding: 1rem;
-    min-height: 130px;
+    min-height: 100px;
     background-color: $soft-cream;
   }
 
@@ -114,6 +114,7 @@
     padding: 0.5rem;
     color: $soft-cream;
     font-weight: 500;
+    font-size: 0.8rem;
   }
 
   &__title {

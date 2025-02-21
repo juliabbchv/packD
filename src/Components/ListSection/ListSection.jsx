@@ -139,7 +139,8 @@ export default function ListSection({
               ))}
             </ul>
 
-            {isAddingItem ? (
+            {location.pathname.startsWith("/dashboard/trips") &&
+            isAddingItem ? (
               <div className="add-item">
                 <input
                   type="text"
@@ -165,14 +166,14 @@ export default function ListSection({
                   Cancel
                 </button>
               </div>
-            ) : (
+            ) : location.pathname.startsWith("/dashboard/trips") ? (
               <button
                 onClick={() => setIsAddingItem(true)}
                 className="add-item__btn"
               >
                 + Add New Item
               </button>
-            )}
+            ) : null}
           </div>
         </>
       )}
