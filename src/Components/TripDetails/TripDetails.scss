@@ -54,13 +54,15 @@
 }
 
 .delete-btn {
-  color: rgb(180, 59, 59);
-  border-color: $soft-cream;
+  background-color: rgb(180, 59, 59);
+  border-color: transparent;
+  color: $soft-cream;
   transition: all 0s ease;
 
   &:hover {
     border-color: rgb(158, 54, 54);
     text-decoration: underline;
+    border-color: $soft-cream;
   }
 }
 

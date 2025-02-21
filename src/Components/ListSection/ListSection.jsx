@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useLocation, useParams } from "react-router-dom";
+import "./ListSection.scss";
 
 export default function ListSection({
   category,
@@ -122,6 +123,18 @@ export default function ListSection({
                       )}
                     </p>
                   )}
+
+                  {item.link && (
+                    <p className="item-list__link">
+                      <a
+                        href={item.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        more info
+                      </a>
+                    </p>
+                  )}
                 </li>
               ))}
             </ul>
@@ -140,7 +153,7 @@ export default function ListSection({
                   value={newItemQty}
                   onChange={(e) => setNewItemQty(e.target.value)}
                   placeholder="Qty"
-                  className="add-item__input"
+                  className="add-item__input  add-item__input--qty"
                 />
                 <button onClick={handleAddItem} className="add-item__btn">
                   Save
@@ -155,9 +168,9 @@ export default function ListSection({
             ) : (
               <button
                 onClick={() => setIsAddingItem(true)}
-                className="add-item-btn"
+                className="add-item__btn"
               >
-                + Add Item
+                + Add New Item
               </button>
             )}
           </div>

@@ -73,9 +73,8 @@
 }
 
 .loading-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flex(row, center, flex-start);
+  margin-top: 7rem;
   height: 100vh;
 }
 
