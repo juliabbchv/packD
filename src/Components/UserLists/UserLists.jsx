@@ -77,7 +77,7 @@ export default function UserLists() {
                       style={{
                         backgroundImage: cityImages[list.id]
                           ? `url(${cityImages[list.id]})`
-                          : "",
+                          : `url("../../Assets/Images/suitcase.jpg")`,
                       }}
                     >
                       <div className="trip-card__top">
@@ -98,7 +98,7 @@ export default function UserLists() {
                             <input
                               type="checkbox"
                               checked={list.isPublic === 1}
-                              onChange={() => togglePublic(list.id)}
+                              disabled
                             />
                             <span className="slider round"></span>
                           </label>
