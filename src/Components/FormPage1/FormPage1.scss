@@ -5,7 +5,13 @@
   width: 100%;
   margin-right: 0;
   margin-left: 0;
+  color: $brown;
   border: 1px solid $brown;
+  background-color: $muted-green;
+  &:hover {
+    background-color: $brown;
+    color: $soft-cream;
+  }
 }
 
 .input-wrapper {

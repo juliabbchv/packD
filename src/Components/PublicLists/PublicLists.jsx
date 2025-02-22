@@ -60,7 +60,7 @@ export default function PublicLists() {
   return (
     <section className="dashboard public-trips">
       <div className="dashboard__greeting">
-        <h1>Explore what other travellers bring on their trips</h1>
+        <h1>Not sure what to pack? Get inspired by other travelers! </h1>
       </div>
       <div className="divider-line"></div>
       <div className="filters">
@@ -136,7 +136,7 @@ export default function PublicLists() {
                               alt="right arrow icon"
                             />
                           </div>
-                          <p className="trip-card__title">
+                          <p className="trip-card__author">
                             Created by: {list.user_name}
                           </p>
                         </div>

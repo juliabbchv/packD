@@ -12,7 +12,7 @@
   align-items: center;
   margin: 10px 0;
   position: relative;
-  color: $soft-cream;
+  color: $brown;
 }
 
 .checkbox-wrapper input[type="checkbox"] {
@@ -56,21 +56,11 @@
       margin: 0 0 0 auto;
     }
 
-    &--next:hover {
-      background-color: $brown;
-      color: $soft-cream;
-    }
-
     &--back {
       background-color: transparent;
       color: $brown;
       border-color: $brown;
       margin-left: 0;
-      transition: all 0.3s ease;
-
-      &:hover {
-        border-color: $off-white;
-      }
     }
   }
 }

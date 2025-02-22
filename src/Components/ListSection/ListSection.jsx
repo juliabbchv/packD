@@ -88,7 +88,7 @@ export default function ListSection({
 
   return (
     <>
-      {items.length > 0 && (
+      {items && (
         <section className="list-details__section">
           <h4 className="list-details__subheader">{category}:</h4>
           <div className="list-details__items">

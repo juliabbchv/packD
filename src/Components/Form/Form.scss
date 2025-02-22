@@ -3,7 +3,7 @@
 @use "sass:color";
 
 .form-section {
-  background-color: $muted-green;
+  background-color: $soft-cream;
 }
 
 .form-wrapper {
@@ -42,7 +42,7 @@
 }
 
 .form-step {
-  color: $off-white;
+  color: $brown;
   @include desktop {
     width: 20%;
   }

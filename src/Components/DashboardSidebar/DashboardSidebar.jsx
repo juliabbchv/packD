@@ -3,9 +3,9 @@ import "./DashboardSidebar.scss";
 import Form from "../../Components/Form/Form.jsx";
 import { useState } from "react";
 import Logo from "../../Assets/Images/logo.png";
+import LogoDark from "../../Assets/Images/logo-dark.png";
 import dashboard from "../../Assets/Images/dashboard.svg";
 import explore from "../../Assets/Images/explore.svg";
-import luggage from "../../Assets/Images/luggage.svg";
 import pindrop from "../../Assets/Images/pindrop.svg";
 
 export default function DashboardSidebar() {
@@ -18,7 +18,11 @@ export default function DashboardSidebar() {
   return (
     <>
       <div className="sidebar-actions">
-        <img className=" logo sidebar-actions__logo" src={Logo} alt="logo" />
+        <img
+          className=" logo sidebar-actions__logo"
+          src={LogoDark}
+          alt="logo"
+        />
       </div>
       <button
         className={`navbar__toggle sidebar-actions__toggle ${
@@ -30,6 +34,7 @@ export default function DashboardSidebar() {
         <span className="bar"></span>
         <span className="bar"></span>
       </button>
+
       <aside className={`sidebar ${!toggleNav ? "sidebar--active" : ""}`}>
         <div className="sidebar__top">
           <NavLink to="/dashboard/create-list" onClick={closeMenu}>
@@ -96,7 +101,9 @@ export default function DashboardSidebar() {
           </ul>
         </div>
         <div>
-          <span className="sidebar-list__item">Log Out</span>
+          <NavLink to="/">
+            <span className="sidebar-list__item">Log Out</span>
+          </NavLink>
         </div>
       </aside>
       {showForm && <Form />}

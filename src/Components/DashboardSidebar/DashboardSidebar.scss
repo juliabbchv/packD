@@ -98,6 +98,7 @@
 .sidebar-actions {
   position: absolute;
   z-index: 100000000;
+
   top: 1rem;
   left: 1rem;
   gap: 6rem;
@@ -134,7 +135,7 @@
   display: block;
   width: 30px;
   height: 3px;
-  background-color: $soft-cream;
+  background-color: $brown;
   transition: all 0.3s ease-in-out;
 }
 

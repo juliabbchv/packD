@@ -1,6 +1,7 @@
 import axios from "axios";
 import "./FormPage4.scss";
 import { useNavigate } from "react-router-dom";
+import SquareLoader from "react-spinners/SquareLoader";
 
 export default function FormPage4({ listDetails, loading }) {
   const navigate = useNavigate();
@@ -34,7 +35,17 @@ export default function FormPage4({ listDetails, loading }) {
 
   return loading ? (
     <div className="loading-container">
-      <div className="spinner">Generating...</div>
+      <p>
+        We're preparing your packing list.
+        <br /> This will take a few seconds.
+      </p>
+      <SquareLoader
+        loading={loading}
+        size={50}
+        color="#514234"
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      />
     </div>
   ) : (
     <section className="packing-list">
@@ -53,7 +64,7 @@ export default function FormPage4({ listDetails, loading }) {
                 {listDetails.packingList.list.map((item) =>
                   item.category === "before you go" ||
                   item.category === "before-you-go" ? (
-                    <li className="item-list__group" key={item.id}>
+                    <li className="item-list__group" key={item.item}>
                       <div className="item-list__label checkbox-wrapper">
                         <input
                           type="checkbox"
@@ -84,7 +95,7 @@ export default function FormPage4({ listDetails, loading }) {
               <ul className="item-list">
                 {listDetails.packingList.list.map((item) =>
                   item.category === "documents" ? (
-                    <li className="item-list__group" key={item.id}>
+                    <li className="item-list__group" key={item.item}>
                       <div className="item-list__label checkbox-wrapper">
                         <input
                           type="checkbox"
@@ -104,7 +115,7 @@ export default function FormPage4({ listDetails, loading }) {
               <ul className="item-list">
                 {listDetails.packingList.list.map((item) =>
                   item.category.toLowerCase() === "clothes" ? (
-                    <li className="item-list__group" key={item.id}>
+                    <li className="item-list__group" key={item.item}>
                       <div className="item-list__label checkbox-wrapper">
                         <input
                           type="checkbox"
@@ -134,7 +145,7 @@ export default function FormPage4({ listDetails, loading }) {
                       item.category.toLowerCase() === "activity-items" ||
                       item.category.toLowerCase() ===
                         "activity-related items" ? (
-                        <li className="item-list__group" key={item.id}>
+                        <li className="item-list__group" key={item.item}>
                           <div className="item-list__label checkbox-wrapper">
                             <input
                               type="checkbox"
@@ -162,7 +173,7 @@ export default function FormPage4({ listDetails, loading }) {
               <ul className="item-list">
                 {listDetails.packingList.list.map((item) =>
                   item.category.toLowerCase() === "tech" ? (
-                    <li className="item-list__group" key={item.id}>
+                    <li className="item-list__group" key={item.item}>
                       <div className="item-list__label checkbox-wrapper">
                         <input
                           type="checkbox"
@@ -172,7 +183,13 @@ export default function FormPage4({ listDetails, loading }) {
                       </div>
                       {item.link && (
                         <p className="item-list__link">
-                          <a href={item.link}>more info</a>
+                          <a
+                            href={item.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            more info
+                          </a>
                         </p>
                       )}
                     </li>
@@ -188,7 +205,7 @@ export default function FormPage4({ listDetails, loading }) {
                 {listDetails.packingList.list.map((item) =>
                   item.category.toLowerCase() === "toiletries" ||
                   item.category.toLowerCase() === "health" ? (
-                    <li className="item-list__group" key={item.id}>
+                    <li className="item-list__group" key={item.item}>
                       <div className="item-list__label checkbox-wrapper">
                         <input
                           type="checkbox"
@@ -212,7 +229,7 @@ export default function FormPage4({ listDetails, loading }) {
                   <ul className="item-list">
                     {listDetails.packingList.list.map((item) =>
                       item.category.toLowerCase() === "misc" ? (
-                        <li className="item-list__group" key={item.id}>
+                        <li className="item-list__group" key={item.item}>
                           <div className="item-list__label checkbox-wrapper">
                             <input
                               type="checkbox"
@@ -238,7 +255,7 @@ export default function FormPage4({ listDetails, loading }) {
                   <ul className="item-list">
                     {listDetails.packingList.list.map((item) =>
                       item.category.toLowerCase() === "food" ? (
-                        <li className="item-list__group" key={item.id}>
+                        <li className="item-list__group" key={item.item}>
                           <div className="item-list__label checkbox-wrapper">
                             <input
                               type="checkbox"

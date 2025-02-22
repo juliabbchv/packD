@@ -10,7 +10,7 @@
 body {
   font-family: "futura-pt", sans-serif;
   font-weight: 400;
-  color: $off-white;
+  color: $soft-cream;
   height: 100%;
 }
 
@@ -82,9 +82,9 @@ button {
 
 input,
 select {
-  border: 1px solid $soft-cream;
+  border: 1px solid $muted-green;
   background-color: transparent;
-  color: $soft-cream;
+  color: $brown;
   height: 3rem;
   width: 100%;
   padding: 0.625rem;
@@ -96,7 +96,7 @@ select {
   }
 
   &::placeholder {
-    color: $soft-cream !important;
+    color: $brown !important;
   }
 }
 

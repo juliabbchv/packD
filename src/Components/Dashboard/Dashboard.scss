@@ -3,7 +3,7 @@
 @use "sass:color";
 
 .dashboard {
-  background-color: $muted-green;
+  background-color: $soft-cream;
   @include tablet {
     margin-left: 13rem;
   }
@@ -11,6 +11,8 @@
   &__greeting {
     padding: 5rem 1rem 1rem 1rem;
     font-size: 1.5rem;
+    color: $brown;
+
     @include tablet {
       padding-left: 2rem;
     }
@@ -18,6 +20,6 @@
 }
 
 .divider-line {
-  border: 1px solid $soft-cream;
+  border: 1px solid $brown;
   margin: 0 1rem 1.5rem 2rem;
 }

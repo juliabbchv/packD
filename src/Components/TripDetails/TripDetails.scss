@@ -2,9 +2,12 @@
 @use "../../Styles/Partials/mixins" as *;
 
 .trip-list {
-  background-color: $muted-green;
+  background-color: $soft-cream;
   padding: 2rem;
   padding-top: 6rem;
+  & > * {
+    color: $brown;
+  }
 
   @include tablet {
     padding-left: 15rem;
@@ -25,7 +28,7 @@
 }
 
 .divider-line--trip {
-  border: 1px solid $soft-cream;
+  border: 1px solid $brown;
 
   margin-right: 1rem;
 }
@@ -188,11 +191,11 @@
 }
 
 input:checked + .slider {
-  background-color: $brown;
+  background-color: $muted-green;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px $brown;
+  box-shadow: 0 0 1px $muted-green;
 }
 
 input:checked + .slider:before {
