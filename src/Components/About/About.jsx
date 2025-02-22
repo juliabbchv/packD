@@ -5,7 +5,7 @@ export default function About() {
   return (
     <section className="features">
       <h2 className="features__header features__header--bold">
-        Why You'll Love PackD
+        Why You'll Love packD
       </h2>
       <div className="features__cards">
         <div className="features__card">
@@ -19,6 +19,7 @@ export default function About() {
               want. Stress-free packing, every time.
             </p>
           </div>
+          <div className="features__card-img"></div>
         </div>
         <div className="features__card">
           <div className="features__card-text">
@@ -36,7 +37,7 @@ export default function About() {
           <div className="features__card-text">
             <h3 className="features__card-header">Packing for Any Adventure</h3>
             <p className="features__card-description">
-              From camping in the mountains to business trips in the city, PackD
+              From camping in the mountains to business trips in the city, packD
               has got you covered. We’ve got recommendations for every type of
               trip.
             </p>
