@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import "./DashboardSidebar.scss";
 import Form from "../../Components/Form/Form.jsx";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Logo from "../../Assets/Images/logo.png";
 import LogoDark from "../../Assets/Images/logo-dark.png";
 import dashboard from "../../Assets/Images/dashboard.svg";
@@ -11,16 +11,24 @@ import pindrop from "../../Assets/Images/pindrop.svg";
 export default function DashboardSidebar() {
   const [showForm, setShowForm] = useState(false);
   const [toggleNav, setToggleNav] = useState(false);
-
+  const [mobileLogo, setMobileLogo] = useState(window.innerWidth <= 768);
   const handleToggle = () => setToggleNav(!toggleNav);
   const closeMenu = () => setToggleNav(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setMobileLogo(window.innerWidth <= 768);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <>
       <div className="sidebar-actions">
         <img
           className=" logo sidebar-actions__logo"
-          src={LogoDark}
+          src={!mobileLogo || toggleNav ? Logo : LogoDark}
           alt="logo"
         />
       </div>
@@ -30,9 +38,9 @@ export default function DashboardSidebar() {
         }`}
         onClick={handleToggle}
       >
-        <span className="bar"></span>
-        <span className="bar"></span>
-        <span className="bar"></span>
+        <span className={`bar ${toggleNav && `bar-dashboard`}`}></span>
+        <span className={`bar ${toggleNav && `bar-dashboard`}`}></span>
+        <span className={`bar ${toggleNav && `bar-dashboard`}`}></span>
       </button>
 
       <aside className={`sidebar ${!toggleNav ? "sidebar--active" : ""}`}>

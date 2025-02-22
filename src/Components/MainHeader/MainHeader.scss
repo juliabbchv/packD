@@ -45,6 +45,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: none;
+
     @include tablet {
       display: none;
     }
@@ -108,10 +110,7 @@
 }
 
 .mobile-action {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-
+  @include flex(column, space-around, center);
   &__btn {
     width: 50%;
     margin: 0 auto;
@@ -132,6 +131,7 @@
   border: none;
   box-shadow: none;
   color: $soft-cream;
+  width: 100%;
   @include tablet {
     color: $soft-cream;
   }
@@ -150,4 +150,8 @@
   &:active {
     transform: translate(1%, 1%);
   }
+}
+
+.bar-home {
+  background-color: $soft-cream !important;
 }

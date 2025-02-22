@@ -36,9 +36,9 @@ export default function Header() {
           }`}
           onClick={handleToggle}
         >
-          <span className="bar"></span>
-          <span className="bar"></span>
-          <span className="bar"></span>
+          <span className="bar bar-home"></span>
+          <span className="bar bar-home"></span>
+          <span className="bar bar-home"></span>
         </button>
       </div>
       <div className={`mobile-menu ${toggleNav ? "mobile-menu--active" : ""}`}>

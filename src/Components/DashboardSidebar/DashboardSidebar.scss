@@ -150,3 +150,7 @@
 .navbar__toggle.open .bar:nth-child(3) {
   transform: translateY(-8px) rotate(-45deg);
 }
+
+.bar-dashboard {
+  background-color: $soft-cream;
+}

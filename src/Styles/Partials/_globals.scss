@@ -12,6 +12,7 @@ body {
   font-weight: 400;
   color: $soft-cream;
   height: 100%;
+  // overflow-x: hidden;
 }
 
 html {
@@ -68,7 +69,7 @@ label {
 button {
   padding: 0.5rem;
   border: 1px solid $soft-cream;
-  background-color: none;
+  background: transparent;
   box-shadow: inset 2px 2px 4px rgb(255, 255, 255, 0.2);
   cursor: pointer;
 
