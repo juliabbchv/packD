@@ -33,3 +33,10 @@
     cursor: pointer;
   }
 }
+
+.editable-input {
+  color: $soft-cream;
+  &:focus {
+    color: $soft-cream;
+  }
+}

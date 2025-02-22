@@ -5,7 +5,6 @@
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)),
     url("../../Assets/Images/suitcase.jpg");
   @include flex(column, center, center);
-
   background-size: cover;
   &__text-wrap {
     padding: 2rem 5rem;
@@ -17,6 +16,10 @@
     @include desktop {
       width: 700px;
     }
+  }
+
+  &__btn {
+    color: $soft-cream;
   }
 
   &__title {

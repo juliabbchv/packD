@@ -88,10 +88,10 @@ export default function ListSection({
 
   return (
     <>
-      {items && (
-        <section className="list-details__section">
-          <h4 className="list-details__subheader">{category}:</h4>
-          <div className="list-details__items">
+      <section className="list-details__section">
+        <h4 className="list-details__subheader">{category}:</h4>
+        <div className="list-details__items">
+          {items.length > 0 ? (
             <ul className="item-list">
               {items.map((item) => (
                 <li className="item-list__group" key={item.id}>
@@ -104,7 +104,6 @@ export default function ListSection({
                         className="item-list__checkbox"
                       />
                     )}
-
                     <span className="item-list__name">{item.item}</span>
                   </div>
 
@@ -113,8 +112,7 @@ export default function ListSection({
                       className="item-list__qty item-list__qty--editable"
                       onClick={() => setEditingQtyId(item.id)}
                     >
-                      {" "}
-                      QTY:
+                      QTY:{" "}
                       {location.pathname.includes("/dashboard/trips") &&
                       editingQtyId === item.id ? (
                         <input
@@ -147,55 +145,58 @@ export default function ListSection({
                       </a>
                     </p>
                   )}
-                  <img
-                    className="delete-icon"
-                    src={deleteIcon}
-                    alt="delete icon"
-                    onClick={() => deleteItem(item.id)}
-                  />
+
+                  {!location.pathname.startsWith("/dashboard/public-trips") && (
+                    <img
+                      className="delete-icon"
+                      src={deleteIcon}
+                      alt="delete icon"
+                      onClick={() => deleteItem(item.id)}
+                    />
+                  )}
                 </li>
               ))}
             </ul>
+          ) : (
+            <p className="item-list__name">No items in this category</p>
+          )}
 
-            {location.pathname.startsWith("/dashboard/trips") &&
-            isAddingItem ? (
-              <div className="add-item">
-                <input
-                  type="text"
-                  value={newItem}
-                  onChange={(e) => setNewItem(e.target.value)}
-                  placeholder="Enter item name"
-                  className="add-item__input"
-                />
-
-                <input
-                  type="number"
-                  value={newItemQty}
-                  onChange={(e) => setNewItemQty(e.target.value)}
-                  placeholder="Qty"
-                  className="add-item__input  add-item__input--qty"
-                />
-                <button onClick={handleAddItem} className="add-item__btn">
-                  Save
-                </button>
-                <button
-                  onClick={() => setIsAddingItem(false)}
-                  className="add-item__btn"
-                >
-                  Cancel
-                </button>
-              </div>
-            ) : location.pathname.startsWith("/dashboard/trips") ? (
+          {location.pathname.startsWith("/dashboard/trips") && isAddingItem ? (
+            <div className="add-item">
+              <input
+                type="text"
+                value={newItem}
+                onChange={(e) => setNewItem(e.target.value)}
+                placeholder="Enter item name"
+                className="add-item__input"
+              />
+              <input
+                type="number"
+                value={newItemQty}
+                onChange={(e) => setNewItemQty(e.target.value)}
+                placeholder="Qty"
+                className="add-item__input add-item__input--qty"
+              />
+              <button onClick={handleAddItem} className="add-item__btn">
+                Save
+              </button>
               <button
-                onClick={() => setIsAddingItem(true)}
+                onClick={() => setIsAddingItem(false)}
                 className="add-item__btn"
               >
-                + Add New Item
+                Cancel
               </button>
-            ) : null}
-          </div>
-        </section>
-      )}
+            </div>
+          ) : location.pathname.startsWith("/dashboard/trips") ? (
+            <button
+              onClick={() => setIsAddingItem(true)}
+              className="add-item__btn"
+            >
+              + Add New Item
+            </button>
+          ) : null}
+        </div>
+      </section>
     </>
   );
 }

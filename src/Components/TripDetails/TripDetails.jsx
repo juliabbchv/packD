@@ -3,6 +3,7 @@ import { useParams, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import "./TripDetails.scss";
 import ListSection from "../ListSection/ListSection";
+import Bookmark from "../../Assets/Images/bookmark.svg";
 
 export default function TripDetails() {
   const [tripDetails, setTripDetails] = useState({});
@@ -100,6 +101,8 @@ export default function TripDetails() {
     };
 
     updateTripDetails(updatedTripData);
+    window.scrollTo(0, 0);
+
     navigate(`/dashboard/public-trips/saved/${id}`);
   };
 
@@ -133,6 +136,7 @@ export default function TripDetails() {
         newTripData
       );
       const newTripId = response.data.id;
+      window.scrollTo(0, 0);
       navigate(`/dashboard/trips/${newTripId}`);
     } catch (err) {
       console.error("Error creating new trip:", err);
@@ -159,6 +163,10 @@ export default function TripDetails() {
       {tripDetails.user_id === 1 || tripDetails.isPublic === 1 ? (
         <section className="trip-list">
           <div>
+            {location.pathname.startsWith("/dashboard/public-trips/saved") && (
+              <img className="bookmark" src={Bookmark} alt="bookmark" />
+            )}
+
             <h1 className="trip-list__title">{tripDetails.trip_name}</h1>
             {location.pathname.startsWith("/dashboard/public-trips") && (
               <p className="trip-list__author">

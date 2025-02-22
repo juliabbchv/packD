@@ -38,6 +38,13 @@
   margin-right: -25px !important;
 }
 
+.swiper {
+  max-width: 100%;
+  overflow: hidden !important;
+  width: 95% !important;
+  margin-right: 0;
+}
+
 .user-lists {
   display: flex;
   flex-direction: column;

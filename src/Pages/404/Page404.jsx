@@ -15,7 +15,9 @@ export default function Page404() {
           Maybe it got lost in transit? Or is stuck at baggage claim?
         </p>
       </div>
-      <button onClick={() => navigate(-1)}>Go Back</button>
+      <button className="not-found-section__btn" onClick={() => navigate(-1)}>
+        Go Back
+      </button>
     </main>
   );
 }

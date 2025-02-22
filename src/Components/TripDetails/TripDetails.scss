@@ -233,3 +233,9 @@ input:checked + .slider:before {
     margin: 0;
   }
 }
+
+.bookmark {
+  filter: invert(90%) sepia(100%) saturate(300%) hue-rotate(10deg);
+  height: 50px;
+  float: left;
+}
