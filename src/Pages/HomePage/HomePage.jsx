@@ -10,6 +10,11 @@ export default function HomePage() {
         <Hero />
         <About />
       </main>
+      <footer className="footer">
+        <p className="footer__text">
+          Copyright © 2025 Julia Babicheva. All rights reserved.
+        </p>
+      </footer>
     </>
   );
 }

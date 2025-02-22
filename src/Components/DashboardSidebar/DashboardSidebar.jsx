@@ -26,11 +26,13 @@ export default function DashboardSidebar() {
   return (
     <>
       <div className="sidebar-actions">
-        <img
-          className=" logo sidebar-actions__logo"
-          src={!mobileLogo || toggleNav ? Logo : LogoDark}
-          alt="logo"
-        />
+        <NavLink to="/">
+          <img
+            className=" logo sidebar-actions__logo"
+            src={!mobileLogo || toggleNav ? Logo : LogoDark}
+            alt="logo"
+          />
+        </NavLink>
       </div>
       <button
         className={`navbar__toggle sidebar-actions__toggle ${

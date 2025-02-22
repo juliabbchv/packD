@@ -3,7 +3,7 @@ import Form from "../../Assets/Images/form.png";
 
 export default function About() {
   return (
-    <section className="features">
+    <section className="features" id="features">
       <h2 className="features__header features__header--bold">
         Why You'll Love packD
       </h2>

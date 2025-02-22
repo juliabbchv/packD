@@ -19,8 +19,12 @@ export default function Header() {
           </span>
           <div className="navbar__links desktop-only">
             <ul className="nav-links">
-              <li className="nav-links__item">About</li>
-              <li className="nav-links__item">Destination Insights</li>
+              <a href="#features">
+                <li className="nav-links__item">About</li>
+              </a>
+              {/* <NavLink to="*">
+                <li className="nav-links__item">Destination Insights</li>
+              </NavLink> */}
             </ul>
           </div>
         </div>
