@@ -89,7 +89,7 @@ export default function ListSection({
   return (
     <>
       {items.length > 0 && (
-        <>
+        <section className="list-details__section">
           <h4 className="list-details__subheader">{category}:</h4>
           <div className="list-details__items">
             <ul className="item-list">
@@ -167,6 +167,7 @@ export default function ListSection({
                   placeholder="Enter item name"
                   className="add-item__input"
                 />
+
                 <input
                   type="number"
                   value={newItemQty}
@@ -193,7 +194,7 @@ export default function ListSection({
               </button>
             ) : null}
           </div>
-        </>
+        </section>
       )}
     </>
   );

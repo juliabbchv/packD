@@ -1,0 +1,25 @@
+@use "../../Styles/Partials/variables" as *;
+@use "../../Styles/Partials/mixins" as *;
+
+.not-found-section {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)),
+    url("../../Assets/Images/suitcase.jpg");
+  @include flex(column, center, center);
+
+  background-size: cover;
+  &__text-wrap {
+    padding: 2rem 5rem;
+    text-align: center;
+
+    @include tablet {
+      width: 70%;
+    }
+    @include desktop {
+      width: 700px;
+    }
+  }
+
+  &__title {
+    margin-bottom: 1rem;
+  }
+}

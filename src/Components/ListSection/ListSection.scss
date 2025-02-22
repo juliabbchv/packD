@@ -17,13 +17,18 @@
     width: 200px;
     margin-right: 1rem;
     height: 30px;
-
-    &--qty {
-      width: 50px;
-    }
   }
 }
 
 .delete-icon {
   width: 20px;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.item-list__qty {
+  &:hover {
+    cursor: pointer;
+  }
 }
