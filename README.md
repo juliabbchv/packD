@@ -102,6 +102,8 @@ Packing for a trip can be stressful and time-consuming. Travelers often forget e
 | trip_purpose | ENUM     | Business, Pleasure          |
 | activities   | ARRAY    | List of selected activities |
 | trip_name    | ARRAY    | List Name                   |
+| IsFavorite   | BOOLEAN  | Mark as favorite (yes/no)    |
+| isPublic     | BOOLEAN  | Publicly accessible (yes/no) |
 
 ### **Trip Items Table**
 
@@ -113,8 +115,7 @@ Packing for a trip can be stressful and time-consuming. Travelers often forget e
 | category     | STRING   | Item category                |
 | item         | STRING   | List item                    |
 | link         | STRING   | Relevant link (if any)       |
-| favorite     | BOOLEAN  | Mark as favorite (yes/no)    |
-| public       | BOOLEAN  | Publicly accessible (yes/no) |
+
 
 ---
 
