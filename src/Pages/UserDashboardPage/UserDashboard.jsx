@@ -1,26 +1,30 @@
 import DashboardSidebar from "../../Components/DashboardSidebar/DashboardSidebar";
 import Dashboard from "../../Components/Dashboard/Dashboard";
 import Form from "../../Components/Form/Form";
+import TripDetails from "../../Components/TripDetails/TripDetails";
+import PublicLists from "../../Components/PublicLists/PublicLists";
 import "./UserDashboardPage.scss";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 
 export default function UserDashboard() {
   const location = useLocation();
+  const { id } = useParams();
 
   const renderContent = () => {
-    switch (location.pathname) {
-      case "/dashboard":
-        return <Dashboard />;
-      case "/dashboard/create-list":
-        return <Form />;
-      case "/dashboard/saved-lists":
-        return <SavedLists />;
-      case "/dashboard/explore-public-lists":
-        return <ExplorePublicLists />;
-      case "/dashboard/destination-insights":
-        return <DestinationInsights />;
-      default:
-        return <Dashboard />;
+    if (location.pathname === "/dashboard") {
+      return <Dashboard />;
+    } else if (location.pathname === "/dashboard/create-list") {
+      return <Form />;
+    } else if (id && location.pathname === `/dashboard/trips/${id}`) {
+      return <TripDetails tripId={id} />;
+    } else if (location.pathname === "/dashboard/public-trips") {
+      return <PublicLists />;
+    } else if (location.pathname === `/dashboard/public-trips/${id}`) {
+      return <TripDetails />;
+    } else if (location.pathname === `/dashboard/public-trips/saved/${id}`) {
+      return <TripDetails />;
+    } else {
+      return <Dashboard />;
     }
   };
 

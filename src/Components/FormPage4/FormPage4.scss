@@ -1,0 +1,83 @@
+@use "../../Styles/Partials/mixins" as *;
+@use "../../Styles/Partials/variables" as *;
+
+.packing-list {
+  &__title {
+    margin: 1rem 0;
+    font-size: 1.2rem;
+    @include tablet {
+      font-size: 1.3rem;
+    }
+  }
+}
+
+.list-details {
+  margin-bottom: 1.2rem;
+  &__subheader {
+    font-size: 1rem;
+    font-weight: 500;
+    font-style: italic;
+    text-decoration: underline;
+    @include tablet {
+      font-size: 1.2rem;
+    }
+  }
+}
+
+.item-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  &__group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  &__label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  &__checkbox {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+  }
+
+  &__name {
+    font-size: 1rem;
+    @include tablet {
+      font-size: 1.2rem;
+    }
+  }
+
+  &__link {
+    text-decoration: underline;
+  }
+}
+
+.item-list__link,
+.item-list__qty {
+  background-color: gray;
+  color: $soft-cream;
+  font-size: 0.7rem;
+  opacity: 80%;
+  padding: 0.2rem;
+  border-radius: $btn-radius;
+  @include tablet {
+    font-size: 0.8rem;
+  }
+}
+
+.loading-container {
+  @include flex(column, flex-start, center);
+  margin-top: 7rem;
+  height: 100vh;
+  text-align: center;
+  & > * {
+    margin-bottom: 1rem;
+  }
+}

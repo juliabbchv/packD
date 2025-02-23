@@ -1,41 +1,16 @@
 @use "../../Styles/Partials/variables" as *;
 @use "../../Styles/Partials/mixins" as *;
 
-.form__btn--next1 {
+.form__btn--next {
   width: 100%;
   margin-right: 0;
   margin-left: 0;
-}
-
-.form-select {
-  &__control {
-    height: 3rem !important;
-    display: flex;
-    align-items: center;
-    font-size: 0.875rem;
-    border-color: $soft-green !important;
-    &--is-focused {
-      border: none !important;
-      outline: none !important;
-    }
-  }
-
-  &__value-container {
-    top: -6px;
-  }
-
-  &__indicator-separator {
-    display: none;
-  }
-  &__dropdown-indicator svg {
-    display: none;
-  }
-
-  &__option {
-    &:hover {
-      background-color: $muted-sage; // Change background color on hover
-      cursor: pointer;
-    }
+  color: $brown;
+  border: 1px solid $brown;
+  background-color: $muted-green;
+  &:hover {
+    background-color: $brown;
+    color: $soft-cream;
   }
 }
 
@@ -43,11 +18,26 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  width: 100%;
+  margin-top: 1.2rem;
   @include desktop {
-    flex-direction: row;
-
-    & > * {
-      flex: 1 0 150px;
-    }
+    width: 50%;
   }
+}
+
+.input-wrapper label {
+  margin-bottom: -0.5rem;
+}
+
+.form__input::placeholder {
+  font-weight: 200;
+}
+
+.form-select--disabled {
+  color: gray;
+}
+
+.invalid {
+  outline: none;
+  border-color: rgb(221, 93, 47);
 }

@@ -2,22 +2,18 @@
 @use "../../Styles/Partials/mixins" as *;
 
 .progress-bar {
-  height: 10px;
-  border-radius: 50px;
+  height: 5px;
+  position: relative;
   width: 100%;
   margin: 0 auto;
-  background-color: $muted-charcoal;
-  @include tablet {
-    width: 100%;
-  }
+  background-color: $muted-green;
 
-  @include desktop {
-    width: 100%;
-  }
   &__filler {
-    height: 100%;
-    background-color: $soft-green;
+    height: 3px;
+    background-color: $muted-green;
     border-radius: inherit;
     transition: width 1s ease-in-out;
+    position: absolute;
+    bottom: 4px;
   }
 }

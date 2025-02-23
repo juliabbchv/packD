@@ -323,6 +323,7 @@ Response:
 - Saving & editing lists
 - Public list browsing
 
+
 🔜 **Phase 2 Enhancements**
 
 - Search & filtering for public lists
@@ -332,8 +333,33 @@ Response:
 🚀 **Future Goals**
 
 - Community upvoting for lists
+- Search & filtering for public lists
+- User authentication
 - AI-powered weather-based suggestions
 - Shared lists for group travels
 - Desktop App
+
+## **Project Setup Guide**
+
+First set up the server
+
+1. Download the server repository zip file and extract it to a folder.
+2. Open the folder in VSCode.
+3. Open the terminal in VSCode and run the following command to install dependencies: **npm i**
+4. Create a .env file using the .env.sample
+5. Create a new schema on MySQL Workbench using the same DB_NAME from .env
+6. In the terminal, use command **npm run migrate**
+7. Then, use command **npm run seed**
+8. Then, use command **npm start**
+9. Server should now be successfully running
+
+Then set up the client
+
+1. Download the zip file of this repository
+2. Open the folder in VSCode
+3. Create a .env file using the .env.sample
+4. Open the terminal and use command **npm i**
+5. Then, use command **npm run dev**
+6. Client should now be successfully running, and connected to the
 
 ---

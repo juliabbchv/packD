@@ -1,0 +1,70 @@
+@use "../../Styles/Partials/mixins" as *;
+@use "../../Styles/Partials/variables" as *;
+
+.filters {
+  padding: 0rem 1rem;
+  gap: 1rem;
+  margin-bottom: 2rem;
+
+  @include tablet {
+    padding: 0rem 2rem;
+    align-items: flex-end;
+    display: flex;
+  }
+
+  &__text {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: $brown;
+
+    @include tablet {
+      font-size: 1.3rem;
+    }
+  }
+
+  &__label {
+    color: $brown;
+    font-weight: 500;
+  }
+
+  &__input {
+    margin: 0.5rem 0;
+  }
+}
+
+.divider-line {
+  margin: 1rem;
+  @include tablet {
+    margin: 1rem 2rem;
+  }
+}
+
+.user-lists__main-content {
+  padding: 0;
+}
+
+.user-list-cards {
+  flex-direction: column;
+  flex-wrap: wrap;
+
+  @include tablet {
+    padding: 1rem;
+    flex-direction: row;
+  }
+}
+
+.trip-card {
+  @include tablet {
+    flex-grow: 0;
+    flex-basis: 500px;
+  }
+}
+
+.trip-card__title-wrapper--public {
+  @include flex(column, space-between, flex-start);
+  gap: 1rem;
+}
+.trip-card__tile-group {
+  display: flex;
+  align-items: center;
+}

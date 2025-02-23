@@ -3,148 +3,28 @@
 @use "sass:color";
 
 .dashboard {
+  background-color: $soft-cream;
   @include tablet {
-    margin-left: 14rem;
+    margin-left: 13rem;
   }
 
   &__greeting {
-    color: $dark-olive;
-    padding: 5rem 2rem 2rem 2rem;
-    font-size: 1.5rem;
-    font-weight: 100;
-  }
+    padding: 7rem 1rem 0 1rem;
+    font-size: 1rem;
+    color: $brown;
 
-  &__logout-btn {
-    color: $muted-charcoal;
-    background: none;
-    border: none;
-  }
+    @include tablet {
+      padding-left: 2rem;
+      padding-top: 5rem;
+      font-size: 1.5rem;
+    }
 
-  &__content {
-    display: flex;
-    flex: 1;
-  }
-
-  &__main-content {
-    flex: 1;
-    padding: 1.875rem;
-    color: $dark-olive;
-    background-color: $off-white;
+    & > * {
+      padding-bottom: 1rem;
+    }
   }
 }
 
-.trip-card {
-  background: linear-gradient(
-    135deg,
-    $soft-cream,
-    color.mix($dark-olive, $soft-cream, 20%)
-  );
-  padding: 1.25rem;
-  border-radius: $card-radius;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-  flex: 0 0 30%;
-  min-height: 300px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-  @include flex(column, space-between, flex-start);
-
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-  }
-
-  &__tag-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-
-  &__tag-list-item {
-    border-radius: $card-radius;
-    font-size: 0.8rem;
-    background: linear-gradient(
-      135deg,
-      $dark-olive,
-      color.mix($dark-olive, $soft-cream, 60%)
-    );
-
-    padding: 0.5rem;
-    color: $off-white;
-  }
-
-  &__title {
-    font-weight: bold;
-    color: $dark-olive;
-    margin-bottom: 0.5rem;
-  }
-
-  &__destination {
-    font-size: 0.9rem;
-    color: $muted-charcoal;
-    margin-bottom: 8px;
-  }
-}
-
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
-}
-
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: $muted-sage;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: $off-white;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
-}
-
-input:checked + .slider {
-  background-color: $dark-olive;
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px $dark-olive;
-}
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
-}
-
-.slider.round {
-  border-radius: 34px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
-}
-
-.switchwrap {
-  @include flex(row, flex-start, center);
-  gap: 1rem;
+.divider-line {
+  border: 1px solid $brown;
 }

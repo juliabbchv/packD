@@ -40,7 +40,7 @@ export default function FormPage3({ handleFormSubmit, setFormData }) {
               value="winterSports"
               onChange={handleCheckboxChange}
             />
-            <label htmlFor="winterSports">Winter sports</label>
+            <label htmlFor="winterSports">Winter Sports</label>
           </div>
           <div className="checkbox-wrapper">
             <input
@@ -56,9 +56,15 @@ export default function FormPage3({ handleFormSubmit, setFormData }) {
               value="beachAndWaterActivities"
               onChange={handleCheckboxChange}
             />
-            <label htmlFor="beachAndWaterActivities">
-              Beach and water activities
-            </label>
+            <label htmlFor="beachAndWaterActivities">Beach</label>
+          </div>
+          <div className="checkbox-wrapper">
+            <input
+              type="checkbox"
+              value="surfing"
+              onChange={handleCheckboxChange}
+            />
+            <label htmlFor="beachAndWaterActivities">Surfing</label>
           </div>
           <div className="checkbox-wrapper">
             <input
@@ -66,7 +72,7 @@ export default function FormPage3({ handleFormSubmit, setFormData }) {
               value="diningAndGoingOut"
               onChange={handleCheckboxChange}
             />
-            <label htmlFor="diningAndGoingOut">Dining and going out</label>
+            <label htmlFor="diningAndGoingOut">Dining/Going Out</label>
           </div>
           <div className="checkbox-wrapper">
             <input
@@ -79,10 +85,10 @@ export default function FormPage3({ handleFormSubmit, setFormData }) {
           <div className="checkbox-wrapper">
             <input
               type="checkbox"
-              value="festival"
+              value="musicFestival"
               onChange={handleCheckboxChange}
             />
-            <label htmlFor="festival">Festival (music, arts etc)</label>
+            <label htmlFor="festival">Music Festival</label>
           </div>
           <div className="checkbox-wrapper">
             <input
@@ -99,6 +105,14 @@ export default function FormPage3({ handleFormSubmit, setFormData }) {
               onChange={handleCheckboxChange}
             />
             <label htmlFor="cruiseship">Cruiseship</label>
+          </div>
+          <div className="checkbox-wrapper">
+            <input
+              type="checkbox"
+              value="sightseeing"
+              onChange={handleCheckboxChange}
+            />
+            <label htmlFor="cruiseship">Sightseeing</label>
           </div>
         </div>
       </section>

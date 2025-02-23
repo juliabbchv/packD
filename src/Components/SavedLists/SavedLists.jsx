@@ -5,14 +5,13 @@ import "swiper/scss/navigation";
 import "swiper/scss/pagination";
 import "swiper/scss/scrollbar";
 import axios from "axios";
-import "./UserLists.scss";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import rightArrow from "../../Assets/Images/right-arrow.svg";
 import fetchCityImage from "../../Services/googlePlacesPhotosApi";
-import luggage from "../../Assets/Images/luggage.svg";
+import bookmark from "../../Assets/Images/bookmark.svg";
 
-export default function UserLists() {
+export default function SavedLists() {
   const [userLists, setUserLists] = useState("");
   const [cityImages, setCityImages] = useState({});
 
@@ -48,10 +47,9 @@ export default function UserLists() {
   return (
     <section className="user-lists">
       <div className="user-lists__text">
-        <img className="dashboard-icon" src={luggage} alt="dashboard-icon" />
-        <h2 className="user-lists__title">Your Recent Trips</h2>
+        <img className="dashboard-icon" src={bookmark} alt="dashboard-icon" />
+        <h2 className="user-lists__title">Saved Trips</h2>
       </div>
-
       <article className="user-lists__main-content user-lists__main-content--dashboard">
         <Swiper
           modules={[Navigation, Pagination, Scrollbar]}
@@ -71,8 +69,7 @@ export default function UserLists() {
           <ul className="user-list-cards ">
             {userLists &&
               userLists
-                .filter((list) => list.user_id === 1)
-                .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))
+                .filter((list) => list.isSaved === 1 && list.user_id !== 1)
                 .map((list) => (
                   <SwiperSlide key={list.id}>
                     <li
@@ -84,31 +81,25 @@ export default function UserLists() {
                       }}
                     >
                       <div className="trip-card__top">
-                        <Link to={`/dashboard/trips/${list.id}`}>
-                          <div className="trip-card__title-wrapper">
-                            <h3 className="trip-card__title">
-                              {list.trip_name}
-                            </h3>
-                            <img
-                              className="action-icon"
-                              src={rightArrow}
-                              alt="right arrow icon"
-                            />
+                        <Link to={`/dashboard/public-trips/saved/${list.id}`}>
+                          <div className="trip-card__title-wrapper trip-card__title-wrapper--public">
+                            <div className="trip-card__tile-group">
+                              <h3 className="trip-card__title">
+                                {list.trip_name}
+                              </h3>
+
+                              <img
+                                className="action-icon"
+                                src={rightArrow}
+                                alt="right arrow icon"
+                              />
+                            </div>
+                            <p className="trip-card__title">
+                              {" "}
+                              Created by: {list.user_name}
+                            </p>
                           </div>
                         </Link>
-                        <div className="switchwrap">
-                          <label className="switch">
-                            <input
-                              type="checkbox"
-                              checked={list.isPublic === 1}
-                              disabled
-                            />
-                            <span className="slider round"></span>
-                          </label>
-                          <span>
-                            {list.isPublic === 1 ? "Public" : "Private"}
-                          </span>
-                        </div>
                       </div>
                       <ul className="trip-card__tag-list">
                         <li className="trip-card__tag-list-item">

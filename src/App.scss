@@ -1,6 +1,19 @@
 @use "./Styles/Partials/globals" as *;
 @use "./Styles/Partials/variables" as *;
 
-// #root {
-//   background-color: $off-white;
-// }
+#root {
+  background-color: $soft-cream;
+}
+
+.footer {
+  background-color: #514234;
+  color: #fafff9;
+  text-align: center;
+  padding: 1.25rem;
+  width: 100%;
+
+  &__text {
+    font-size: 1rem;
+    margin: 0;
+  }
+}

@@ -12,34 +12,30 @@
   align-items: center;
   margin: 10px 0;
   position: relative;
+  color: $brown;
 }
 
 .checkbox-wrapper input[type="checkbox"] {
   appearance: none;
   width: 20px;
   height: 20px;
-  border-radius: 5px;
+  border-radius: 2px;
   margin-right: 10px;
   cursor: pointer;
   transition: background-color 0.2s, border-color 0.2s;
 }
 
 .checkbox-wrapper input[type="checkbox"]:checked {
-  background-color: $soft-green;
-  border-color: $muted-charcoal;
+  border-color: $brown;
 }
 
 .checkbox-wrapper input[type="checkbox"]:checked::after {
   content: "✔";
   font-size: 14px;
-  color: $muted-charcoal;
+  color: $brown;
   position: absolute;
   top: 2px;
   left: 5px;
-}
-
-.input-title {
-  font-weight: bold;
 }
 
 .form {
@@ -60,21 +56,11 @@
       margin: 0 0 0 auto;
     }
 
-    &--next:hover {
-      background-color: $soft-green;
-      color: $muted-charcoal;
-      border-color: $muted-charcoal;
-    }
-
     &--back {
-      background-color: $off-white;
-      color: $muted-charcoal;
-      border-color: $muted-charcoal;
+      background-color: transparent;
+      color: $brown;
+      border-color: $brown;
       margin-left: 0;
-
-      &:hover {
-        border-color: $muted-sage;
-      }
     }
   }
 }

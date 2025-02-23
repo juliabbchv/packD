@@ -1,0 +1,241 @@
+@use "../../Styles/Partials/variables" as *;
+@use "../../Styles/Partials/mixins" as *;
+
+.trip-list {
+  background-color: $soft-cream;
+  padding: 2rem;
+  padding-top: 6rem;
+  & > * {
+    color: $brown;
+  }
+
+  @include tablet {
+    padding-left: 15rem;
+  }
+
+  &__title {
+    font-weight: 300;
+    font-size: 2rem;
+  }
+
+  &__author {
+    padding: 1rem 0;
+  }
+
+  & > * {
+    margin-bottom: 1.2rem;
+  }
+}
+
+.divider-line--trip {
+  border: 1px solid $brown;
+
+  margin-right: 1rem;
+}
+
+.trip-tags {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+  gap: 1rem;
+  &__item {
+    background: $brown;
+    padding: 0.5rem;
+    color: $soft-cream;
+    font-weight: 500;
+  }
+}
+
+.switch .slider {
+  background-color: gray;
+}
+
+.editable-input {
+  width: 3rem;
+  height: 1rem;
+  color: $brown;
+}
+
+.item-list__qty--editable input {
+  font-size: inherit;
+}
+
+.delete-btn {
+  background-color: rgb(180, 59, 59);
+  border-color: transparent;
+  color: $soft-cream;
+  transition: all 0s ease;
+
+  &:hover {
+    border-color: rgb(158, 54, 54);
+    text-decoration: underline;
+    border-color: $soft-cream;
+  }
+}
+
+.list-details__subheader {
+  color: $brown;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100000000;
+
+  &__content {
+    background: $soft-cream;
+    padding: 1.25rem;
+    color: $brown;
+    border-radius: 2px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  &__title {
+    font-size: 1.125rem;
+
+    &--bold {
+      font-weight: bold;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.25rem;
+  }
+
+  &__button {
+    border: none;
+    padding: 0.625rem 1.25rem;
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 16px;
+
+    &--confirm {
+      background: rgb(180, 59, 59);
+      color: $soft-cream;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    &--cancel {
+      background: gray;
+      color: $soft-cream;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $muted-green;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+
+  &:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: $soft-cream;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+  }
+}
+
+input:checked + .slider {
+  background-color: $muted-green;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px $muted-green;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.switchwrap {
+  @include flex(row, flex-start, center);
+  gap: 1rem;
+}
+
+.action-icon {
+  width: 25px;
+}
+
+.access-denied {
+  margin-left: 16rem;
+}
+
+.form__btn-container {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: flex-start;
+  & > * {
+    margin: 0;
+  }
+}
+
+.bookmark {
+  filter: invert(90%) sepia(100%) saturate(300%) hue-rotate(10deg);
+  height: 50px;
+  float: left;
+}
