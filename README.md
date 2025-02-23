@@ -47,27 +47,16 @@ Packing for a trip can be stressful and time-consuming. Travelers often forget e
 - 💾 **Copy a public list** and modify it for personal use
 - ❤️ **Save a public list** to a user’s profile
 
-### **Sharing & Exporting (Logged-in Users Only)**
-
-- 📋 **Copy lists to clipboard** for easy sharing
-
-### **Future Enhancements (Nice-to-Haves)**
-
-- ⏳ **Packing reminders & weather-based suggestions**
-- 🎒 **Smart suggestions for commonly forgotten items**
-- 🎒 **Creating shared lists** for group travelling
-- 🔝 **Community upvotes** for the best packing lists
 
 ---
 
 ## Sitemap
 
 - Home page
-- Public Lists Page
 - User Dashboard:
   - Create New List
-  - All user lists
-  - Saved lists
+  - Recent Trips & Saved Trips
+  - Destination Insights 
 
 ## Mockup
 
@@ -90,6 +79,7 @@ Packing for a trip can be stressful and time-consuming. Travelers often forget e
 - MySQL
 - Knex
 - OpenAI API (for AI-powered packing insights)
+- Google Places API (for photo generation)
 
 ## **Data Structure**
 
@@ -189,57 +179,28 @@ Post Body:
 
 ```
 {
-  "user_id": 1,
-  "trip": {
+    "user_id" :1, 
     "destination": "Paris, France",
     "trip_purpose": "Pleasure",
     "activities": ["Sightseeing", "Dining", "Museum visits"],
-    "favorite": false,
-    "public": false
-  },
-  "items": [
-    {
-      "category": "Clothing",
-      "items": [
-        {
-          "item": "Casual outfits",
-          "quantity": 4,
-          "link": ""
-        }
-      ]
-    }
-  ]
-}
+    "isSaved": false,
+    "isPublic": false
+ }
+ 
 ```
 
 Response:
 
 ```
-{
-  "trip": {
-    "id": 1,
-    "user_id": 1,
+
+{   "id":1,
+    "user_id" :1, 
     "destination": "Paris, France",
     "trip_purpose": "Pleasure",
     "activities": ["Sightseeing", "Dining", "Museum visits"],
-    "favorite": false,
-    "public": false,
-    "created_at": "2025-02-12T10:00:00Z"
-  },
-  "items": [
-    {
-      "id": 1,
-      "trip_id": 1,
-      "user_id": 1,
-      "category": "Clothing",
-      "item": "Casual outfits",
-      "quantity": 4,
-      "link": "",
-      "created_at": "2025-02-12T10:00:00Z"
-    }
-  ]
-}
-
+    "isSaved": false,
+    "isPublic": false
+ }
 
 ```
 
@@ -249,14 +210,14 @@ Response:
 
 ```
 {
-    "userId": 1,
-    "tripId": 1,
+    "user_id": 1,
+    "id": 1,
     "destination": "Paris, France",
     "tripPurpose": "Pleasure",
     "activities": ["Dining and going out", "Sightseeing", "Shopping"],
     "tripName": "Fashion week in France",
-    "favorite": false,
-    "public": false
+    "isSaved": false,
+    "isPublic": false
 }
 
 ```
@@ -266,24 +227,15 @@ Response:
 Response:
 
 ```
-{
-    "userId": 1,
-    "tripId": 1,
-    "destination": "Paris, France",
-    "tripPurpose": "Pleasure",
-    "activities": ["Dining and going out", "Sightseeing", "Shopping"],
-    "tripName": "Fashion week in France",
-    "favorite": false,
-    "public": false
-    "items": [
-      {
-          "category": "before-you-go",
-          "item": "Brush up my french basics",
-          "quantity": 1,
-          "link": "https://www.duolingo.com/course/fr/en/Learn-French"
-      }
-  ]
-}
+{  "trip_id":1,
+   "user_id":1,
+   "id":1,
+   "category": "before-you-go",
+   "item": "Brush up my french basics",
+   "quantity": 1,
+   "link": "https://www.duolingo.com/course/fr/en/Learn-French"
+  }
+
 
 ```
 
@@ -293,9 +245,9 @@ Post Body:
 
 ```
   {
-  "id": 2,
+  "trip_id":1,
+  "user_id":1,
   "quantity": 1,
-  "item": "Comfortable sneakers"
 }
 
 ```
@@ -303,15 +255,13 @@ Post Body:
 Response:
 
 ```
-{
-  "user_id": 1,
-  "trip_id": 1,
+  {
   "id": 2,
-  "category": "clothes",
-  "item": "Running shoes",
-  "quantity": 1,
-  "link": "https://www.duolingo.com/course/fr/en/Learn-French",
-  "updated_at": "2025-02-12T12:00:00Z"
+  "trip_id":1,
+  "user_id":1,
+  "quantity": 3,
+  "category": "clothes"
+  "item": "Comfortable sneakers"
 }
 ```
 
@@ -372,6 +322,13 @@ Response:
 - AI-generated packing lists
 - Saving & editing lists
 - Public list browsing
+
+
+🔜 **Phase 2 Enhancements**
+
+- Search & filtering for public lists
+- User authentication
+- Destination Insights
 
 🚀 **Future Goals**
 
