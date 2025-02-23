@@ -22,9 +22,6 @@ export default function Header() {
               <a href="#features">
                 <li className="nav-links__item">About</li>
               </a>
-              {/* <NavLink to="*">
-                <li className="nav-links__item">Destination Insights</li>
-              </NavLink> */}
             </ul>
           </div>
         </div>
@@ -47,9 +44,9 @@ export default function Header() {
       </div>
       <div className={`mobile-menu ${toggleNav ? "mobile-menu--active" : ""}`}>
         <ul className="mobile-links">
-          <li className="mobile-links__item">About</li>
-          <li className="mobile-links__item">Destination Insights</li>
-          <li className="mobile-links__item">Tips From Locals</li>
+          <a href="#features">
+            <li className="mobile-links__item">About</li>
+          </a>
         </ul>
         <div className="mobile-action">
           <NavLink to="/dashboard">

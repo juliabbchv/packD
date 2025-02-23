@@ -373,14 +373,11 @@ Response:
 - Saving & editing lists
 - Public list browsing
 
-🔜 **Phase 2 Enhancements**
-
-- Search & filtering for public lists
-- User authentication
-
 🚀 **Future Goals**
 
 - Community upvoting for lists
+- Search & filtering for public lists
+- User authentication
 - AI-powered weather-based suggestions
 - Shared lists for group travels
 - Desktop App

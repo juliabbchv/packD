@@ -90,7 +90,18 @@ export default function Form() {
 
   return (
     <>
-      <section className="form-section">
+      <section className="form-section dashboard">
+        <div className="dashboard__greeting">
+          <h1>
+            Every great adventure starts with a well-packed suitcase (or
+            backpack).
+          </h1>
+          <p>
+            Tell us about your trip, and we’ll curate the perfect packing list
+            for your destination.
+          </p>
+        </div>
+        <div className="divider-line"></div>
         <div className="form-wrapper">
           <div className="form-steps">
             <div className={`form-step ${currentPage === 1 ? "" : "hidden"}`}>
